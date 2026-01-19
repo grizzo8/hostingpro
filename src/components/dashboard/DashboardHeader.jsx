@@ -1,5 +1,6 @@
 import React from 'react';
 import { Bell, Search, Menu, LogOut } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { base44 } from '@/api/base44Client';
 import { createPageUrl } from '@/utils';
 import { Button } from "@/components/ui/button";
