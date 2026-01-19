@@ -56,7 +56,7 @@ Deno.serve(async (req) => {
             currency_code: 'USD',
             value: amount.toFixed(2)
           },
-          description: `${pkg[0].name} - ${billingType === 'daily' ? 'Daily' : 'Monthly'} Plan`
+          description: `${pkg.name} - ${billingType === 'daily' ? 'Daily' : 'Monthly'} Plan`
         }],
         payment_source: {
           paypal: {
