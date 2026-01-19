@@ -12,8 +12,16 @@ import GlassCard from '@/components/ui/GlassCard';
 export default function Packages() {
   const [user, setUser] = useState(null);
   const [loadingPayPal, setLoadingPayPal] = useState({});
+  const [referralCode, setReferralCode] = useState(null);
 
   useEffect(() => {
+    // Get referral code from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const ref = urlParams.get('ref');
+    if (ref) {
+      setReferralCode(ref);
+    }
+
     const checkAuth = async () => {
       const isAuth = await base44.auth.isAuthenticated();
       if (isAuth) {
@@ -56,7 +64,7 @@ export default function Packages() {
 
   const handleCheckout = async (pkg, billingType) => {
     if (!user) {
-      await base44.auth.redirectToLogin(`/packages`);
+      await base44.auth.redirectToLogin(`/packages?ref=${referralCode}`);
       return;
     }
     
@@ -64,7 +72,8 @@ export default function Packages() {
     try {
       const response = await base44.functions.invoke('generatePayPalLink', {
         packageId: pkg.id,
-        billingType: billingType
+        billingType: billingType,
+        referralCode: referralCode
       });
       
       if (response.data?.paypalUrl) {
