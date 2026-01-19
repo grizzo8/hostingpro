@@ -148,6 +148,10 @@ export default function AffiliateSettings() {
                     <Bell className="w-4 h-4" />
                     Notifications
                   </TabsTrigger>
+                  <TabsTrigger value="domains" className="data-[state=active]:bg-white/10 data-[state=active]:text-white text-gray-400 gap-2">
+                    <Globe className="w-4 h-4" />
+                    Domains
+                  </TabsTrigger>
                 </TabsList>
 
                 <TabsContent value="profile">
