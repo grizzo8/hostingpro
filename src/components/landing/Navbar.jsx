@@ -85,22 +85,22 @@ export default function Navbar({ user }) {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-slate-900 border-t border-white/5"
+            className="md:hidden bg-white border-t border-red-200"
           >
             <div className="px-6 py-4 space-y-4">
               {navLinks.map((link) => (
                 <Link
                     key={link.name}
                     to={link.href}
-                    className="block text-gray-600 hover:text-slate-900 py-2"
+                    className="block text-gray-600 hover:text-red-600 py-2"
                   onClick={() => setIsOpen(false)}
                 >
                   {link.name}
                 </Link>
               ))}
-              <div className="pt-4 border-t border-gray-200 space-y-2">
+              <div className="pt-4 border-t border-red-200 space-y-2">
                 <Link to={createPageUrl('AffiliateSignup')} onClick={() => setIsOpen(false)}>
-                  <Button variant="outline" className="w-full border-gray-300 text-slate-900">
+                  <Button variant="outline" className="w-full border-red-200 text-red-600 hover:bg-red-50">
                     Sign Up
                   </Button>
                 </Link>

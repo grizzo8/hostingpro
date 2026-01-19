@@ -55,14 +55,14 @@ export default function BlogPost() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-slate-950">
+      <div className="min-h-screen bg-white">
         <Navbar user={user} />
         <div className="pt-32 pb-24 px-6">
           <div className="max-w-4xl mx-auto">
-            <div className="h-[400px] bg-white/5 rounded-2xl animate-pulse mb-8" />
+            <div className="h-[400px] bg-gray-200 rounded-2xl animate-pulse mb-8" />
             <div className="space-y-4">
-              <div className="h-8 bg-white/5 rounded w-3/4" />
-              <div className="h-4 bg-white/5 rounded w-1/2" />
+              <div className="h-8 bg-gray-200 rounded w-3/4" />
+              <div className="h-4 bg-gray-200 rounded w-1/2" />
             </div>
           </div>
         </div>
@@ -72,11 +72,11 @@ export default function BlogPost() {
 
   if (!post) {
     return (
-      <div className="min-h-screen bg-slate-950">
+      <div className="min-h-screen bg-white">
         <Navbar user={user} />
         <div className="pt-32 pb-24 px-6 text-center">
-          <p className="text-gray-400 text-xl">Post not found</p>
-          <Link to={createPageUrl('Blog')} className="text-blue-400 mt-4 inline-block">
+          <p className="text-gray-600 text-xl">Post not found</p>
+          <Link to={createPageUrl('Blog')} className="text-red-600 mt-4 inline-block">
             ← Back to Blog
           </Link>
         </div>
@@ -85,7 +85,7 @@ export default function BlogPost() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950">
+    <div className="min-h-screen bg-white">
       <Navbar user={user} />
       
       <article className="pt-32 pb-24 px-6">
@@ -96,7 +96,7 @@ export default function BlogPost() {
           >
             <button 
               onClick={() => navigate(-1)}
-              className="inline-flex items-center gap-2 text-gray-400 hover:text-white mb-8 transition-colors cursor-pointer"
+              className="inline-flex items-center gap-2 text-gray-600 hover:text-red-600 mb-8 transition-colors cursor-pointer"
             >
               <ArrowLeft className="w-4 h-4" />
               Back to Blog
@@ -114,31 +114,31 @@ export default function BlogPost() {
 
             <div className="flex flex-wrap gap-3 mb-6">
               {post.category && (
-                <Badge className="bg-blue-500/20 text-blue-400 border border-blue-500/30">
+                <Badge className="bg-red-100 text-red-600 border border-red-200">
                   <Tag className="w-3 h-3 mr-1" />
                   {post.category.replace('-', ' ')}
                 </Badge>
               )}
               {post.tags?.map((tag) => (
-                <Badge key={tag} variant="outline" className="border-white/20 text-gray-400">
+                <Badge key={tag} variant="outline" className="border-red-200 text-red-600">
                   {tag}
                 </Badge>
               ))}
             </div>
 
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
               {post.title}
             </h1>
 
-            <div className="flex flex-wrap items-center gap-6 text-gray-400 mb-12 pb-8 border-b border-white/10">
+            <div className="flex flex-wrap items-center gap-6 text-gray-600 mb-12 pb-8 border-b border-red-200">
               <div className="flex items-center gap-2">
                 {post.author_avatar ? (
-                  <img src={post.author_avatar} alt={post.author_name} className="w-10 h-10 rounded-full" />
-                ) : (
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-emerald-500 flex items-center justify-center">
-                    <User className="w-5 h-5 text-white" />
-                  </div>
-                )}
+                   <img src={post.author_avatar} alt={post.author_name} className="w-10 h-10 rounded-full" />
+                 ) : (
+                   <div className="w-10 h-10 rounded-full bg-gradient-to-br from-red-600 to-blue-600 flex items-center justify-center">
+                     <User className="w-5 h-5 text-white" />
+                   </div>
+                 )}
                 <span>{post.author_name || 'HostingPro Team'}</span>
               </div>
               <div className="flex items-center gap-2">
@@ -151,20 +151,20 @@ export default function BlogPost() {
               </div>
             </div>
 
-            <div className="prose prose-invert prose-lg max-w-none">
+            <div className="prose prose-lg max-w-none">
               <ReactMarkdown
                 components={{
-                  h1: ({node, ...props}) => <h1 className="text-3xl font-bold text-white mt-12 mb-6" {...props} />,
-                  h2: ({node, ...props}) => <h2 className="text-2xl font-bold text-white mt-10 mb-4" {...props} />,
-                  h3: ({node, ...props}) => <h3 className="text-xl font-bold text-white mt-8 mb-3" {...props} />,
-                  p: ({node, ...props}) => <p className="text-gray-300 mb-6 leading-relaxed" {...props} />,
-                  a: ({node, ...props}) => <a className="text-blue-400 hover:text-blue-300 underline" {...props} />,
-                  ul: ({node, ...props}) => <ul className="list-disc list-inside text-gray-300 mb-6 space-y-2" {...props} />,
-                  ol: ({node, ...props}) => <ol className="list-decimal list-inside text-gray-300 mb-6 space-y-2" {...props} />,
-                  blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-blue-500 pl-6 italic text-gray-400 my-8" {...props} />,
+                  h1: ({node, ...props}) => <h1 className="text-3xl font-bold text-slate-900 mt-12 mb-6" {...props} />,
+                  h2: ({node, ...props}) => <h2 className="text-2xl font-bold text-slate-900 mt-10 mb-4" {...props} />,
+                  h3: ({node, ...props}) => <h3 className="text-xl font-bold text-slate-900 mt-8 mb-3" {...props} />,
+                  p: ({node, ...props}) => <p className="text-gray-700 mb-6 leading-relaxed" {...props} />,
+                  a: ({node, ...props}) => <a className="text-red-600 hover:text-red-700 underline" {...props} />,
+                  ul: ({node, ...props}) => <ul className="list-disc list-inside text-gray-700 mb-6 space-y-2" {...props} />,
+                  ol: ({node, ...props}) => <ol className="list-decimal list-inside text-gray-700 mb-6 space-y-2" {...props} />,
+                  blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-red-600 pl-6 italic text-gray-600 my-8" {...props} />,
                   code: ({node, inline, ...props}) => inline 
-                    ? <code className="bg-white/10 px-2 py-1 rounded text-sm" {...props} />
-                    : <code className="block bg-white/5 p-6 rounded-xl overflow-x-auto text-sm" {...props} />
+                    ? <code className="bg-gray-100 px-2 py-1 rounded text-sm" {...props} />
+                    : <code className="block bg-gray-100 p-6 rounded-xl overflow-x-auto text-sm" {...props} />
                 }}
               >
                 {post.content}
