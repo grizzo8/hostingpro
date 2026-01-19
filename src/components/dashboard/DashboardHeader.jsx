@@ -14,6 +14,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 export default function DashboardHeader({ user, affiliate, onMenuToggle }) {
+  const navigate = useNavigate();
+
   // TODO: Ensure logout properly clears all sessions so users can test multiple accounts
   const handleLogout = async () => {
     await base44.auth.logout();
