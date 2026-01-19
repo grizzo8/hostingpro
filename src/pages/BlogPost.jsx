@@ -14,7 +14,7 @@ import Footer from '@/components/landing/Footer';
 export default function BlogPost() {
   const [user, setUser] = useState(null);
   const urlParams = new URLSearchParams(window.location.search);
-  const postId = urlParams.get('id');
+  const slug = urlParams.get('slug');
   const queryClient = useQueryClient();
 
   useEffect(() => {
@@ -29,12 +29,12 @@ export default function BlogPost() {
   }, []);
 
   const { data: post, isLoading } = useQuery({
-    queryKey: ['blog-post', postId],
+    queryKey: ['blog-post', slug],
     queryFn: async () => {
-      const posts = await base44.entities.BlogPost.filter({ id: postId });
+      const posts = await base44.entities.BlogPost.filter({ slug });
       return posts[0];
     },
-    enabled: !!postId
+    enabled: !!slug
   });
 
   // Increment view count
