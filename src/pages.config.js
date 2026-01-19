@@ -1,48 +1,48 @@
-import Home from './pages/Home';
-import Packages from './pages/Packages';
-import Blog from './pages/Blog';
-import BlogPost from './pages/BlogPost';
-import AffiliateSignup from './pages/AffiliateSignup';
-import AffiliateDashboard from './pages/AffiliateDashboard';
-import AffiliateLinks from './pages/AffiliateLinks';
-import AffiliateCommissions from './pages/AffiliateCommissions';
-import AffiliateReferrals from './pages/AffiliateReferrals';
-import AffiliatePerformance from './pages/AffiliatePerformance';
-import AffiliateMessages from './pages/AffiliateMessages';
-import AffiliateSettings from './pages/AffiliateSettings';
-import AdminDashboard from './pages/AdminDashboard';
+import About from './pages/About';
 import AdminAffiliates from './pages/AdminAffiliates';
-import AdminPackages from './pages/AdminPackages';
-import AdminPayouts from './pages/AdminPayouts';
 import AdminBlog from './pages/AdminBlog';
+import AdminDashboard from './pages/AdminDashboard';
 import AdminLeads from './pages/AdminLeads';
 import AdminMessages from './pages/AdminMessages';
-import About from './pages/About';
+import AdminPackages from './pages/AdminPackages';
+import AdminPayouts from './pages/AdminPayouts';
+import AffiliateCommissions from './pages/AffiliateCommissions';
+import AffiliateDashboard from './pages/AffiliateDashboard';
+import AffiliateLinks from './pages/AffiliateLinks';
+import AffiliateMessages from './pages/AffiliateMessages';
+import AffiliatePerformance from './pages/AffiliatePerformance';
+import AffiliateReferrals from './pages/AffiliateReferrals';
+import AffiliateSettings from './pages/AffiliateSettings';
+import AffiliateSignup from './pages/AffiliateSignup';
+import Blog from './pages/Blog';
+import BlogPost from './pages/BlogPost';
 import Contact from './pages/Contact';
+import Home from './pages/Home';
+import Packages from './pages/Packages';
 
 
 export const PAGES = {
-    "Home": Home,
-    "Packages": Packages,
-    "Blog": Blog,
-    "BlogPost": BlogPost,
-    "AffiliateSignup": AffiliateSignup,
-    "AffiliateDashboard": AffiliateDashboard,
-    "AffiliateLinks": AffiliateLinks,
-    "AffiliateCommissions": AffiliateCommissions,
-    "AffiliateReferrals": AffiliateReferrals,
-    "AffiliatePerformance": AffiliatePerformance,
-    "AffiliateMessages": AffiliateMessages,
-    "AffiliateSettings": AffiliateSettings,
-    "AdminDashboard": AdminDashboard,
+    "About": About,
     "AdminAffiliates": AdminAffiliates,
-    "AdminPackages": AdminPackages,
-    "AdminPayouts": AdminPayouts,
     "AdminBlog": AdminBlog,
+    "AdminDashboard": AdminDashboard,
     "AdminLeads": AdminLeads,
     "AdminMessages": AdminMessages,
-    "About": About,
+    "AdminPackages": AdminPackages,
+    "AdminPayouts": AdminPayouts,
+    "AffiliateCommissions": AffiliateCommissions,
+    "AffiliateDashboard": AffiliateDashboard,
+    "AffiliateLinks": AffiliateLinks,
+    "AffiliateMessages": AffiliateMessages,
+    "AffiliatePerformance": AffiliatePerformance,
+    "AffiliateReferrals": AffiliateReferrals,
+    "AffiliateSettings": AffiliateSettings,
+    "AffiliateSignup": AffiliateSignup,
+    "Blog": Blog,
+    "BlogPost": BlogPost,
     "Contact": Contact,
+    "Home": Home,
+    "Packages": Packages,
 }
 
 export const pagesConfig = {

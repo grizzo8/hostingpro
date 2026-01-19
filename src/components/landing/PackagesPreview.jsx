@@ -8,8 +8,8 @@ import GlassCard from '@/components/ui/GlassCard';
 
 export default function PackagesPreview({ packages }) {
   return (
-    <section className="relative py-24 bg-gradient-to-b from-slate-950 to-slate-900">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-2xl h-96 bg-red-600/10 rounded-full blur-3xl" />
+    <section className="relative py-24 bg-white">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-2xl h-96 bg-red-600/5 rounded-full blur-3xl" />
       
       <div className="relative max-w-7xl mx-auto px-6">
         <motion.div
@@ -18,10 +18,10 @@ export default function PackagesPreview({ packages }) {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Hosting Packages You'll <span className="text-red-500">Promote</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+            Hosting Packages You'll <span className="text-red-600">Promote</span>
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
             Premium hosting solutions that sell themselves
           </p>
         </motion.div>
@@ -44,16 +44,16 @@ export default function PackagesPreview({ packages }) {
                   </div>
                 )}
                 
-                <h3 className="text-2xl font-bold text-white mb-2">{pkg.name}</h3>
-                <p className="text-gray-400 text-sm mb-6">{pkg.description}</p>
+                <h3 className="text-2xl font-bold text-slate-900 mb-2">{pkg.name}</h3>
+                <p className="text-gray-600 text-sm mb-6">{pkg.description}</p>
                 
                 <div className="mb-6">
-                  <span className="text-4xl font-bold text-white">${pkg.monthly_price}</span>
-                  <span className="text-gray-400">/mo</span>
+                  <span className="text-4xl font-bold text-slate-900">${pkg.monthly_price}</span>
+                  <span className="text-gray-600">/mo</span>
                 </div>
 
-                <div className="bg-blue-600/10 border border-blue-600/20 rounded-lg p-3 mb-6">
-                  <p className="text-blue-400 font-semibold text-center">
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-6">
+                  <p className="text-blue-600 font-semibold text-center">
                     {pkg.commission_rate}% Commission
                     {pkg.recurring_commission && ' • Recurring'}
                   </p>
@@ -61,8 +61,8 @@ export default function PackagesPreview({ packages }) {
 
                 <ul className="space-y-3 mb-8">
                   {pkg.features?.slice(0, 5).map((feature, j) => (
-                    <li key={j} className="flex items-center gap-3 text-gray-300">
-                      <Check className="w-5 h-5 text-blue-400 flex-shrink-0" />
+                    <li key={j} className="flex items-center gap-3 text-gray-700">
+                      <Check className="w-5 h-5 text-red-600 flex-shrink-0" />
                       <span>{feature}</span>
                     </li>
                   ))}

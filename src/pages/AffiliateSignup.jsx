@@ -102,10 +102,10 @@ export default function AffiliateSignup() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 relative overflow-hidden">
+    <div className="min-h-screen bg-white relative overflow-hidden">
       {/* Background Effects */}
-      <div className="absolute top-0 left-1/3 w-96 h-96 bg-red-600/20 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-1/3 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl" />
+      <div className="absolute top-0 left-1/3 w-96 h-96 bg-red-600/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-1/3 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl" />
       
       <div className="relative z-10 min-h-screen flex items-center justify-center px-6 py-24">
         <div className="w-full max-w-6xl grid lg:grid-cols-2 gap-12 items-center">
@@ -122,12 +122,12 @@ export default function AffiliateSignup() {
               <span className="text-2xl font-bold text-white">HostingPro</span>
             </Link>
 
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
               Join Our Affiliate<br />
-              <span className="text-red-500">Program</span>
+              <span className="text-red-600">Program</span>
             </h1>
 
-            <p className="text-xl text-gray-400 mb-10">
+            <p className="text-xl text-gray-700 mb-10">
               Start earning passive income by promoting the best hosting solutions on the market.
             </p>
 
@@ -140,8 +140,8 @@ export default function AffiliateSignup() {
                   transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
                   className="flex items-center gap-3 text-gray-300"
                 >
-                  <div className="w-6 h-6 rounded-full bg-red-600/20 flex items-center justify-center">
-                    <Check className="w-4 h-4 text-red-500" />
+                  <div className="w-6 h-6 rounded-full bg-red-100 flex items-center justify-center">
+                    <Check className="w-4 h-4 text-red-600" />
                   </div>
                   {benefit}
                 </motion.li>
@@ -156,42 +156,42 @@ export default function AffiliateSignup() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <GlassCard className="p-8">
-              <h2 className="text-2xl font-bold text-white mb-6">
+              <h2 className="text-2xl font-bold text-slate-900 mb-6">
                 {user ? 'Complete Your Profile' : 'Create Your Account'}
               </h2>
 
               {user && (
                 <div className="bg-white/5 border border-white/10 rounded-xl p-4 mb-6">
-                  <p className="text-gray-400 text-sm">Logged in as</p>
-                  <p className="text-white font-medium">{user.email}</p>
+                  <p className="text-gray-600 text-sm">Logged in as</p>
+                  <p className="text-slate-900 font-medium">{user.email}</p>
                 </div>
               )}
 
               <div className="space-y-5">
                 <div>
-                  <Label className="text-gray-300">Website URL (optional)</Label>
+                  <Label className="text-gray-700">Website URL (optional)</Label>
                   <Input
                     type="url"
                     placeholder="https://yoursite.com"
                     value={formData.website_url}
                     onChange={(e) => setFormData(prev => ({ ...prev, website_url: e.target.value }))}
-                    className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 mt-2"
+                    className="bg-white border-gray-300 text-slate-900 placeholder:text-gray-400 mt-2"
                   />
                 </div>
 
                 <div>
-                  <Label className="text-gray-300">PayPal Email</Label>
+                  <Label className="text-gray-700">PayPal Email</Label>
                   <Input
                     type="email"
                     placeholder="paypal@email.com"
                     value={formData.paypal_email}
                     onChange={(e) => setFormData(prev => ({ ...prev, paypal_email: e.target.value }))}
-                    className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 mt-2"
+                    className="bg-white border-gray-300 text-slate-900 placeholder:text-gray-400 mt-2"
                   />
                 </div>
 
                 <div>
-                  <Label className="text-gray-300 mb-3 block">How will you promote?</Label>
+                  <Label className="text-gray-700 mb-3 block">How will you promote?</Label>
                   <div className="grid grid-cols-2 gap-2">
                     {promotionMethods.map((method) => (
                       <button
@@ -199,8 +199,8 @@ export default function AffiliateSignup() {
                         onClick={() => toggleMethod(method)}
                         className={`p-3 rounded-lg border text-sm transition-all ${
                           formData.promotion_methods.includes(method)
-                            ? 'bg-red-600/20 border-red-600/50 text-red-500'
-                            : 'bg-white/5 border-white/10 text-gray-400 hover:border-white/20'
+                            ? 'bg-red-100 border-red-400 text-red-700'
+                            : 'bg-white border-gray-300 text-gray-700 hover:border-gray-400'
                         }`}
                       >
                         {method}
@@ -214,7 +214,7 @@ export default function AffiliateSignup() {
                     id="terms"
                     checked={formData.agreed_terms}
                     onCheckedChange={(checked) => setFormData(prev => ({ ...prev, agreed_terms: checked }))}
-                    className="border-white/20 data-[state=checked]:bg-red-600"
+                    className="border-gray-400 data-[state=checked]:bg-red-600"
                   />
                   <label htmlFor="terms" className="text-sm text-gray-400 cursor-pointer">
                     I agree to the Terms of Service and Affiliate Program Agreement
@@ -241,9 +241,9 @@ export default function AffiliateSignup() {
                   )}
                 </Button>
 
-                <p className="text-center text-gray-500 text-sm">
-                  Already an affiliate?{' '}
-                  <Link to={createPageUrl('AffiliateDashboard')} className="text-red-500 hover:underline">
+                <p className="text-center text-gray-600 text-sm">
+                    Already an affiliate?{' '}
+                    <Link to={createPageUrl('AffiliateDashboard')} className="text-red-600 hover:underline">
                     Login here
                   </Link>
                 </p>

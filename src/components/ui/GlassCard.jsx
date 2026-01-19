@@ -5,8 +5,8 @@ export default function GlassCard({ children, className, hover = true, ...props 
   return (
     <div 
       className={cn(
-        "bg-white/5 backdrop-blur-xl border border-red-500/20 rounded-2xl",
-        hover && "hover:bg-red-500/5 hover:border-red-500/30 transition-all duration-300",
+        "bg-white border border-red-600/30 rounded-2xl shadow-md",
+        hover && "hover:border-red-600/50 transition-all duration-300",
         className
       )}
       {...props}

@@ -5,7 +5,7 @@ import { Zap, Twitter, Linkedin, Youtube } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-950 border-t border-white/5 py-16">
+    <footer className="bg-slate-900 border-t border-gray-200 py-16">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           <div>
