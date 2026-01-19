@@ -20,7 +20,10 @@ export default function Navbar({ user }) {
         <div className="flex items-center justify-between h-20">
           <div className="flex items-center gap-2">
             {/* Australian Flag */}
-            <div className="absolute top-2 right-6 text-lg">🇦🇺</div>
+            <div className="absolute top-2 right-6 flex flex-col items-center">
+              <span className="text-lg">🇦🇺</span>
+              <span className="text-xs font-bold text-red-600 leading-none">MADE</span>
+            </div>
             <Link to={createPageUrl('Home')} className="flex items-center gap-2">
               <div className="w-10 h-10 bg-gradient-to-br from-red-600 to-blue-600 rounded-xl flex items-center justify-center">
                 <Zap className="w-6 h-6 text-white" />
