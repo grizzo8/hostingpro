@@ -55,6 +55,24 @@ export default function Packages() {
     }
   };
 
+  const handleTestPurchase = async (pkg) => {
+    const referralCode = prompt('Enter your referral code to test:');
+    if (!referralCode) return;
+
+    setLoadingPayPal({ ...loadingPayPal, [`${pkg.id}-test`]: true });
+    try {
+      await base44.functions.invoke('testPurchase', {
+        packageId: pkg.id,
+        referralCode: referralCode
+      });
+      alert('✓ Test purchase created! Check your dashboard.');
+    } catch (error) {
+      alert('Test error: ' + error.message);
+    } finally {
+      setLoadingPayPal({ ...loadingPayPal, [`${pkg.id}-test`]: false });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar user={user} />
