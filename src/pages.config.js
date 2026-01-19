@@ -19,6 +19,7 @@ import BlogPost from './pages/BlogPost';
 import Contact from './pages/Contact';
 import Home from './pages/Home';
 import Packages from './pages/Packages';
+import Referral from './pages/Referral';
 
 
 export const PAGES = {
@@ -43,6 +44,7 @@ export const PAGES = {
     "Contact": Contact,
     "Home": Home,
     "Packages": Packages,
+    "Referral": Referral,
 }
 
 export const pagesConfig = {
