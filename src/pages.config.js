@@ -10,6 +10,9 @@ import AffiliateReferrals from './pages/AffiliateReferrals';
 import AffiliatePerformance from './pages/AffiliatePerformance';
 import AffiliateMessages from './pages/AffiliateMessages';
 import AffiliateSettings from './pages/AffiliateSettings';
+import AdminDashboard from './pages/AdminDashboard';
+import AdminAffiliates from './pages/AdminAffiliates';
+import AdminPackages from './pages/AdminPackages';
 
 
 export const PAGES = {
@@ -25,6 +28,9 @@ export const PAGES = {
     "AffiliatePerformance": AffiliatePerformance,
     "AffiliateMessages": AffiliateMessages,
     "AffiliateSettings": AffiliateSettings,
+    "AdminDashboard": AdminDashboard,
+    "AdminAffiliates": AdminAffiliates,
+    "AdminPackages": AdminPackages,
 }
 
 export const pagesConfig = {
