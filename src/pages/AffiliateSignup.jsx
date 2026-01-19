@@ -25,8 +25,8 @@ export default function AffiliateSignup() {
   const [user, setUser] = useState(null);
   const [authorized, setAuthorized] = useState(false);
   const [formData, setFormData] = useState({
-    website_url: '',
-    paypal_email: '',
+    subdomain: '',
+    email: '',
     promotion_methods: [],
     agreed_terms: false
   });
@@ -53,7 +53,7 @@ export default function AffiliateSignup() {
         setUser(userData);
         setFormData(prev => ({
           ...prev,
-          paypal_email: userData.email
+          email: userData.email
         }));
       }
     };
@@ -80,18 +80,28 @@ export default function AffiliateSignup() {
         return;
       }
 
+      // Generate password and create affiliate record
+      const password = Math.random().toString(36).slice(2, 10) + Math.random().toString(36).slice(2, 5).toUpperCase();
+      
       const affiliate = await base44.entities.Affiliate.create({
         user_email: user.email,
         full_name: user.full_name,
         referral_code: generateReferralCode(user.email),
-        paypal_email: formData.paypal_email,
-        website_url: formData.website_url,
+        subdomain: formData.subdomain,
         promotion_methods: formData.promotion_methods,
         status: 'pending',
         tier: 'bronze',
         total_earnings: 0,
         pending_balance: 0,
         total_referrals: 0
+      });
+
+      // Send welcome email with login credentials
+      await base44.functions.invoke('sendWelcomeEmail', {
+        email: user.email,
+        full_name: user.full_name,
+        password: password,
+        subdomain: formData.subdomain
       });
 
       window.location.href = createPageUrl('AffiliateDashboard');
@@ -192,26 +202,31 @@ export default function AffiliateSignup() {
 
               <div className="space-y-5">
                 <div>
-                  <Label className="text-gray-700">Website URL (optional)</Label>
-                  <Input
-                    type="url"
-                    placeholder="https://yoursite.com"
-                    value={formData.website_url}
-                    onChange={(e) => setFormData(prev => ({ ...prev, website_url: e.target.value }))}
-                    className="bg-white border-gray-300 text-slate-900 placeholder:text-gray-400 mt-2"
-                  />
-                </div>
+                   <Label className="text-gray-700">Your Email</Label>
+                   <p className="text-sm text-gray-600 mb-2">Make sure to use your REAL email. This is where we'll send promotions, bonuses, and your login details.</p>
+                   <Input
+                     type="email"
+                     placeholder="your@email.com"
+                     value={formData.email}
+                     onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                     className="bg-white border-gray-300 text-slate-900 placeholder:text-gray-400 mt-2"
+                   />
+                 </div>
 
-                <div>
-                  <Label className="text-gray-700">PayPal Email</Label>
-                  <Input
-                    type="email"
-                    placeholder="paypal@email.com"
-                    value={formData.paypal_email}
-                    onChange={(e) => setFormData(prev => ({ ...prev, paypal_email: e.target.value }))}
-                    className="bg-white border-gray-300 text-slate-900 placeholder:text-gray-400 mt-2"
-                  />
-                </div>
+                 <div>
+                   <Label className="text-gray-700">Your Subdomain</Label>
+                   <p className="text-sm text-gray-600 mb-2">⚠️ This is IMPORTANT! Pick something short and easy to remember. This will be your unique site URL (e.g., <span className="font-mono text-red-600">yourname.hostingpro.com</span>). You can buy a custom domain later in your dashboard.</p>
+                   <Input
+                     type="text"
+                     placeholder="e.g. yourname"
+                     value={formData.subdomain}
+                     onChange={(e) => setFormData(prev => ({ ...prev, subdomain: e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '') }))}
+                     className="bg-white border-gray-300 text-slate-900 placeholder:text-gray-400 mt-2"
+                   />
+                   {formData.subdomain && (
+                     <p className="text-sm text-gray-600 mt-1">Your URL will be: <span className="font-mono font-bold text-slate-900">{formData.subdomain}.hostingpro.com</span></p>
+                   )}
+                 </div>
 
                 <div>
                   <Label className="text-gray-700 mb-3 block">How will you promote?</Label>
@@ -245,10 +260,10 @@ export default function AffiliateSignup() {
                 </div>
 
                 <Button
-                  onClick={() => signupMutation.mutate()}
-                  disabled={!formData.agreed_terms || signupMutation.isPending}
-                  className="w-full bg-gradient-to-r from-red-600 to-blue-600 hover:from-red-700 hover:to-blue-700 text-white py-6 rounded-xl"
-                >
+                   onClick={() => signupMutation.mutate()}
+                   disabled={!formData.agreed_terms || !formData.subdomain || !formData.email || signupMutation.isPending}
+                   className="w-full bg-gradient-to-r from-red-600 to-blue-600 hover:from-red-700 hover:to-blue-700 text-white py-6 rounded-xl"
+                 >
                   {signupMutation.isPending ? (
                     <Loader2 className="w-5 h-5 animate-spin" />
                   ) : user ? (
