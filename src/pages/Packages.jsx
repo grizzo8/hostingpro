@@ -83,19 +83,27 @@ export default function Packages() {
                       <h3 className="text-2xl font-bold text-slate-900 mb-2">{pkg.name}</h3>
                       <p className="text-gray-600 text-sm mb-6">{pkg.description}</p>
                       
-                      <div className="mb-6">
-                        <div className="text-3xl font-bold text-red-600">${pkg.price}</div>
-                        <div className="text-xs text-gray-600">Upfront payment to start</div>
-                      </div>
+                      <div className="mb-4">
+                         <div className="space-y-2">
+                           <div>
+                             <p className="text-xs text-gray-600 mb-1">Daily: ${pkg.daily_price}/day</p>
+                             <p className="text-xs text-gray-500">Pay {(pkg.daily_price * 30).toFixed(2)}/month if daily</p>
+                           </div>
+                           <div className="border-t border-gray-200 pt-2">
+                             <p className="text-sm font-bold text-red-600 mb-1">${pkg.monthly_price}/month</p>
+                             <p className="text-xs text-gray-600">Pay for 28 days only (saves ${(pkg.daily_price * 30 - pkg.monthly_price).toFixed(2)}/month)</p>
+                           </div>
+                         </div>
+                       </div>
 
-                      <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6">
-                        <div className="text-center">
-                          <p className="text-xs text-gray-600 mb-2">After 3 referrals:</p>
-                          <div className="text-2xl font-bold text-blue-600">${pkg.daily_payout}/day</div>
-                          <p className="text-xs text-gray-600 mt-1">Automatic PayPal payouts</p>
-                          <p className="text-xs text-gray-500 mt-2">*minus PayPal fees</p>
-                        </div>
-                      </div>
+                       <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6">
+                         <div className="text-center">
+                           <p className="text-xs text-gray-600 mb-2">After 3 referrals:</p>
+                           <div className="text-2xl font-bold text-blue-600">${pkg.daily_payout}/day</div>
+                           <p className="text-xs text-gray-600 mt-1">Automatic PayPal payouts</p>
+                           <p className="text-xs text-gray-500 mt-2">*minus PayPal fees</p>
+                         </div>
+                       </div>
 
                       <div className="bg-red-50 border border-red-200 rounded-xl p-4 mb-6">
                         <div className="text-center">
