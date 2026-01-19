@@ -3,6 +3,9 @@ import Packages from './pages/Packages';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import AffiliateSignup from './pages/AffiliateSignup';
+import AffiliateDashboard from './pages/AffiliateDashboard';
+import AffiliateLinks from './pages/AffiliateLinks';
+import AffiliateCommissions from './pages/AffiliateCommissions';
 
 
 export const PAGES = {
@@ -11,6 +14,9 @@ export const PAGES = {
     "Blog": Blog,
     "BlogPost": BlogPost,
     "AffiliateSignup": AffiliateSignup,
+    "AffiliateDashboard": AffiliateDashboard,
+    "AffiliateLinks": AffiliateLinks,
+    "AffiliateCommissions": AffiliateCommissions,
 }
 
 export const pagesConfig = {
