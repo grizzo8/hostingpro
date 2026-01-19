@@ -57,7 +57,7 @@ export default function AdminPackages() {
 
   const { data: packages = [], isLoading } = useQuery({
     queryKey: ['admin-packages'],
-    queryFn: () => base44.entities.HostingPackage.list('sort_order', 50)
+    queryFn: () => base44.entities.HostingPackage.filter({}, 'sort_order')
   });
 
   const handleLogout = () => {
