@@ -19,8 +19,8 @@ import BlogPost from './pages/BlogPost';
 import Contact from './pages/Contact';
 import Home from './pages/Home';
 import Packages from './pages/Packages';
-import Referral from './pages/Referral';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import Referral from './pages/Referral';
 import TermsOfService from './pages/TermsOfService';
 
 
@@ -46,8 +46,8 @@ export const PAGES = {
     "Contact": Contact,
     "Home": Home,
     "Packages": Packages,
-    "Referral": Referral,
     "PrivacyPolicy": PrivacyPolicy,
+    "Referral": Referral,
     "TermsOfService": TermsOfService,
 }
 

@@ -74,11 +74,16 @@ export default function BlogPost() {
     return (
       <div className="min-h-screen bg-white">
         <Navbar user={user} />
-        <div className="pt-32 pb-24 px-6 text-center">
-          <p className="text-gray-600 text-xl">Post not found</p>
-          <Link to={createPageUrl('Blog')} className="text-red-600 mt-4 inline-block">
-            ← Back to Blog
-          </Link>
+        <div className="pt-32 pb-24 px-6 flex items-center justify-center">
+          <div className="text-center max-w-md">
+            <div className="text-6xl font-bold text-gray-200 mb-4">404</div>
+            <h1 className="text-2xl font-bold text-slate-900 mb-2">Post Not Found</h1>
+            <p className="text-gray-600 mb-8">Sorry, we couldn't find the blog post you're looking for.</p>
+            <Link to={createPageUrl('Blog')} className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-medium transition-colors">
+              <ArrowLeft className="w-4 h-4" />
+              Back to Blog
+            </Link>
+          </div>
         </div>
       </div>
     );

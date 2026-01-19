@@ -100,7 +100,7 @@ export default function Blog() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                 >
-                  <Link to={createPageUrl(`BlogPost?id=${post.id}`)}>
+                  <Link to={createPageUrl(`BlogPost?slug=${post.slug}`)}>
                     <GlassCard className="overflow-hidden h-full flex flex-col group">
                       <div className="aspect-video relative overflow-hidden">
                         <img
