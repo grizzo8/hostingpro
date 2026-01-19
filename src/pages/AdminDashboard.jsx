@@ -19,6 +19,7 @@ import DashboardHeader from '@/components/dashboard/DashboardHeader';
 import StatCard from '@/components/ui/StatCard';
 import GlassCard from '@/components/ui/GlassCard';
 import ResellerManagement from '@/components/admin/ResellerManagement';
+import AddPackageForm from '@/components/admin/AddPackageForm';
 import { Badge } from "@/components/ui/badge";
 import { format } from 'date-fns';
 
@@ -245,6 +246,17 @@ export default function AdminDashboard() {
                 </GlassCard>
               </motion.div>
             </div>
+
+            {/* Add Package Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7 }}
+            >
+              <div>
+                <AddPackageForm />
+              </div>
+            </motion.div>
 
             {/* Reseller Management */}
             <motion.div
