@@ -7,9 +7,22 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navbar({ user }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [referralCode, setReferralCode] = useState(null);
+
+  React.useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const ref = urlParams.get('ref');
+    if (ref) {
+      setReferralCode(ref);
+    }
+  }, []);
+
+  const getPackagesUrl = () => {
+    return createPageUrl(`Packages${referralCode ? `?ref=${referralCode}` : ''}`);
+  };
 
   const navLinks = [
-    { name: 'Packages', href: createPageUrl('Packages') },
+    { name: 'Packages', href: 'packages-dynamic' },
     { name: 'Blog', href: createPageUrl('Blog') },
     { name: 'About', href: createPageUrl('About') },
   ];
@@ -37,7 +50,7 @@ export default function Navbar({ user }) {
             {navLinks.map((link) => (
               <Link
                 key={link.name}
-                to={link.href}
+                to={link.name === 'Packages' ? getPackagesUrl() : link.href}
                 className="text-gray-600 hover:text-slate-900 transition-colors"
               >
                 {link.name}
@@ -91,7 +104,7 @@ export default function Navbar({ user }) {
               {navLinks.map((link) => (
                 <Link
                     key={link.name}
-                    to={link.href}
+                    to={link.name === 'Packages' ? getPackagesUrl() : link.href}
                     className="block text-gray-600 hover:text-red-600 py-2"
                   onClick={() => setIsOpen(false)}
                 >
