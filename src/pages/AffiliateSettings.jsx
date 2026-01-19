@@ -239,56 +239,60 @@ export default function AffiliateSettings() {
                 </TabsContent>
 
                 <TabsContent value="payout">
-                  <GlassCard className="p-6">
-                    <h3 className="text-lg font-semibold text-white mb-6">Payout Settings</h3>
-                    
-                    <div className="space-y-6">
-                      <div className="bg-gradient-to-r from-blue-500/10 to-emerald-500/10 border border-blue-500/20 rounded-xl p-4">
-                        <p className="text-emerald-400 font-medium">Daily PayPal Payouts</p>
-                        <p className="text-gray-400 text-sm mt-1">
-                          Your approved commissions are automatically paid daily to your PayPal account.
-                        </p>
-                      </div>
+                   <div className="space-y-6">
+                     <GlassCard className="p-6">
+                       <h3 className="text-lg font-semibold text-white mb-6">Payout Settings</h3>
 
-                      <div>
-                        <Label className="text-gray-300">PayPal Email</Label>
-                        <Input
-                          type="email"
-                          placeholder="paypal@email.com"
-                          value={formData.paypal_email}
-                          onChange={(e) => setFormData(prev => ({ ...prev, paypal_email: e.target.value }))}
-                          className="mt-2 bg-slate-900 border-white/10 text-white placeholder:text-gray-500"
-                        />
-                        <p className="text-gray-500 text-sm mt-2">
-                          Make sure this email matches your PayPal account exactly.
-                        </p>
-                      </div>
+                       <div className="space-y-6">
+                         <div className="bg-gradient-to-r from-blue-500/10 to-emerald-500/10 border border-blue-500/20 rounded-xl p-4">
+                           <p className="text-emerald-400 font-medium">Daily PayPal Payouts</p>
+                           <p className="text-gray-400 text-sm mt-1">
+                             Your approved commissions are automatically paid daily to your PayPal account.
+                           </p>
+                         </div>
 
-                      <div className="bg-white/5 border border-white/10 rounded-xl p-4">
-                        <div className="flex justify-between items-center">
-                          <div>
-                            <p className="text-white font-medium">Minimum Payout</p>
-                            <p className="text-gray-400 text-sm">No minimum required</p>
-                          </div>
-                          <p className="text-2xl font-bold text-emerald-400">$0.00</p>
-                        </div>
-                      </div>
+                         <div>
+                           <Label className="text-gray-300">PayPal Email</Label>
+                           <Input
+                             type="email"
+                             placeholder="paypal@email.com"
+                             value={formData.paypal_email}
+                             onChange={(e) => setFormData(prev => ({ ...prev, paypal_email: e.target.value }))}
+                             className="mt-2 bg-slate-900 border-white/10 text-white placeholder:text-gray-500"
+                           />
+                           <p className="text-gray-500 text-sm mt-2">
+                             Make sure this email matches your PayPal account exactly.
+                           </p>
+                         </div>
 
-                      <Button
-                        onClick={() => updateMutation.mutate()}
-                        disabled={updateMutation.isPending}
-                        className="bg-gradient-to-r from-blue-500 to-emerald-500 hover:from-blue-600 hover:to-emerald-600"
-                      >
-                        {updateMutation.isPending ? (
-                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                        ) : (
-                          <Save className="w-4 h-4 mr-2" />
-                        )}
-                        Update Payout Settings
-                      </Button>
-                    </div>
-                  </GlassCard>
-                </TabsContent>
+                         <div className="bg-white/5 border border-white/10 rounded-xl p-4">
+                           <div className="flex justify-between items-center">
+                             <div>
+                               <p className="text-white font-medium">Minimum Payout</p>
+                               <p className="text-gray-400 text-sm">No minimum required</p>
+                             </div>
+                             <p className="text-2xl font-bold text-emerald-400">$0.00</p>
+                           </div>
+                         </div>
+
+                         <Button
+                           onClick={() => updateMutation.mutate()}
+                           disabled={updateMutation.isPending}
+                           className="bg-gradient-to-r from-blue-500 to-emerald-500 hover:from-blue-600 hover:to-emerald-600"
+                         >
+                           {updateMutation.isPending ? (
+                             <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                           ) : (
+                             <Save className="w-4 h-4 mr-2" />
+                           )}
+                           Update Payout Settings
+                         </Button>
+                       </div>
+                     </GlassCard>
+
+                     <PayoutRequestSection affiliate={affiliate} user={user} />
+                   </div>
+                 </TabsContent>
 
                 <TabsContent value="notifications">
                   <GlassCard className="p-6">
