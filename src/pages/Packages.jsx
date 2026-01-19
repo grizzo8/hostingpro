@@ -24,6 +24,25 @@ export default function Packages() {
     checkAuth();
   }, []);
 
+  const { data: affiliate } = useQuery({
+    queryKey: ['affiliate', user?.email],
+    queryFn: async () => {
+      if (!user?.email) return null;
+      const affiliates = await base44.entities.Affiliate.filter({ user_email: user.email });
+      return affiliates[0];
+    },
+    enabled: !!user?.email
+  });
+
+  const { data: maxPackage } = useQuery({
+    queryKey: ['max-package', affiliate?.max_package_id],
+    queryFn: async () => {
+      if (!affiliate?.max_package_id) return null;
+      return base44.entities.HostingPackage.get(affiliate.max_package_id);
+    },
+    enabled: !!affiliate?.max_package_id
+  });
+
   const { data: packages = [], isLoading } = useQuery({
     queryKey: ['all-packages'],
     queryFn: () => base44.entities.HostingPackage.filter({ is_active: true }, 'sort_order')
