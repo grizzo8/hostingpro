@@ -47,7 +47,7 @@ export default function Blog() {
     : posts.filter(p => p.category === selectedCategory);
 
   return (
-    <div className="min-h-screen bg-slate-950">
+    <div className="min-h-screen bg-white">
       <Navbar user={user} />
       
       <div className="pt-32 pb-24 px-6">
@@ -57,10 +57,10 @@ export default function Blog() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-16"
           >
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
-              Affiliate <span className="text-blue-400">Blog</span>
+            <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-4">
+              Affiliate <span className="text-red-600">Blog</span>
             </h1>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Tips, tutorials, and strategies to maximize your affiliate earnings
             </p>
           </motion.div>
@@ -73,8 +73,8 @@ export default function Blog() {
                 variant={selectedCategory === cat ? "default" : "outline"}
                 onClick={() => setSelectedCategory(cat)}
                 className={selectedCategory === cat 
-                  ? "bg-white/10 text-white border-white/20" 
-                  : "border-white/10 text-gray-400 hover:text-white hover:bg-white/5"}
+                  ? "bg-red-600 text-white border-red-600" 
+                  : "border-red-200 text-slate-600 hover:text-red-600 hover:bg-red-50"}
               >
                 {cat.charAt(0).toUpperCase() + cat.slice(1).replace('-', ' ')}
               </Button>
@@ -84,12 +84,12 @@ export default function Blog() {
           {isLoading ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[1,2,3].map((i) => (
-                <div key={i} className="h-[400px] bg-white/5 rounded-2xl animate-pulse" />
+                <div key={i} className="h-[400px] bg-gray-200 rounded-2xl animate-pulse" />
               ))}
             </div>
           ) : filteredPosts.length === 0 ? (
             <div className="text-center py-20">
-              <p className="text-gray-400 text-lg">No posts in this category yet.</p>
+              <p className="text-gray-600 text-lg">No posts in this category yet.</p>
             </div>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -118,19 +118,19 @@ export default function Blog() {
                       </div>
                       
                       <div className="p-6 flex-grow flex flex-col">
-                        <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors line-clamp-2">
+                        <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-red-600 transition-colors line-clamp-2">
                           {post.title}
                         </h3>
-                        <p className="text-gray-400 mb-4 line-clamp-2 flex-grow">
+                        <p className="text-gray-600 mb-4 line-clamp-2 flex-grow">
                           {post.excerpt}
                         </p>
                         
-                        <div className="flex items-center justify-between pt-4 border-t border-white/10">
+                        <div className="flex items-center justify-between pt-4 border-t border-red-600/20">
                           <div className="flex items-center gap-2 text-sm text-gray-500">
                             <Clock className="w-4 h-4" />
                             {post.published_at ? format(new Date(post.published_at), 'MMM d, yyyy') : 'Draft'}
                           </div>
-                          <span className="text-blue-400 flex items-center gap-1 text-sm font-medium group-hover:gap-2 transition-all">
+                          <span className="text-red-600 flex items-center gap-1 text-sm font-medium group-hover:gap-2 transition-all">
                             Read More <ArrowRight className="w-4 h-4" />
                           </span>
                         </div>
