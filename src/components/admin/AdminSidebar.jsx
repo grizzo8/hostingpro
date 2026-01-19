@@ -35,15 +35,15 @@ export default function AdminSidebar({ onLogout }) {
   };
 
   return (
-    <aside className="w-64 bg-slate-900/50 backdrop-blur-xl border-r border-white/5 min-h-screen flex flex-col">
+    <aside className="w-64 bg-white border-r border-red-200 min-h-screen flex flex-col">
       <div className="p-6">
         <Link to={createPageUrl('Home')} className="flex items-center gap-2">
-          <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
+          <div className="w-10 h-10 bg-gradient-to-br from-red-600 to-blue-600 rounded-xl flex items-center justify-center">
             <Zap className="w-6 h-6 text-white" />
           </div>
           <div>
-            <span className="text-xl font-bold text-white">HostingPro</span>
-            <p className="text-xs text-gray-400">Admin Panel</p>
+            <span className="text-xl font-bold text-slate-900">HostingPro</span>
+            <p className="text-xs text-gray-600">Admin Panel</p>
           </div>
         </Link>
       </div>
@@ -55,8 +55,8 @@ export default function AdminSidebar({ onLogout }) {
             to={item.href}
             className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
               isActive(item.href)
-                ? 'bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-white border border-white/10'
-                : 'text-gray-400 hover:text-white hover:bg-white/5'
+                ? 'bg-red-100 text-red-700 border border-red-300'
+                : 'text-gray-600 hover:text-red-600 hover:bg-red-50'
             }`}
           >
             <item.icon className="w-5 h-5" />
@@ -65,10 +65,10 @@ export default function AdminSidebar({ onLogout }) {
         ))}
       </nav>
 
-      <div className="p-4 border-t border-white/5">
+      <div className="p-4 border-t border-red-200">
         <button
           onClick={onLogout}
-          className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 transition-all w-full"
+          className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 hover:text-red-600 hover:bg-red-50 transition-all w-full"
         >
           <LogOut className="w-5 h-5" />
           Logout

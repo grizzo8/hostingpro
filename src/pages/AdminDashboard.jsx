@@ -92,14 +92,14 @@ export default function AdminDashboard() {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-slate-950 flex items-center justify-center">
-        <div className="w-8 h-8 border-4 border-purple-500 border-t-transparent rounded-full animate-spin" />
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="w-8 h-8 border-4 border-red-600 border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 flex">
+    <div className="min-h-screen bg-white flex">
       <div className={`fixed inset-y-0 left-0 z-50 transform lg:relative lg:translate-x-0 transition-transform duration-300 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <AdminSidebar onLogout={handleLogout} />
       </div>
@@ -117,14 +117,14 @@ export default function AdminDashboard() {
           onMenuToggle={() => setSidebarOpen(!sidebarOpen)} 
         />
         
-        <main className="flex-1 p-6 overflow-auto">
+        <main className="flex-1 p-6 overflow-auto bg-white">
           <div className="max-w-7xl mx-auto space-y-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
             >
-              <h1 className="text-3xl font-bold text-white mb-2">Admin Dashboard</h1>
-              <p className="text-gray-400">Overview of your affiliate program performance.</p>
+              <h1 className="text-3xl font-bold text-slate-900 mb-2">Admin Dashboard</h1>
+              <p className="text-gray-600">Overview of your affiliate program performance.</p>
             </motion.div>
 
             {/* Stats Grid */}
@@ -168,32 +168,32 @@ export default function AdminDashboard() {
                 className="lg:col-span-2"
               >
                 <GlassCard className="p-6">
-                  <h3 className="text-lg font-semibold text-white mb-6">Revenue & Commissions</h3>
+                  <h3 className="text-lg font-semibold text-slate-900 mb-6">Revenue & Commissions</h3>
                   <div className="h-64">
                     <ResponsiveContainer width="100%" height="100%">
                       <AreaChart data={weeklyData}>
                         <defs>
                           <linearGradient id="revenueGrad" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.3}/>
-                            <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0}/>
+                            <stop offset="5%" stopColor="#dc2626" stopOpacity={0.3}/>
+                            <stop offset="95%" stopColor="#dc2626" stopOpacity={0}/>
                           </linearGradient>
                           <linearGradient id="commissionsGrad" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="5%" stopColor="#10b981" stopOpacity={0.3}/>
-                            <stop offset="95%" stopColor="#10b981" stopOpacity={0}/>
+                            <stop offset="5%" stopColor="#2563eb" stopOpacity={0.3}/>
+                            <stop offset="95%" stopColor="#2563eb" stopOpacity={0}/>
                           </linearGradient>
                         </defs>
-                        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+                        <CartesianGrid strokeDasharray="3 3" stroke="rgba(0,0,0,0.1)" />
                         <XAxis dataKey="day" stroke="#6b7280" />
                         <YAxis stroke="#6b7280" />
                         <Tooltip 
                           contentStyle={{ 
-                            backgroundColor: '#1e293b', 
-                            border: '1px solid rgba(255,255,255,0.1)',
+                            backgroundColor: '#ffffff', 
+                            border: '1px solid rgba(0,0,0,0.1)',
                             borderRadius: '8px'
                           }}
                         />
-                        <Area type="monotone" dataKey="revenue" stroke="#8b5cf6" fill="url(#revenueGrad)" />
-                        <Area type="monotone" dataKey="commissions" stroke="#10b981" fill="url(#commissionsGrad)" />
+                        <Area type="monotone" dataKey="revenue" stroke="#dc2626" fill="url(#revenueGrad)" />
+                        <Area type="monotone" dataKey="commissions" stroke="#2563eb" fill="url(#commissionsGrad)" />
                       </AreaChart>
                     </ResponsiveContainer>
                   </div>
@@ -206,7 +206,7 @@ export default function AdminDashboard() {
                 transition={{ delay: 0.6 }}
               >
                 <GlassCard className="p-6 h-full">
-                  <h3 className="text-lg font-semibold text-white mb-6">Affiliate Tiers</h3>
+                  <h3 className="text-lg font-semibold text-slate-900 mb-6">Affiliate Tiers</h3>
                   {tierData.length > 0 ? (
                     <>
                       <div className="h-40">
@@ -232,15 +232,15 @@ export default function AdminDashboard() {
                         {tierData.map((entry, index) => (
                           <div key={entry.name} className="flex items-center gap-2">
                             <div className="w-3 h-3 rounded-full" style={{ backgroundColor: COLORS[index % COLORS.length] }} />
-                            <span className="text-gray-400 text-sm">{entry.name}: {entry.value}</span>
+                            <span className="text-gray-600 text-sm">{entry.name}: {entry.value}</span>
                           </div>
                         ))}
                       </div>
                     </>
                   ) : (
-                    <div className="h-40 flex items-center justify-center text-gray-400">
-                      No affiliates yet
-                    </div>
+                    <div className="h-40 flex items-center justify-center text-gray-600">
+                       No affiliates yet
+                     </div>
                   )}
                 </GlassCard>
               </motion.div>
@@ -264,35 +264,35 @@ export default function AdminDashboard() {
                 transition={{ delay: 0.7 }}
               >
                 <GlassCard className="p-6">
-                  <h3 className="text-lg font-semibold text-white mb-6">Recent Affiliate Signups</h3>
+                  <h3 className="text-lg font-semibold text-slate-900 mb-6">Recent Affiliate Signups</h3>
                   {recentAffiliates.length === 0 ? (
-                    <div className="text-center py-8 text-gray-400">
+                    <div className="text-center py-8 text-gray-600">
                       No affiliates yet
                     </div>
                   ) : (
                     <div className="space-y-4">
-                      {recentAffiliates.map((aff) => (
-                        <div key={aff.id} className="flex items-center justify-between p-3 bg-white/5 rounded-xl">
-                          <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-medium">
-                              {(aff.full_name || aff.user_email || 'A').charAt(0).toUpperCase()}
-                            </div>
-                            <div>
-                              <p className="text-white font-medium">{aff.full_name || aff.user_email}</p>
-                              <p className="text-gray-400 text-sm capitalize">{aff.tier} tier</p>
-                            </div>
-                          </div>
-                          <Badge className={`border ${
-                            aff.status === 'approved' ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' :
-                            aff.status === 'suspended' ? 'bg-rose-500/20 text-rose-400 border-rose-500/30' :
-                            'bg-amber-500/20 text-amber-400 border-amber-500/30'
-                          }`}>
-                            {aff.status}
-                          </Badge>
-                        </div>
-                      ))}
-                    </div>
-                  )}
+                       {recentAffiliates.map((aff) => (
+                         <div key={aff.id} className="flex items-center justify-between p-3 bg-gray-100 rounded-xl">
+                           <div className="flex items-center gap-3">
+                             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-red-600 to-blue-600 flex items-center justify-center text-white font-medium">
+                               {(aff.full_name || aff.user_email || 'A').charAt(0).toUpperCase()}
+                             </div>
+                             <div>
+                               <p className="text-slate-900 font-medium">{aff.full_name || aff.user_email}</p>
+                               <p className="text-gray-600 text-sm capitalize">{aff.tier} tier</p>
+                             </div>
+                           </div>
+                           <Badge className={`border ${
+                             aff.status === 'approved' ? 'bg-green-100 text-green-700 border-green-300' :
+                             aff.status === 'suspended' ? 'bg-red-100 text-red-700 border-red-300' :
+                             'bg-yellow-100 text-yellow-700 border-yellow-300'
+                           }`}>
+                             {aff.status}
+                           </Badge>
+                         </div>
+                       ))}
+                     </div>
+                   )}
                 </GlassCard>
               </motion.div>
 
@@ -303,29 +303,29 @@ export default function AdminDashboard() {
                 transition={{ delay: 0.8 }}
               >
                 <GlassCard className="p-6">
-                  <h3 className="text-lg font-semibold text-white mb-6">Pending Commissions</h3>
+                  <h3 className="text-lg font-semibold text-slate-900 mb-6">Pending Commissions</h3>
                   {pendingReferrals.length === 0 ? (
-                    <div className="text-center py-8 text-gray-400">
+                    <div className="text-center py-8 text-gray-600">
                       No pending commissions
                     </div>
                   ) : (
                     <div className="space-y-4">
-                      {pendingReferrals.map((ref) => (
-                        <div key={ref.id} className="flex items-center justify-between p-3 bg-white/5 rounded-xl">
-                          <div>
-                            <p className="text-white font-medium">{ref.customer_name || ref.customer_email}</p>
-                            <p className="text-gray-400 text-sm">{ref.package_name}</p>
-                          </div>
-                          <div className="text-right">
-                            <p className="text-amber-400 font-semibold">${ref.commission_amount?.toFixed(2)}</p>
-                            <p className="text-gray-500 text-xs">
-                              {format(new Date(ref.created_date), 'MMM d')}
-                            </p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
+                       {pendingReferrals.map((ref) => (
+                         <div key={ref.id} className="flex items-center justify-between p-3 bg-gray-100 rounded-xl">
+                           <div>
+                             <p className="text-slate-900 font-medium">{ref.customer_name || ref.customer_email}</p>
+                             <p className="text-gray-600 text-sm">{ref.package_name}</p>
+                           </div>
+                           <div className="text-right">
+                             <p className="text-red-600 font-semibold">${ref.commission_amount?.toFixed(2)}</p>
+                             <p className="text-gray-600 text-xs">
+                               {format(new Date(ref.created_date), 'MMM d')}
+                             </p>
+                           </div>
+                         </div>
+                       ))}
+                     </div>
+                   )}
                 </GlassCard>
               </motion.div>
             </div>
