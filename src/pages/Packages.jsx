@@ -11,6 +11,7 @@ import GlassCard from '@/components/ui/GlassCard';
 
 export default function Packages() {
   const [user, setUser] = useState(null);
+  const [loadingPayPal, setLoadingPayPal] = useState({});
 
   useEffect(() => {
     const checkAuth = async () => {
