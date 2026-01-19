@@ -61,13 +61,22 @@ export default function DashboardHeader({ user, affiliate, onMenuToggle }) {
             </button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="bg-white border-gray-200">
-            <DropdownMenuItem className="text-gray-700 hover:text-slate-900 focus:text-slate-900 focus:bg-gray-50">
+            <DropdownMenuItem 
+              onClick={() => navigate(createPageUrl('AffiliateSettings'))}
+              className="text-gray-700 hover:text-slate-900 focus:text-slate-900 focus:bg-gray-50"
+            >
               Profile Settings
             </DropdownMenuItem>
-            <DropdownMenuItem className="text-gray-700 hover:text-slate-900 focus:text-slate-900 focus:bg-gray-50">
+            <DropdownMenuItem 
+              onClick={() => navigate(createPageUrl('AffiliateSettings'))}
+              className="text-gray-700 hover:text-slate-900 focus:text-slate-900 focus:bg-gray-50"
+            >
               Billing
             </DropdownMenuItem>
-            <DropdownMenuItem className="text-gray-700 hover:text-slate-900 focus:text-slate-900 focus:bg-gray-50">
+            <DropdownMenuItem 
+              onClick={() => navigate(createPageUrl('Contact'))}
+              className="text-gray-700 hover:text-slate-900 focus:text-slate-900 focus:bg-gray-50"
+            >
               Help Center
             </DropdownMenuItem>
             <DropdownMenuSeparator className="bg-gray-200" />
