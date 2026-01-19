@@ -14,8 +14,15 @@ import GlassCard from '@/components/ui/GlassCard';
 export default function Home() {
   const [user, setUser] = useState(null);
   const [formData, setFormData] = useState({ name: '', email: '' });
+  const [referralCode, setReferralCode] = useState(null);
 
   useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const ref = urlParams.get('ref');
+    if (ref) {
+      setReferralCode(ref);
+    }
+
     const checkAuth = async () => {
       const isAuth = await base44.auth.isAuthenticated();
       if (isAuth) {
@@ -84,6 +91,12 @@ export default function Home() {
                 High Performance
               </div>
             </div>
+
+            <Link to={createPageUrl(`Packages${referralCode ? `?ref=${referralCode}` : ''}`)} className="inline-block">
+              <Button className="bg-gradient-to-r from-red-600 to-blue-600 hover:from-red-700 hover:to-blue-700 text-white rounded-xl px-8 py-6 text-lg">
+                View Packages <ArrowRight className="ml-2 w-5 h-5" />
+              </Button>
+            </Link>
           </motion.div>
         </div>
       </section>
@@ -376,6 +389,13 @@ export default function Home() {
 
             <div className="text-center">
               <Link to={createPageUrl('Blog')} className="text-red-600 font-semibold hover:underline">View All Articles →</Link>
+              <div className="mt-4">
+                <Link to={createPageUrl(`Packages${referralCode ? `?ref=${referralCode}` : ''}`)} className="inline-block">
+                  <Button className="bg-gradient-to-r from-red-600 to-blue-600 hover:from-red-700 hover:to-blue-700 text-white rounded-xl">
+                    Ready to Get Started? View Packages
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         </section>
