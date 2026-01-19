@@ -16,18 +16,15 @@ Deno.serve(async (req) => {
       return Response.json({ error: 'Missing packageId or billingType' }, { status: 400 });
     }
 
-    // Get package details using service role
-    const pkgs = await base44.asServiceRole.entities.HostingPackage.filter({ id: packageId });
-    if (!pkgs || pkgs.length === 0) {
+    const pkg = await base44.asServiceRole.entities.HostingPackage.get(packageId);
+    if (!pkg) {
       return Response.json({ error: 'Package not found' }, { status: 404 });
     }
-    const pkg = pkgs[0];
 
     const amount = billingType === 'daily' ? pkg.daily_price : pkg.monthly_price;
     const clientId = Deno.env.get('PAYPAL_CLIENT_ID');
     const clientSecret = Deno.env.get('PAYPAL_API_SECRET');
 
-    // Get PayPal access token
     const authString = btoa(`${clientId}:${clientSecret}`);
     const tokenRes = await fetch('https://api.paypal.com/v1/oauth2/token', {
       method: 'POST',
@@ -43,7 +40,8 @@ Deno.serve(async (req) => {
       return Response.json({ error: 'Failed to get PayPal token' }, { status: 500 });
     }
 
-    // Create PayPal order
+    const returnUrl = new URL(req.url).origin + '/packages?success=true' + (referralCode ? `&ref=${referralCode}` : '');
+    
     const orderRes = await fetch('https://api.paypal.com/v2/checkout/orders', {
       method: 'POST',
       headers: {
@@ -57,13 +55,14 @@ Deno.serve(async (req) => {
             currency_code: 'USD',
             value: amount.toFixed(2)
           },
-          description: `${pkg.name} - ${billingType === 'daily' ? 'Daily' : 'Monthly'} Plan`
+          description: `${pkg.name} - ${billingType === 'daily' ? 'Daily' : 'Monthly'} Plan`,
+          custom_id: referralCode || 'direct'
         }],
         payment_source: {
           paypal: {
             experience_context: {
-              return_url: `${new URL(req.url).origin}/packages?success=true${referralCode ? `&ref=${referralCode}` : ''}`,
-              cancel_url: `${new URL(req.url).origin}/packages?cancelled=true${referralCode ? `&ref=${referralCode}` : ''}`
+              return_url: returnUrl,
+              cancel_url: new URL(req.url).origin + '/packages'
             }
           }
         }
@@ -75,11 +74,8 @@ Deno.serve(async (req) => {
       return Response.json({ error: 'Failed to create PayPal order' }, { status: 500 });
     }
 
-    // Find the approval link
     const approvalLink = orderData.links?.find(link => link.rel === 'approve')?.href;
-
     if (!approvalLink) {
-      console.error('No approval link found:', orderData);
       return Response.json({ error: 'No payment link available' }, { status: 500 });
     }
 

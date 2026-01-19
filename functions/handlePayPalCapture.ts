@@ -4,38 +4,28 @@ Deno.serve(async (req) => {
   try {
     const base44 = createClientFromRequest(req);
     const body = await req.json();
-    const { orderId, packageId } = body;
+    const { orderId, packageId, referralCode } = body;
 
     if (!orderId || !packageId) {
       return Response.json({ error: 'Missing orderId or packageId' }, { status: 400 });
     }
 
-    // Get package details
     const pkg = await base44.asServiceRole.entities.HostingPackage.get(packageId);
     if (!pkg) {
       return Response.json({ error: 'Package not found' }, { status: 404 });
     }
 
-    // Get current user (the customer)
     const user = await base44.auth.me();
     if (!user) {
       return Response.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    // Get query params for referral code
-    const url = new URL(req.url);
-    const referralCode = url.searchParams.get('ref');
-
     let affiliate = null;
-    let parentAffiliate = null;
-
-    // Find affiliate by referral code
     if (referralCode) {
       const affiliates = await base44.asServiceRole.entities.Affiliate.filter({ referral_code: referralCode });
       affiliate = affiliates[0];
     }
 
-    // Get PayPal details via order capture
     const clientId = Deno.env.get('PAYPAL_CLIENT_ID');
     const clientSecret = Deno.env.get('PAYPAL_API_SECRET');
     const authString = btoa(`${clientId}:${clientSecret}`);
@@ -54,9 +44,6 @@ Deno.serve(async (req) => {
       return Response.json({ error: 'Failed to get PayPal token' }, { status: 500 });
     }
 
-    const amount = pkg.monthly_price;
-
-    // Capture the order
     const captureRes = await fetch(`https://api.paypal.com/v2/checkout/orders/${orderId}/capture`, {
       method: 'POST',
       headers: {
@@ -70,83 +57,38 @@ Deno.serve(async (req) => {
       return Response.json({ error: 'Payment not completed' }, { status: 400 });
     }
 
-    // Create lead if affiliate exists
-    if (affiliate) {
-      await base44.asServiceRole.entities.Lead.create({
-        email: user.email,
-        full_name: user.full_name,
-        affiliate_id: affiliate.id,
-        interested_package: pkg.id,
-        source: 'referral_link',
-        status: 'new'
-      });
-    }
+    const amount = pkg.monthly_price;
+    const affiliateId = affiliate?.id;
 
-    // Check affiliate's referral count and determine payout flow
-    let payoutRecipient = 'admin'; // Default to admin
-    let referralStatus = 'pending';
-
-    if (affiliate) {
-      // Count approved referrals for this affiliate
-      const referrals = await base44.asServiceRole.entities.Referral.filter({
-        affiliate_id: affiliate.id,
-        status: 'approved'
-      });
-
-      const approvedCount = referrals.length;
-
-      // If affiliate already has 3+ approved, they get commission
-      if (approvedCount >= 3) {
-        payoutRecipient = affiliate.id;
-        referralStatus = 'approved';
-      }
-
-      // Check if affiliate has parent (is a sub-affiliate)
-      if (affiliate.parent_affiliate_id) {
-        parentAffiliate = await base44.asServiceRole.entities.Affiliate.get(affiliate.parent_affiliate_id);
-      }
-    }
-
-    // Create referral record
+    // Create referral record directly to the affiliate
     const referral = await base44.asServiceRole.entities.Referral.create({
-      affiliate_id: affiliate?.id || 'admin',
+      affiliate_id: affiliateId || 'admin',
       customer_email: user.email,
       customer_name: user.full_name,
       package_id: pkg.id,
       package_name: pkg.name,
       sale_amount: amount,
-      commission_amount: payoutRecipient === 'admin' ? amount : (amount * 0.3), // Example: 30% commission
-      status: referralStatus,
+      commission_amount: affiliateId ? (amount * 0.3) : 0,
+      status: 'approved',
       billing_cycle: 'monthly',
       is_recurring: true,
       ip_address: req.headers.get('x-forwarded-for') || 'unknown',
-      referral_source: `referral_code:${referralCode}`
+      referral_source: referralCode || 'direct'
     });
 
-    // If first 3 payments going to admin, update affiliate referral count
-    if (affiliate && payoutRecipient === 'admin') {
-      const referralCount = await base44.asServiceRole.entities.Referral.filter({
-        affiliate_id: affiliate.id
+    // Update affiliate stats
+    if (affiliate) {
+      const allReferrals = await base44.asServiceRole.entities.Referral.filter({ affiliate_id: affiliateId });
+      await base44.asServiceRole.entities.Affiliate.update(affiliateId, {
+        total_referrals: allReferrals.length,
+        pending_balance: (affiliate.pending_balance || 0) + (amount * 0.3)
       });
-
-      await base44.asServiceRole.entities.Affiliate.update(affiliate.id, {
-        total_referrals: referralCount.length
-      });
-
-      // Check if hitting 3 referrals - activate daily payouts
-      if (referralCount.length === 3) {
-        await base44.asServiceRole.entities.Affiliate.update(affiliate.id, {
-          daily_payout_active: true,
-          status: 'active'
-        });
-      }
     }
 
     return Response.json({
       success: true,
       referral: referral,
-      payoutTo: payoutRecipient,
-      orderDetails: captureData
+      affiliateId: affiliateId
     });
   } catch (error) {
     return Response.json({ error: error.message }, { status: 500 });
