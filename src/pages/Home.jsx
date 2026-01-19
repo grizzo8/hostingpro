@@ -227,6 +227,49 @@ export default function Home() {
         </div>
       </section>
 
+      {/* About Us */}
+      <section className="py-20 px-6 bg-white">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <div className="inline-block text-sm font-semibold text-blue-600 mb-3">
+              OUR STORY
+            </div>
+            <h2 className="text-4xl font-bold text-slate-900 mb-4">The Vision Behind HostingPro</h2>
+          </div>
+
+          <GlassCard className="p-8 md:p-12">
+            <div className="space-y-6 text-gray-700 leading-relaxed">
+              <p className="text-lg">
+                The vision for HostingPro emerged from a simple but powerful idea: <strong>everyone deserves the opportunity to make money</strong>. We believe that financial freedom shouldn't be reserved for the few—it should be accessible to anyone willing to take action.
+              </p>
+
+              <p className="text-lg">
+                Traditional affiliate programs require you to wait months for commissions and deal with endless bureaucracy. We asked ourselves: what if there was a better way? What if you could earn <strong>daily passive income</strong> by leveraging digital infrastructure that's already in demand?
+              </p>
+
+              <p className="text-lg">
+                That's why we created the daily hosting rental model. Rather than waiting for annual commissions, you get paid every single day. The moment you hit 3 referrals, the income starts flowing automatically to your PayPal account. It's transparent, it's immediate, and it's designed to reward your efforts fairly.
+              </p>
+
+              <div className="border-l-4 border-blue-600 pl-6 py-4 bg-blue-50 rounded-r-lg">
+                <p className="text-lg font-semibold text-slate-900 mb-2">Building With AI—The Right Way</p>
+                <p>
+                  Developing HostingPro required more than just using AI to generate code. We leveraged AI to handle the mundane details—database architecture, payment integrations, email automation—but we didn't let AI make the strategic decisions. This platform required human judgment, testing, refinement, and iteration. We worked through multiple AI models, debugged countless issues, and refined every feature until it matched our vision of a truly fair affiliate system.
+                </p>
+              </div>
+
+              <p className="text-lg">
+                The truth is, building this took real work. We had to ensure every transaction was tracked, every payout was accurate, and every affiliate felt valued. We tested different approaches, learned what worked and what didn't, and built something that genuinely works.
+              </p>
+
+              <p className="text-lg font-semibold text-slate-900">
+                HostingPro isn't just an affiliate program—it's a system built on the belief that when you succeed, we all thrive together. Join us and start earning the daily income you deserve.
+              </p>
+            </div>
+          </GlassCard>
+        </div>
+      </section>
+
       {/* Why HostingPro */}
       <section className="py-20 px-6">
         <div className="max-w-5xl mx-auto">
