@@ -65,14 +65,15 @@ export default function AdminPayouts() {
   };
 
   const updatePayoutMutation = useMutation({
-    mutationFn: async ({ id, status }) => {
-      await base44.entities.Payout.update(id, { 
-        status, 
-        processed_at: status === 'completed' ? new Date().toISOString() : null 
+    mutationFn: async ({ id, action }) => {
+      await base44.functions.invoke('processPayoutRequest', {
+        payoutId: id,
+        action: action
       });
     },
     onSuccess: () => {
       queryClient.invalidateQueries(['all-payouts']);
+      queryClient.invalidateQueries(['all-affiliates']);
     }
   });
 
