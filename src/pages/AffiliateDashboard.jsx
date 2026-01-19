@@ -53,9 +53,9 @@ export default function AffiliateDashboard() {
     enabled: !!affiliate?.id
   });
 
-  const { data: packages = [] } = useQuery({
+  const { data: packages = [], isLoading: packagesLoading } = useQuery({
     queryKey: ['packages'],
-    queryFn: () => base44.entities.HostingPackage.filter({ is_active: true }, 'sort_order')
+    queryFn: () => base44.entities.HostingPackage.list('-sort_order', 100)
   });
 
   const handleLogout = () => {
