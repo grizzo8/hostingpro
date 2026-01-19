@@ -3,8 +3,10 @@ import { base44 } from '@/api/base44Client';
 import { useQuery } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
 import { CheckCircle, ArrowRight, Mail } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { createPageUrl } from '@/utils';
 import Navbar from '@/components/landing/Navbar';
 import Footer from '@/components/landing/Footer';
 import GlassCard from '@/components/ui/GlassCard';
@@ -357,13 +359,13 @@ export default function Home() {
                   </div>
                   <h3 className="font-bold text-slate-900 mb-3">{post.title}</h3>
                   <p className="text-gray-600 text-sm mb-4 flex-1">{post.excerpt}</p>
-                  <a href={`/blog/${post.slug}`} className="text-blue-600 font-semibold text-sm hover:underline">Read More →</a>
+                  <Link to={createPageUrl(`BlogPost?slug=${post.slug}`)} className="text-blue-600 font-semibold text-sm hover:underline">Read More →</Link>
                 </GlassCard>
               ))}
             </div>
 
             <div className="text-center">
-              <a href="/blog" className="text-blue-600 font-semibold hover:underline">View All Articles →</a>
+              <Link to={createPageUrl('Blog')} className="text-blue-600 font-semibold hover:underline">View All Articles →</Link>
             </div>
           </div>
         </section>
