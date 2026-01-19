@@ -13,6 +13,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import DashboardSidebar from '@/components/dashboard/DashboardSidebar';
 import DashboardHeader from '@/components/dashboard/DashboardHeader';
 import PayoutRequestSection from '@/components/dashboard/PayoutRequestSection';
+import DomainRegistrationSection from '@/components/dashboard/DomainRegistrationSection';
 import GlassCard from '@/components/ui/GlassCard';
 
 export default function AffiliateSettings() {
