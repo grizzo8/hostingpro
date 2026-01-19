@@ -3,7 +3,7 @@ import { base44 } from '@/api/base44Client';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
 import { createPageUrl } from '@/utils';
-import { User, CreditCard, Bell, Shield, Save, Loader2, Globe } from 'lucide-react';
+import { User, CreditCard, Bell, Shield, Save, Loader2 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -13,7 +13,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import DashboardSidebar from '@/components/dashboard/DashboardSidebar';
 import DashboardHeader from '@/components/dashboard/DashboardHeader';
 import PayoutRequestSection from '@/components/dashboard/PayoutRequestSection';
-import DomainRegistrationSection from '@/components/dashboard/DomainRegistrationSection';
+
 import GlassCard from '@/components/ui/GlassCard';
 
 export default function AffiliateSettings() {
@@ -147,10 +147,6 @@ export default function AffiliateSettings() {
                   <TabsTrigger value="notifications" className="data-[state=active]:bg-white/10 data-[state=active]:text-white text-gray-400 gap-2">
                     <Bell className="w-4 h-4" />
                     Notifications
-                  </TabsTrigger>
-                  <TabsTrigger value="domains" className="data-[state=active]:bg-white/10 data-[state=active]:text-white text-gray-400 gap-2">
-                    <Globe className="w-4 h-4" />
-                    Domains
                   </TabsTrigger>
                 </TabsList>
 
@@ -323,9 +319,7 @@ export default function AffiliateSettings() {
                   </GlassCard>
                 </TabsContent>
 
-                <TabsContent value="domains">
-                  <DomainRegistrationSection affiliate={affiliate} user={user} />
-                </TabsContent>
+
                 </Tabs>
             </motion.div>
           </div>
