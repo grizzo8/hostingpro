@@ -16,9 +16,8 @@ Deno.serve(async (req) => {
       return Response.json({ error: 'Missing packageId or billingType' }, { status: 400 });
     }
 
-    // Get package details
-    const packages = await base44.entities.HostingPackage.filter({ id: packageId });
-    const pkg = packages[0];
+    // Get package details using service role
+    const pkg = await base44.asServiceRole.entities.HostingPackage.get(packageId);
     if (!pkg) {
       return Response.json({ error: 'Package not found' }, { status: 404 });
     }
