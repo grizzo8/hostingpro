@@ -10,7 +10,7 @@ Deno.serve(async (req) => {
     }
 
     const body = await req.json();
-    const { packageId, billingType } = body;
+    const { packageId, billingType, referralCode } = body;
 
     if (!packageId || !billingType) {
       return Response.json({ error: 'Missing packageId or billingType' }, { status: 400 });
@@ -62,8 +62,8 @@ Deno.serve(async (req) => {
         payment_source: {
           paypal: {
             experience_context: {
-              return_url: `${new URL(req.url).origin}/packages?success=true`,
-              cancel_url: `${new URL(req.url).origin}/packages?cancelled=true`
+              return_url: `${new URL(req.url).origin}/packages?success=true${referralCode ? `&ref=${referralCode}` : ''}`,
+              cancel_url: `${new URL(req.url).origin}/packages?cancelled=true${referralCode ? `&ref=${referralCode}` : ''}`
             }
           }
         }
