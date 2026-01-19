@@ -3,7 +3,7 @@ import { base44 } from '@/api/base44Client';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
 import { format } from 'date-fns';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Clock, ArrowLeft, User, Eye, Tag } from 'lucide-react';
 import { Badge } from "@/components/ui/badge";
@@ -13,6 +13,7 @@ import Footer from '@/components/landing/Footer';
 
 export default function BlogPost() {
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
   const urlParams = new URLSearchParams(window.location.search);
   const slug = urlParams.get('slug');
   const queryClient = useQueryClient();
@@ -93,13 +94,13 @@ export default function BlogPost() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <Link 
-              to={createPageUrl('Blog')} 
-              className="inline-flex items-center gap-2 text-gray-400 hover:text-white mb-8 transition-colors"
+            <button 
+              onClick={() => navigate(-1)}
+              className="inline-flex items-center gap-2 text-gray-400 hover:text-white mb-8 transition-colors cursor-pointer"
             >
               <ArrowLeft className="w-4 h-4" />
               Back to Blog
-            </Link>
+            </button>
 
             {post.cover_image && (
               <div className="aspect-video rounded-2xl overflow-hidden mb-8">
