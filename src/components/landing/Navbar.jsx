@@ -7,18 +7,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navbar({ user }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [referralCode, setReferralCode] = useState(null);
-
-  React.useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const ref = urlParams.get('ref');
-    if (ref) {
-      setReferralCode(ref);
-    }
-  }, []);
 
   const getPackagesUrl = () => {
-    return createPageUrl(`Packages${referralCode ? `?ref=${referralCode}` : ''}`);
+    const urlParams = new URLSearchParams(window.location.search);
+    const ref = urlParams.get('ref');
+    return createPageUrl(`Packages${ref ? `?ref=${ref}` : ''}`);
   };
 
   const navLinks = [
