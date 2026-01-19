@@ -291,10 +291,20 @@ export default function AdminPayouts() {
                                   <>
                                     <Button
                                       size="sm"
-                                      onClick={() => updatePayoutMutation.mutate({ id: payout.id, status: 'processing' })}
+                                      onClick={() => updatePayoutMutation.mutate({ id: payout.id, action: 'approve' })}
+                                      disabled={updatePayoutMutation.isPending}
                                       className="bg-blue-500/20 text-blue-400 hover:bg-blue-500/30"
                                     >
-                                      Process
+                                      Approve
+                                    </Button>
+                                    <Button
+                                      size="sm"
+                                      onClick={() => updatePayoutMutation.mutate({ id: payout.id, action: 'reject' })}
+                                      disabled={updatePayoutMutation.isPending}
+                                      variant="ghost"
+                                      className="text-rose-400 hover:bg-rose-500/20"
+                                    >
+                                      <XCircle className="w-4 h-4" />
                                     </Button>
                                   </>
                                 )}
@@ -302,14 +312,16 @@ export default function AdminPayouts() {
                                   <>
                                     <Button
                                       size="sm"
-                                      onClick={() => updatePayoutMutation.mutate({ id: payout.id, status: 'completed' })}
+                                      onClick={() => updatePayoutMutation.mutate({ id: payout.id, action: 'complete' })}
+                                      disabled={updatePayoutMutation.isPending}
                                       className="bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30"
                                     >
                                       <CheckCircle className="w-4 h-4 mr-1" /> Complete
                                     </Button>
                                     <Button
                                       size="sm"
-                                      onClick={() => updatePayoutMutation.mutate({ id: payout.id, status: 'failed' })}
+                                      onClick={() => updatePayoutMutation.mutate({ id: payout.id, action: 'reject' })}
+                                      disabled={updatePayoutMutation.isPending}
                                       variant="ghost"
                                       className="text-rose-400 hover:bg-rose-500/20"
                                     >
