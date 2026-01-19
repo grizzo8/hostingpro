@@ -84,7 +84,9 @@ export default function Packages() {
                       <p className="text-gray-600 text-sm mb-6">{pkg.description}</p>
                       
                       <div className="mb-6">
-                        <div className="text-4xl font-bold text-red-600">${pkg.daily_payout}</div>
+                        <div className="text-4xl font-bold text-red-600">${pkg.price}</div>
+                        <div className="text-sm text-gray-600">one-time payment</div>
+                        <div className="text-2xl font-bold text-slate-900 mt-2">${pkg.daily_payout}</div>
                         <div className="text-sm text-gray-600">daily after 3 referrals</div>
                       </div>
 
