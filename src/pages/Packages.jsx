@@ -83,17 +83,30 @@ export default function Packages() {
                       <h3 className="text-2xl font-bold text-slate-900 mb-2">{pkg.name}</h3>
                       <p className="text-gray-600 text-sm mb-6">{pkg.description}</p>
                       
-                      <div className="mb-4">
-                         <div className="space-y-2">
-                           <div>
-                             <p className="text-xs text-gray-600 mb-1">Daily: ${pkg.daily_price}/day</p>
-                             <p className="text-xs text-gray-500">Pay {(pkg.daily_price * 30).toFixed(2)}/month if daily</p>
-                           </div>
-                           <div className="border-t border-gray-200 pt-2">
-                             <p className="text-sm font-bold text-red-600 mb-1">${pkg.monthly_price}/month</p>
-                             <p className="text-xs text-gray-600">Pay for 28 days only (saves ${(pkg.daily_price * 30 - pkg.monthly_price).toFixed(2)}/month)</p>
-                           </div>
-                         </div>
+                      <div className="mb-6 grid grid-cols-2 gap-3">
+                         <GlassCard className="p-4 border-red-200 text-center">
+                           <p className="text-xs text-gray-600 mb-2">Daily Plan</p>
+                           <p className="text-2xl font-bold text-red-600 mb-3">${pkg.daily_price}</p>
+                           <p className="text-xs text-gray-500 mb-3">/day</p>
+                           <Button 
+                             className="w-full bg-red-600 hover:bg-red-700 text-white text-xs py-2"
+                             onClick={() => window.location.href = `/checkout?package=${pkg.id}&billing=daily`}
+                           >
+                             Pay Daily
+                           </Button>
+                         </GlassCard>
+                         
+                         <GlassCard className="p-4 border-blue-200 text-center">
+                           <p className="text-xs text-gray-600 mb-2">Monthly Plan</p>
+                           <p className="text-2xl font-bold text-blue-600 mb-1">${pkg.monthly_price}</p>
+                           <p className="text-xs text-green-600 font-semibold mb-3">Save ${(pkg.daily_price * 30 - pkg.monthly_price).toFixed(2)}</p>
+                           <Button 
+                             className="w-full bg-blue-600 hover:bg-blue-700 text-white text-xs py-2"
+                             onClick={() => window.location.href = `/checkout?package=${pkg.id}&billing=monthly`}
+                           >
+                             Pay Monthly
+                           </Button>
+                         </GlassCard>
                        </div>
 
                        <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6">
