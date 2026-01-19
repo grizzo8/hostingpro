@@ -36,6 +36,11 @@ export default function Packages() {
   };
 
   const handleCheckout = async (pkg, billingType) => {
+    if (!user) {
+      await base44.auth.redirectToLogin(`/packages`);
+      return;
+    }
+    
     setLoadingPayPal({ ...loadingPayPal, [`${pkg.id}-${billingType}`]: true });
     try {
       const response = await base44.functions.invoke('generatePayPalLink', {
