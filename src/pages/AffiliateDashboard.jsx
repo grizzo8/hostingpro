@@ -12,6 +12,7 @@ import EarningsOverview from '@/components/dashboard/EarningsOverview';
 import ReferralStats from '@/components/dashboard/ReferralStats';
 import PayoutHistory from '@/components/dashboard/PayoutHistory';
 import MarketingMaterials from '@/components/dashboard/MarketingMaterials';
+import ReferralLinksList from '@/components/dashboard/ReferralLinksList';
 
 export default function AffiliateDashboard() {
   const [user, setUser] = useState(null);
@@ -50,6 +51,11 @@ export default function AffiliateDashboard() {
     queryKey: ['payouts', affiliate?.id],
     queryFn: () => base44.entities.Payout.filter({ affiliate_id: affiliate.id }),
     enabled: !!affiliate?.id
+  });
+
+  const { data: packages = [] } = useQuery({
+    queryKey: ['packages'],
+    queryFn: () => base44.entities.HostingPackage.filter({ is_active: true }, 'sort_order')
   });
 
   const handleLogout = () => {
@@ -111,13 +117,16 @@ export default function AffiliateDashboard() {
             {/* Section 1: Earnings Overview */}
             <EarningsOverview affiliate={affiliate} />
 
-            {/* Section 2: Referral Tracking */}
+            {/* Section 2: Referral Links */}
+            <ReferralLinksList affiliate={affiliate} packages={packages} />
+
+            {/* Section 3: Referral Tracking */}
             <ReferralStats referrals={referrals} affiliate={affiliate} />
 
-            {/* Section 3: Payout & PayPal */}
+            {/* Section 4: Payout & PayPal */}
             <PayoutHistory payouts={payouts} affiliate={affiliate} />
 
-            {/* Section 4: Marketing Materials */}
+            {/* Section 5: Marketing Materials */}
             <MarketingMaterials affiliate={affiliate} />
           </div>
         </main>
