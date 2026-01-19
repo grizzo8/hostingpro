@@ -352,20 +352,30 @@ export default function Home() {
             </div>
 
             <div className="grid md:grid-cols-3 gap-8 mb-8">
-              {blogPosts.map((post) => (
-                <GlassCard key={post.id} className="p-6 flex flex-col">
-                  <div className="inline-block bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-semibold mb-3 w-fit">
-                    {post.category}
-                  </div>
-                  <h3 className="font-bold text-slate-900 mb-3">{post.title}</h3>
-                  <p className="text-gray-600 text-sm mb-4 flex-1">{post.excerpt}</p>
-                  <Link to={createPageUrl(`BlogPost?slug=${post.slug}`)} className="text-blue-600 font-semibold text-sm hover:underline">Read More →</Link>
-                </GlassCard>
-              ))}
+              {blogPosts.map((post) => {
+                const categoryColors = {
+                  tutorials: 'bg-blue-100 text-blue-700',
+                  tips: 'bg-red-100 text-red-700',
+                  news: 'bg-white border-2 border-slate-900 text-slate-900',
+                  'case-studies': 'bg-blue-50 text-blue-600',
+                  resources: 'bg-red-50 text-red-600'
+                };
+                const bgColor = categoryColors[post.category] || 'bg-blue-100 text-blue-700';
+                return (
+                  <GlassCard key={post.id} className="p-6 flex flex-col bg-gradient-to-br from-red-50 to-white">
+                    <div className={`inline-block ${bgColor} px-3 py-1 rounded-full text-xs font-semibold mb-3 w-fit`}>
+                      {post.category}
+                    </div>
+                    <h3 className="font-bold text-slate-900 mb-3">{post.title}</h3>
+                    <p className="text-gray-600 text-sm mb-4 flex-1">{post.excerpt}</p>
+                    <Link to={createPageUrl(`BlogPost?slug=${post.slug}`)} className="text-red-600 font-semibold text-sm hover:underline">Read More →</Link>
+                  </GlassCard>
+                );
+              })}
             </div>
 
             <div className="text-center">
-              <Link to={createPageUrl('Blog')} className="text-blue-600 font-semibold hover:underline">View All Articles →</Link>
+              <Link to={createPageUrl('Blog')} className="text-red-600 font-semibold hover:underline">View All Articles →</Link>
             </div>
           </div>
         </section>
