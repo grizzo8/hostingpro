@@ -1,173 +1,320 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Download, Copy, Check, Mail, Image, FileText } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import GlassCard from '@/components/ui/GlassCard';
+import React, { useState, useEffect } from "react";
+import { Mail, Share2, Image, Video, Copy, CheckCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { base44 } from "@/api/base44Client";
 
-export default function MarketingMaterials({ affiliate }) {
-  const [copied, setCopied] = useState(null);
+export default function MarketingMaterials() {
+    const [copied, setCopied] = useState(null);
+    const [userLink, setUserLink] = useState("[YOUR_LINK]");
+    const [loading, setLoading] = useState(true);
 
-  const copyToClipboard = (text, id) => {
-    navigator.clipboard.writeText(text);
-    setCopied(id);
-    setTimeout(() => setCopied(null), 2000);
-  };
+    useEffect(() => {
+        loadUserLink();
+    }, []);
 
-  const materials = [
-    {
-      id: 'email1',
-      name: 'Welcome Email Template',
-      description: 'Email to introduce HostingPro to your list',
-      icon: Mail,
-      content: `Subject: Try This Amazing Hosting Program (100% Commission!)
+    const loadUserLink = async () => {
+        try {
+            const user = await base44.auth.me();
+            const affiliate = await base44.entities.Affiliate.filter({ user_email: user.email });
+            if (affiliate[0]) {
+                const link = `https://hostingpro.com/ref/${affiliate[0].referral_code}`;
+                setUserLink(link);
+            }
+        } catch (error) {
+            console.error("Error loading link:", error);
+            setUserLink("https://hostingpro.com");
+        } finally {
+            setLoading(false);
+        }
+    };
 
-Hi there,
+    const emailTemplates = [
+        {
+            subject: "Join Me & Start Earning Daily Passive Income",
+            body: `Hi there!
 
-I wanted to share something I've been using that's been great for passive income - HostingPro's affiliate program.
+I've been looking for a legitimate way to build passive income, and I found something that actually works: HostingPro.
 
-Here's why it's different:
-- Get your 1st & 3rd+ sales at 100% commission
-- Daily PayPal payouts once you hit 3 referrals
-- Zero ongoing fees or requirements
+Here's the deal:
+- Pay once upfront for a hosting package
+- Get just 3 referrals
+- Start earning daily payouts via PayPal for life
 
-Your link: https://hostingpro.com/ref/${affiliate?.referral_code || 'YOUR_CODE'}
+The best part? It's completely transparent. Your 1st and 3rd+ sales go to YOU. Only the 2nd sale covers admin fees.
 
-Best,
-${affiliate?.full_name || 'Your Name'}`
-    },
-    {
-      id: 'email2',
-      name: 'Value Proposition Email',
-      description: 'Highlight the earning potential',
-      icon: Mail,
-      content: `Subject: Turn 3 Sales Into Daily Income
+Interested? Check it out: ${userLink}
 
-Hey,
+Let me know if you have questions!`
+        },
+        {
+            subject: "This Changed My Passive Income Game",
+            body: `Hey!
 
-Quick question - would you like to earn $20-$100+ daily?
+I wanted to share something that's been working really well for me.
 
-HostingPro's affiliate program lets you:
-✓ Get 100% commission on your 1st sale
-✓ Have 2nd sale cover your costs
-✓ Earn 100% commission on all sales after that
-✓ Get daily PayPal payouts starting day 1
+HostingPro is a hosting affiliate program that actually pays you daily. Not monthly, DAILY. Here's how:
 
-Join here: https://hostingpro.com/ref/${affiliate?.referral_code || 'YOUR_CODE'}
+1. You buy a package once
+2. You refer 3 people
+3. You earn passive income every single day
 
-Talk soon!`
-    },
-    {
-      id: 'social1',
-      name: 'Social Media Post',
-      description: 'Share on Twitter, LinkedIn, Facebook',
-      icon: Image,
-      content: `🔥 Just discovered an affiliate program that actually pays OUT:
+Higher packages = higher daily earnings. It's simple, transparent, and automated.
 
-• 100% commission on my 1st & 3rd+ sales
-• Daily PayPal payouts
-• $2-$100+ daily depending on package
-• ZERO ongoing costs
+${userLink}
 
-This is the deal I've been looking for. If you're interested: https://hostingpro.com/ref/${affiliate?.referral_code || 'YOUR_CODE'}`
-    },
-    {
-      id: 'swipe1',
-      name: 'Swipe Copy - The Pitch',
-      description: 'Direct copy-paste sales message',
-      icon: FileText,
-      content: `Ready to start earning daily passive income?
+Would love to see you on the team!`
+        },
+        {
+            subject: "Turn Your Network Into Daily Income",
+            body: `Hi!
 
-HostingPro is different. Here's how:
+Quick question: Want to turn your social network into a daily income stream?
 
-STEP 1: Join with a hosting package ($19.95 - $999)
-STEP 2: Get 3 paying referrals (100% commission)
-STEP 3: Earn $2-$100+ DAILY with our automatic payout system
+I'm using HostingPro and it's been solid. You get:
+✓ Daily PayPal payouts (no waiting 30+ days)
+✓ 100% commission on your 1st and 3rd+ sales
+✓ Unlimited earning potential
 
-Your package size = Your daily earnings
+Your link: ${userLink}
 
-Join now: https://hostingpro.com/ref/${affiliate?.referral_code || 'YOUR_CODE'}
+Let's build this together!`
+        }
+    ];
 
-This is real, recurring income. No cap. No limits.`
+    const socialPosts = [
+        {
+            platform: "LinkedIn",
+            text: "Just hit 10 referrals with HostingPro. The daily passive income is real. If you're curious about building a second income stream, DM me. 💰"
+        },
+        {
+            platform: "Twitter",
+            text: "Started with HostingPro 2 months ago. First 3 referrals = ROI. Now earning daily PayPal payments. Who else is building passive income? 🚀"
+        },
+        {
+            platform: "Facebook",
+            text: "I found a hosting affiliate program that actually pays daily. Not some MLM scam - just real daily PayPal transfers. Happy to share more if interested."
+        },
+        {
+            platform: "Instagram",
+            text: "Daily passive income hits different 💰 HostingPro changed my money mindset. DM for my link if interested! 📈"
+        },
+        {
+            platform: "TikTok",
+            text: "POV: You're earning daily passive income with HostingPro 💵 Get 3 referrals and watch the PayPal notifications roll in ✨"
+        }
+    ];
+
+    const videoScripts = [
+        {
+            title: "YouTube Short (30-60 seconds)",
+            script: `"So I found this hosting affiliate program that pays you DAILY. Here's how it works:
+
+Step 1: Buy a hosting package ($99-$999)
+Step 2: Get 3 referrals
+Step 3: Start earning daily PayPal payments
+
+Your first sale = 100% to you. Second sale covers admin. Everything after = 100% to you forever.
+
+The higher the package, the more you earn daily. Some people are making $300+ per day just from referrals.
+
+Want to build passive income? ${userLink}"`
+        },
+        {
+            title: "TikTok Trend Hook (15-30 seconds)",
+            script: `*Shows PayPal notification of daily earnings*
+
+"This is me earning daily passive income with HostingPro. No, it's not fake. No, it's not an MLM. 
+
+You literally just get 3 referrals and the money comes in every day to PayPal.
+
+${userLink}"`
+        },
+        {
+            title: "Instagram Reel (30-60 seconds)",
+            script: `"Here's how I built a daily passive income stream in 2 months:
+
+1. Invested in a hosting package ($299)
+2. Shared my link with friends and on social
+3. Got 3 referrals in the first month
+4. Started earning $150/day 
+
+Now I'm at 15 referrals and making $2,000+ monthly just from daily PayPal payments.
+
+It's transparent, it's real, and it works. DM if you want details."`
+        }
+    ];
+
+    const handleCopy = (text, id) => {
+        navigator.clipboard.writeText(text);
+        setCopied(id);
+        setTimeout(() => setCopied(null), 2000);
+    };
+
+    if (loading) {
+        return <div className="flex items-center justify-center p-8"><div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin" /></div>;
     }
-  ];
 
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.3 }}
-      className="space-y-6"
-    >
-      <GlassCard className="p-6">
-        <h3 className="text-lg font-semibold text-slate-900 mb-4">Your Referral Link</h3>
-        <div className="flex items-center gap-3 p-4 bg-red-50 border border-red-200 rounded-lg">
-          <input
-            type="text"
-            value={`https://hostingpro.com/ref/${affiliate?.referral_code || ''}`}
-            readOnly
-            className="flex-1 bg-transparent border-none text-slate-900 font-mono text-sm"
-          />
-          <Button
-            size="sm"
-            onClick={() => copyToClipboard(`https://hostingpro.com/ref/${affiliate?.referral_code}`, 'link')}
-            className="bg-red-600 hover:bg-red-700 text-white"
-          >
-            {copied === 'link' ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-          </Button>
+    return (
+        <div className="space-y-6">
+            <div className="mb-6">
+                <h2 className="text-2xl font-bold mb-2">Marketing Materials</h2>
+                <p className="text-gray-600">Proven templates to help you promote HostingPro</p>
+            </div>
+
+            <Tabs defaultValue="email" className="w-full">
+                <TabsList className="grid w-full grid-cols-4 mb-6">
+                    <TabsTrigger value="email" className="flex items-center gap-2">
+                        <Mail className="w-4 h-4" />
+                        <span className="hidden sm:inline">Email</span>
+                    </TabsTrigger>
+                    <TabsTrigger value="social" className="flex items-center gap-2">
+                        <Share2 className="w-4 h-4" />
+                        <span className="hidden sm:inline">Social</span>
+                    </TabsTrigger>
+                    <TabsTrigger value="banners" className="flex items-center gap-2">
+                        <Image className="w-4 h-4" />
+                        <span className="hidden sm:inline">Banners</span>
+                    </TabsTrigger>
+                    <TabsTrigger value="scripts" className="flex items-center gap-2">
+                        <Video className="w-4 h-4" />
+                        <span className="hidden sm:inline">Scripts</span>
+                    </TabsTrigger>
+                </TabsList>
+
+                {/* Email Templates */}
+                <TabsContent value="email" className="space-y-4">
+                    {emailTemplates.map((template, idx) => (
+                        <Card key={idx} className="border-gray-200">
+                            <CardHeader>
+                                <CardTitle className="text-base">Email Template {idx + 1}</CardTitle>
+                                <p className="text-sm text-gray-600 mt-2">Subject: {template.subject}</p>
+                            </CardHeader>
+                            <CardContent>
+                                <div className="bg-gray-50 rounded-lg p-4 font-mono text-xs mb-4 whitespace-pre-wrap max-h-40 overflow-y-auto">
+                                    {template.body}
+                                </div>
+                                <Button
+                                    onClick={() => handleCopy(`Subject: ${template.subject}\n\n${template.body}`, `email-${idx}`)}
+                                    className={`w-full ${copied === `email-${idx}` ? 'bg-green-600' : 'bg-blue-600 hover:bg-blue-700'}`}
+                                    size="sm"
+                                >
+                                    {copied === `email-${idx}` ? (
+                                        <>
+                                            <CheckCircle className="w-4 h-4 mr-2" />
+                                            Copied!
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Copy className="w-4 h-4 mr-2" />
+                                            Copy Template
+                                        </>
+                                    )}
+                                </Button>
+                            </CardContent>
+                        </Card>
+                    ))}
+                </TabsContent>
+
+                {/* Social Media Posts */}
+                <TabsContent value="social" className="space-y-4">
+                    {socialPosts.map((post, idx) => (
+                        <Card key={idx} className="border-gray-200">
+                            <CardHeader>
+                                <CardTitle className="text-base">{post.platform}</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <div className="bg-gray-50 rounded-lg p-4 mb-4 text-sm leading-relaxed">
+                                    {post.text}
+                                </div>
+                                <Button
+                                    onClick={() => handleCopy(post.text, `social-${idx}`)}
+                                    className={`w-full ${copied === `social-${idx}` ? 'bg-green-600' : 'bg-blue-600 hover:bg-blue-700'}`}
+                                    size="sm"
+                                >
+                                    {copied === `social-${idx}` ? (
+                                        <>
+                                            <CheckCircle className="w-4 h-4 mr-2" />
+                                            Copied!
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Copy className="w-4 h-4 mr-2" />
+                                            Copy Post
+                                        </>
+                                    )}
+                                </Button>
+                            </CardContent>
+                        </Card>
+                    ))}
+                </TabsContent>
+
+                {/* Banner Templates */}
+                <TabsContent value="banners">
+                    <Card className="border-orange-200 bg-orange-50">
+                        <CardHeader>
+                            <CardTitle>Ready-to-Use Banners</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <p className="text-sm text-gray-700 mb-4">
+                                Professional banner designs for your promotions. You can use these directly or customize them.
+                            </p>
+                            <div className="space-y-4">
+                                <div className="bg-white rounded-lg p-3 border border-blue-200">
+                                    <p className="text-sm font-semibold mb-2">Leaderboard (728x90)</p>
+                                    <div className="relative bg-gradient-to-r from-blue-700 to-red-600 rounded-lg p-3 flex items-center justify-between" style={{height: '70px'}}>
+                                        <div className="text-white font-bold">💰 HostingPro - Daily PayPal Payouts</div>
+                                        <button className="bg-white text-blue-600 px-4 py-1 rounded-full font-bold text-sm">Join Now →</button>
+                                    </div>
+                                </div>
+
+                                <div className="bg-white rounded-lg p-3 border border-blue-200">
+                                    <p className="text-sm font-semibold mb-2">Medium Rectangle (300x250)</p>
+                                    <div className="relative bg-gradient-to-br from-blue-600 to-red-600 rounded-lg p-4 text-center" style={{width: '280px'}}>
+                                        <p className="text-white font-bold text-lg mb-2">HostingPro</p>
+                                        <p className="text-yellow-300 text-xs font-bold mb-3">💵 Earn $100-$300/Day</p>
+                                        <button className="bg-white text-blue-600 px-6 py-2 rounded-full font-bold text-sm">Start Now →</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
+                </TabsContent>
+
+                {/* Video Scripts */}
+                <TabsContent value="scripts" className="space-y-4">
+                    {videoScripts.map((item, idx) => (
+                        <Card key={idx} className="border-gray-200">
+                            <CardHeader>
+                                <CardTitle className="text-base">{item.title}</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <div className="bg-gray-50 rounded-lg p-4 font-mono text-xs mb-4 whitespace-pre-wrap max-h-40 overflow-y-auto">
+                                    {item.script}
+                                </div>
+                                <Button
+                                    onClick={() => handleCopy(item.script, `script-${idx}`)}
+                                    className={`w-full ${copied === `script-${idx}` ? 'bg-green-600' : 'bg-blue-600 hover:bg-blue-700'}`}
+                                    size="sm"
+                                >
+                                    {copied === `script-${idx}` ? (
+                                        <>
+                                            <CheckCircle className="w-4 h-4 mr-2" />
+                                            Copied!
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Copy className="w-4 h-4 mr-2" />
+                                            Copy Script
+                                        </>
+                                    )}
+                                </Button>
+                            </CardContent>
+                        </Card>
+                    ))}
+                </TabsContent>
+            </Tabs>
         </div>
-      </GlassCard>
-
-      <div>
-        <h3 className="text-lg font-semibold text-slate-900 mb-4">Marketing Templates</h3>
-        <div className="grid md:grid-cols-2 gap-6">
-          {materials.map((material) => {
-            const Icon = material.icon;
-            return (
-              <GlassCard key={material.id} className="p-6 flex flex-col">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
-                    <Icon className="w-5 h-5 text-red-600" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-slate-900">{material.name}</p>
-                    <p className="text-sm text-gray-500">{material.description}</p>
-                  </div>
-                </div>
-                <div className="bg-gray-50 rounded-lg p-4 mb-4 flex-1 max-h-40 overflow-y-auto text-sm text-gray-700 border border-gray-200">
-                  {material.content}
-                </div>
-                <Button
-                  onClick={() => copyToClipboard(material.content, material.id)}
-                  className="w-full border-red-200 text-red-600 hover:bg-red-50"
-                  variant="outline"
-                >
-                  {copied === material.id ? (
-                    <>
-                      <Check className="w-4 h-4 mr-2" />
-                      Copied!
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="w-4 h-4 mr-2" />
-                      Copy Template
-                    </>
-                  )}
-                </Button>
-              </GlassCard>
-            );
-          })}
-        </div>
-      </div>
-
-      <GlassCard className="p-6 bg-blue-50 border-blue-200">
-        <h3 className="text-lg font-semibold text-slate-900 mb-3">💡 Pro Tips</h3>
-        <ul className="space-y-2 text-gray-700 text-sm">
-          <li>✓ Share your link on social media, email, and forums where your audience hangs out</li>
-          <li>✓ Personalize templates with your own story about why you chose HostingPro</li>
-          <li>✓ Track which channels bring your best referrals and double down on them</li>
-          <li>✓ The key is getting 3 referrals quickly - then let daily payouts take over</li>
-        </ul>
-      </GlassCard>
-    </motion.div>
-  );
+    );
 }
