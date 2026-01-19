@@ -72,14 +72,14 @@ export default function AffiliateDashboard() {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-slate-950 flex items-center justify-center">
-        <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin" />
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="w-8 h-8 border-4 border-red-600 border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 flex">
+    <div className="min-h-screen bg-white flex">
       {/* Sidebar */}
       <div className={`fixed inset-y-0 left-0 z-50 transform lg:relative lg:translate-x-0 transition-transform duration-300 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <DashboardSidebar onLogout={handleLogout} />
@@ -101,7 +101,7 @@ export default function AffiliateDashboard() {
           onMenuToggle={() => setSidebarOpen(!sidebarOpen)} 
         />
         
-        <main className="flex-1 p-6 overflow-auto bg-gray-50">
+        <main className="flex-1 p-6 overflow-auto bg-white">
           <div className="max-w-7xl mx-auto space-y-8">
             {/* Welcome Section */}
             <motion.div
