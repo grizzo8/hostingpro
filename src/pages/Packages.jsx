@@ -124,7 +124,7 @@ export default function Packages() {
            </div>
           ) : (
            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-             {packages.map((pkg, i) => {
+             {packages.filter(pkg => !maxPackage || pkg.price <= maxPackage.price).map((pkg, i) => {
                const Icon = getIcon(i);
                 
                 return (
