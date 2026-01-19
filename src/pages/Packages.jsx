@@ -107,25 +107,27 @@ export default function Packages() {
                       <div className="mb-6 grid grid-cols-2 gap-3">
                          <GlassCard className="p-4 border-red-200 text-center">
                            <p className="text-xs text-gray-600 mb-2">Daily Plan</p>
-                           <p className="text-2xl font-bold text-red-600 mb-3">${pkg.daily_price}</p>
+                           <p className="text-2xl font-bold text-red-600 mb-3">${pkg.daily_price?.toFixed(2) || '0.00'}</p>
                            <p className="text-xs text-gray-500 mb-3">/day</p>
                            <Button 
                              className="w-full bg-red-600 hover:bg-red-700 text-white text-xs py-2"
-                             onClick={() => window.location.href = `/checkout?package=${pkg.id}&billing=daily`}
+                             onClick={() => handleCheckout(pkg, 'daily')}
+                             disabled={loadingPayPal[`${pkg.id}-daily`]}
                            >
-                             Pay Daily
+                             {loadingPayPal[`${pkg.id}-daily`] ? <Loader className="w-3 h-3 animate-spin" /> : 'Pay Daily'}
                            </Button>
                          </GlassCard>
-                         
+
                          <GlassCard className="p-4 border-blue-200 text-center">
                            <p className="text-xs text-gray-600 mb-2">Monthly Plan</p>
-                           <p className="text-2xl font-bold text-blue-600 mb-1">${pkg.monthly_price}</p>
-                           <p className="text-xs text-green-600 font-semibold mb-3">Save ${(pkg.daily_price * 30 - pkg.monthly_price).toFixed(2)}</p>
+                           <p className="text-2xl font-bold text-blue-600 mb-1">${pkg.monthly_price?.toFixed(2) || '0.00'}</p>
+                           <p className="text-xs text-green-600 font-semibold mb-3">Save ${((pkg.daily_price * 30) - pkg.monthly_price).toFixed(2)}</p>
                            <Button 
                              className="w-full bg-blue-600 hover:bg-blue-700 text-white text-xs py-2"
-                             onClick={() => window.location.href = `/checkout?package=${pkg.id}&billing=monthly`}
+                             onClick={() => handleCheckout(pkg, 'monthly')}
+                             disabled={loadingPayPal[`${pkg.id}-monthly`]}
                            >
-                             Pay Monthly
+                             {loadingPayPal[`${pkg.id}-monthly`] ? <Loader className="w-3 h-3 animate-spin" /> : 'Pay Monthly'}
                            </Button>
                          </GlassCard>
                        </div>
