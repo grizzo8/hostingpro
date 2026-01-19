@@ -18,12 +18,16 @@ export default function Navbar({ user }) {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-slate-950/80 backdrop-blur-xl border-b border-white/5">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between h-20">
-          <Link to={createPageUrl('Home')} className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-xl flex items-center justify-center">
-              <Zap className="w-6 h-6 text-white" />
-            </div>
-            <span className="text-xl font-bold text-white">HostingPro</span>
-          </Link>
+          <div className="flex items-center gap-2">
+            {/* Australian Flag */}
+            <div className="absolute top-2 right-6 text-lg">🇦🇺</div>
+            <Link to={createPageUrl('Home')} className="flex items-center gap-2">
+              <div className="w-10 h-10 bg-gradient-to-br from-red-600 to-blue-600 rounded-xl flex items-center justify-center">
+                <Zap className="w-6 h-6 text-white" />
+              </div>
+              <span className="text-xl font-bold text-white">HostingPro</span>
+            </Link>
+          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
@@ -41,7 +45,7 @@ export default function Navbar({ user }) {
           <div className="hidden md:flex items-center gap-4">
             {user ? (
               <Link to={createPageUrl(user.role === 'admin' ? 'AdminDashboard' : 'AffiliateDashboard')}>
-                <Button className="bg-gradient-to-r from-blue-500 to-emerald-500 hover:from-blue-600 hover:to-emerald-600 text-white rounded-xl">
+                <Button className="bg-gradient-to-r from-red-600 to-blue-600 hover:from-red-700 hover:to-blue-700 text-white rounded-xl">
                   Dashboard
                 </Button>
               </Link>
@@ -53,7 +57,7 @@ export default function Navbar({ user }) {
                   </Button>
                 </Link>
                 <Link to={createPageUrl('AffiliateDashboard')}>
-                  <Button className="bg-gradient-to-r from-blue-500 to-emerald-500 hover:from-blue-600 hover:to-emerald-600 text-white rounded-xl">
+                  <Button className="bg-gradient-to-r from-red-600 to-blue-600 hover:from-red-700 hover:to-blue-700 text-white rounded-xl">
                     Login
                   </Button>
                 </Link>
@@ -98,7 +102,7 @@ export default function Navbar({ user }) {
                   </Button>
                 </Link>
                 <Link to={createPageUrl('AffiliateDashboard')} onClick={() => setIsOpen(false)}>
-                  <Button className="w-full bg-gradient-to-r from-blue-500 to-emerald-500">
+                  <Button className="w-full bg-gradient-to-r from-red-600 to-blue-600">
                     Login
                   </Button>
                 </Link>
