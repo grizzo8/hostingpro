@@ -93,6 +93,7 @@ export default function Packages() {
                           <p className="text-xs text-gray-600 mb-2">After 3 referrals:</p>
                           <div className="text-2xl font-bold text-blue-600">${pkg.daily_payout}/day</div>
                           <p className="text-xs text-gray-600 mt-1">Automatic PayPal payouts</p>
+                          <p className="text-xs text-gray-500 mt-2">*minus PayPal fees</p>
                         </div>
                       </div>
 
