@@ -17,6 +17,8 @@ import AdminPayouts from './pages/AdminPayouts';
 import AdminBlog from './pages/AdminBlog';
 import AdminLeads from './pages/AdminLeads';
 import AdminMessages from './pages/AdminMessages';
+import About from './pages/About';
+import Contact from './pages/Contact';
 
 
 export const PAGES = {
@@ -39,6 +41,8 @@ export const PAGES = {
     "AdminBlog": AdminBlog,
     "AdminLeads": AdminLeads,
     "AdminMessages": AdminMessages,
+    "About": About,
+    "Contact": Contact,
 }
 
 export const pagesConfig = {
