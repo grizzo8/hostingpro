@@ -177,13 +177,22 @@ export default function Packages() {
                         ))}
                       </ul>
 
-                      <Button 
-                        className={`w-full py-6 rounded-xl ${pkg.is_popular 
-                          ? 'bg-gradient-to-r from-red-600 to-blue-600 hover:from-red-700 hover:to-blue-700' 
-                          : 'border-2 border-red-600 text-red-600 hover:bg-red-50'} text-white font-semibold`}
-                      >
-                        Get Started
-                      </Button>
+                      <div className="space-y-2">
+                        <Button 
+                          className={`w-full py-6 rounded-xl ${pkg.is_popular 
+                            ? 'bg-gradient-to-r from-red-600 to-blue-600 hover:from-red-700 hover:to-blue-700' 
+                            : 'border-2 border-red-600 text-red-600 hover:bg-red-50'} text-white font-semibold`}
+                        >
+                          Get Started
+                        </Button>
+                        <button 
+                          onClick={() => handleTestPurchase(pkg)}
+                          disabled={loadingPayPal[`${pkg.id}-test`]}
+                          className="w-full text-xs text-gray-500 hover:text-gray-700 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+                        >
+                          {loadingPayPal[`${pkg.id}-test`] ? 'Testing...' : 'Test Purchase'}
+                        </button>
+                      </div>
                     </GlassCard>
                   </motion.div>
                 );
