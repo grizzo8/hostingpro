@@ -20,6 +20,8 @@ import Contact from './pages/Contact';
 import Home from './pages/Home';
 import Packages from './pages/Packages';
 import Referral from './pages/Referral';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
 
 
 export const PAGES = {
@@ -45,6 +47,8 @@ export const PAGES = {
     "Home": Home,
     "Packages": Packages,
     "Referral": Referral,
+    "PrivacyPolicy": PrivacyPolicy,
+    "TermsOfService": TermsOfService,
 }
 
 export const pagesConfig = {
