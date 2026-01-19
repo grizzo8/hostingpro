@@ -23,6 +23,7 @@ const benefits = [
 
 export default function AffiliateSignup() {
   const [user, setUser] = useState(null);
+  const [authorized, setAuthorized] = useState(false);
   const [formData, setFormData] = useState({
     website_url: '',
     paypal_email: '',
@@ -32,6 +33,20 @@ export default function AffiliateSignup() {
 
   useEffect(() => {
     const checkAuth = async () => {
+      // Check if accessed from affiliate subdomain or has referral link
+      const hostname = window.location.hostname;
+      const isAffiliateSubdomain = hostname.includes('sales1.rentapog.com') || hostname.startsWith('sales1.');
+      const urlParams = new URLSearchParams(window.location.search);
+      const hasReferralCode = urlParams.get('ref') || urlParams.get('referral');
+
+      if (!isAffiliateSubdomain && !hasReferralCode) {
+        // Not authorized - redirect to home
+        window.location.href = createPageUrl('Home');
+        return;
+      }
+
+      setAuthorized(true);
+
       const isAuth = await base44.auth.isAuthenticated();
       if (isAuth) {
         const userData = await base44.auth.me();
@@ -100,6 +115,14 @@ export default function AffiliateSignup() {
         : [...prev.promotion_methods, method]
     }));
   };
+
+  if (!authorized) {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="w-8 h-8 border-4 border-red-600 border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-white relative overflow-hidden">
