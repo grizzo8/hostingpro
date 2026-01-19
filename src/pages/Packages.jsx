@@ -179,11 +179,13 @@ export default function Packages() {
 
                       <div className="space-y-2">
                         <Button 
+                          onClick={() => handleCheckout(pkg, 'monthly')}
+                          disabled={loadingPayPal[`${pkg.id}-monthly`]}
                           className={`w-full py-6 rounded-xl ${pkg.is_popular 
                             ? 'bg-gradient-to-r from-red-600 to-blue-600 hover:from-red-700 hover:to-blue-700' 
                             : 'border-2 border-red-600 text-red-600 hover:bg-red-50'} text-white font-semibold`}
                         >
-                          Get Started
+                          {loadingPayPal[`${pkg.id}-monthly`] ? <Loader className="w-4 h-4 animate-spin" /> : 'Get Started'}
                         </Button>
                         <button 
                           onClick={() => handleTestPurchase(pkg)}
