@@ -6,39 +6,21 @@ import GlassCard from '@/components/ui/GlassCard';
 const features = [
   {
     icon: DollarSign,
-    title: 'High Commissions',
-    description: 'Earn up to 70% on every sale with our industry-leading commission structure.',
+    title: 'Choose Your Hosting Package',
+    description: 'Select your hosting package ($20-$999). Make one payment to get started. Your payment goes to admin as the platform fee, and you receive your affiliate link via email.\n\n⏱️ One-time payment only',
     gradient: 'from-red-600 to-red-500'
   },
   {
     icon: Zap,
-    title: 'Daily Payouts',
-    description: 'Get paid daily directly to your PayPal. No waiting weeks for your earnings.',
+    title: 'Get 3 Referrals',
+    description: 'Share your unique referral link with 3 people. When they sign up and pay, you\'ve doubled your money! Your 1st sale = 100% yours, 2nd sale = admin, 3rd+ sales = 100% yours.\n\n💰 Double your money at 3 referrals',
     gradient: 'from-blue-600 to-blue-500'
   },
   {
     icon: BarChart3,
-    title: 'Real-Time Analytics',
-    description: 'Track clicks, conversions, and earnings with our powerful dashboard.',
+    title: 'Earn Daily Passive Income',
+    description: 'Once you hit 3 referrals, daily billing activates. Every single day, you receive automatic PayPal payments from new sales. The higher your package, the more you earn daily!\n\n📈 Automatic daily PayPal payouts',
     gradient: 'from-red-600 to-blue-600'
-  },
-  {
-    icon: Users,
-    title: 'Tiered Rewards',
-    description: 'Unlock higher commissions and exclusive perks as you grow.',
-    gradient: 'from-blue-600 to-red-600'
-  },
-  {
-    icon: Shield,
-    title: '90-Day Cookie',
-    description: 'Extended tracking ensures you get credit for delayed purchases.',
-    gradient: 'from-red-600 to-red-500'
-  },
-  {
-    icon: Gift,
-    title: 'Recurring Income',
-    description: 'Earn on renewals too. Build passive income that grows over time.',
-    gradient: 'from-blue-600 to-blue-500'
   }
 ];
 
@@ -54,14 +36,14 @@ export default function FeaturesSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-            Why Affiliates <span className="text-red-600">Love</span> Us
+            How HostingPro Works
           </h2>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Everything you need to build a successful hosting affiliate business
+            A simple 3-step system to build daily passive income. The higher you invest, the more you earn!
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-6">
           {features.map((feature, i) => (
             <motion.div
               key={feature.title}
@@ -71,11 +53,11 @@ export default function FeaturesSection() {
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
               <GlassCard className="p-8 h-full">
-                <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center mb-6`}>
-                  <feature.icon className="w-7 h-7 text-white" />
+                <div className="text-4xl font-bold text-red-600 mb-4">
+                  {features.indexOf(feature) + 1}
                 </div>
                 <h3 className="text-xl font-semibold text-slate-900 mb-3">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
+                <p className="text-gray-600 whitespace-pre-line text-sm">{feature.description}</p>
               </GlassCard>
             </motion.div>
           ))}

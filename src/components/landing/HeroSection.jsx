@@ -29,14 +29,13 @@ export default function HeroSection() {
           </div>
 
           <h1 className="text-5xl md:text-7xl font-bold text-slate-900 mb-6 leading-tight">
-            Earn <GradientText>Unlimited</GradientText><br />
-            Commissions with<br />
-            <GradientText variant="gold">Premium Hosting</GradientText>
+            Premium Hosting Solutions<br />
+            <span className="text-red-600">Premium Hosting.</span><br />
+            Professional Service.
           </h1>
 
           <p className="text-xl text-gray-700 max-w-2xl mx-auto mb-10">
-            Join the most rewarding hosting affiliate program. Earn up to 70% commission 
-            with recurring payouts, daily PayPal transfers, and industry-leading tools.
+            Enterprise-grade hosting solutions with 99.9% uptime guarantee. Built for businesses that demand reliability and performance.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
@@ -56,10 +55,9 @@ export default function HeroSection() {
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
             {[
-              { value: '$2.5M+', label: 'Paid to Affiliates' },
-              { value: '70%', label: 'Max Commission' },
-              { value: '24h', label: 'Payout Speed' },
-              { value: '10K+', label: 'Active Affiliates' }
+              { value: '✓', label: '99.9% Uptime Guarantee' },
+              { value: '✓', label: '24/7 Premium Support' },
+              { value: '✓', label: 'Lightning-Fast Performance' }
             ].map((stat, i) => (
               <motion.div
                 key={stat.label}
@@ -68,7 +66,7 @@ export default function HeroSection() {
                 transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
                 className="text-center"
               >
-                <p className="text-3xl md:text-4xl font-bold text-slate-900">{stat.value}</p>
+                <p className="text-3xl md:text-4xl font-bold text-red-600">{stat.value}</p>
                 <p className="text-gray-600 text-sm mt-1">{stat.label}</p>
               </motion.div>
             ))}
