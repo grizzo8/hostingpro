@@ -74,19 +74,18 @@ export default function AffiliateSignup() {
       }
 
       // Check if already an affiliate
-      const existing = await base44.entities.Affiliate.filter({ user_email: user.email });
+      const existing = await base44.entities.Affiliate.filter({ user_email: formData.email });
       if (existing.length > 0) {
-        window.location.href = createPageUrl('AffiliateDashboard');
-        return;
+        throw new Error('This email is already registered as an affiliate');
       }
 
       // Generate password and create affiliate record
       const password = Math.random().toString(36).slice(2, 10) + Math.random().toString(36).slice(2, 5).toUpperCase();
       
       const affiliate = await base44.entities.Affiliate.create({
-        user_email: user.email,
+        user_email: formData.email,
         full_name: user.full_name,
-        referral_code: generateReferralCode(user.email),
+        referral_code: generateReferralCode(formData.email),
         subdomain: formData.subdomain,
         promotion_methods: formData.promotion_methods,
         status: 'pending',
@@ -98,13 +97,16 @@ export default function AffiliateSignup() {
 
       // Send welcome email with login credentials
       await base44.functions.invoke('sendWelcomeEmail', {
-        email: user.email,
+        email: formData.email,
         full_name: user.full_name,
         password: password,
         subdomain: formData.subdomain
       });
 
       window.location.href = createPageUrl('AffiliateDashboard');
+    },
+    onError: (error) => {
+      alert('Error: ' + error.message);
     }
   });
 
