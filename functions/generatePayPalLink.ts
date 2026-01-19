@@ -17,7 +17,8 @@ Deno.serve(async (req) => {
     }
 
     // Get package details
-    const pkg = await base44.entities.HostingPackage.get(packageId);
+    const packages = await base44.entities.HostingPackage.filter({ id: packageId });
+    const pkg = packages[0];
     if (!pkg) {
       return Response.json({ error: 'Package not found' }, { status: 404 });
     }
