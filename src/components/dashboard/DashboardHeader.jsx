@@ -1,5 +1,7 @@
 import React from 'react';
-import { Bell, Search, Menu } from 'lucide-react';
+import { Bell, Search, Menu, LogOut } from 'lucide-react';
+import { base44 } from '@/api/base44Client';
+import { createPageUrl } from '@/utils';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -7,9 +9,13 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 
 export default function DashboardHeader({ user, affiliate, onMenuToggle }) {
+  const handleLogout = () => {
+    base44.auth.logout(createPageUrl('Home'));
+  };
   return (
     <header className="h-20 bg-slate-900/50 backdrop-blur-xl border-b border-white/5 px-6 flex items-center justify-between">
       <div className="flex items-center gap-4">
@@ -58,6 +64,14 @@ export default function DashboardHeader({ user, affiliate, onMenuToggle }) {
             </DropdownMenuItem>
             <DropdownMenuItem className="text-gray-300 hover:text-white focus:text-white focus:bg-white/10">
               Help Center
+            </DropdownMenuItem>
+            <DropdownMenuSeparator className="bg-white/10" />
+            <DropdownMenuItem 
+              onClick={handleLogout}
+              className="text-red-400 hover:text-red-300 focus:text-red-300 focus:bg-red-500/10"
+            >
+              <LogOut className="w-4 h-4 mr-2" />
+              Logout
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
