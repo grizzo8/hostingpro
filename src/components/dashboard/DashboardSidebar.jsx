@@ -33,13 +33,13 @@ export default function DashboardSidebar({ onLogout }) {
   };
 
   return (
-    <aside className="w-64 bg-slate-900/50 backdrop-blur-xl border-r border-white/5 min-h-screen flex flex-col">
+    <aside className="w-64 bg-white border-r border-red-600/30 min-h-screen flex flex-col">
       <div className="p-6">
         <Link to={createPageUrl('Home')} className="flex items-center gap-2">
-          <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-xl flex items-center justify-center">
+          <div className="w-10 h-10 bg-gradient-to-br from-red-600 to-blue-600 rounded-xl flex items-center justify-center">
             <Zap className="w-6 h-6 text-white" />
           </div>
-          <span className="text-xl font-bold text-white">HostingPro</span>
+          <span className="text-xl font-bold text-slate-900">HostingPro</span>
         </Link>
       </div>
 
@@ -50,8 +50,8 @@ export default function DashboardSidebar({ onLogout }) {
             to={item.href}
             className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
               isActive(item.href)
-                ? 'bg-gradient-to-r from-blue-500/20 to-emerald-500/20 text-white border border-white/10'
-                : 'text-gray-400 hover:text-white hover:bg-white/5'
+                ? 'bg-red-50 text-red-600 border border-red-200'
+                : 'text-gray-600 hover:text-slate-900 hover:bg-gray-50'
             }`}
           >
             <item.icon className="w-5 h-5" />
@@ -60,10 +60,10 @@ export default function DashboardSidebar({ onLogout }) {
         ))}
       </nav>
 
-      <div className="p-4 border-t border-white/5">
+      <div className="p-4 border-t border-red-600/20">
         <button
           onClick={onLogout}
-          className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 transition-all w-full"
+          className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 hover:text-red-600 hover:bg-red-50 transition-all w-full"
         >
           <LogOut className="w-5 h-5" />
           Logout
