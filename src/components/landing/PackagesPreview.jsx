@@ -9,7 +9,7 @@ import GlassCard from '@/components/ui/GlassCard';
 export default function PackagesPreview({ packages }) {
   return (
     <section className="relative py-24 bg-gradient-to-b from-slate-950 to-slate-900">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-2xl h-96 bg-blue-500/10 rounded-full blur-3xl" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-2xl h-96 bg-red-600/10 rounded-full blur-3xl" />
       
       <div className="relative max-w-7xl mx-auto px-6">
         <motion.div
@@ -19,7 +19,7 @@ export default function PackagesPreview({ packages }) {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Hosting Packages You'll <span className="text-blue-400">Promote</span>
+            Hosting Packages You'll <span className="text-red-500">Promote</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             Premium hosting solutions that sell themselves
@@ -35,10 +35,10 @@ export default function PackagesPreview({ packages }) {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
-              <GlassCard className={`p-8 relative ${pkg.is_popular ? 'border-blue-500/50 bg-blue-500/5' : ''}`}>
+              <GlassCard className={`p-8 relative ${pkg.is_popular ? 'border-red-600/50 bg-red-600/5' : ''}`}>
                 {pkg.is_popular && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <span className="bg-gradient-to-r from-blue-500 to-emerald-500 text-white text-xs font-semibold px-4 py-1.5 rounded-full flex items-center gap-1">
+                    <span className="bg-gradient-to-r from-red-600 to-blue-600 text-white text-xs font-semibold px-4 py-1.5 rounded-full flex items-center gap-1">
                       <Star className="w-3 h-3" /> Most Popular
                     </span>
                   </div>
@@ -52,8 +52,8 @@ export default function PackagesPreview({ packages }) {
                   <span className="text-gray-400">/mo</span>
                 </div>
 
-                <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3 mb-6">
-                  <p className="text-emerald-400 font-semibold text-center">
+                <div className="bg-blue-600/10 border border-blue-600/20 rounded-lg p-3 mb-6">
+                  <p className="text-blue-400 font-semibold text-center">
                     {pkg.commission_rate}% Commission
                     {pkg.recurring_commission && ' • Recurring'}
                   </p>
@@ -62,7 +62,7 @@ export default function PackagesPreview({ packages }) {
                 <ul className="space-y-3 mb-8">
                   {pkg.features?.slice(0, 5).map((feature, j) => (
                     <li key={j} className="flex items-center gap-3 text-gray-300">
-                      <Check className="w-5 h-5 text-emerald-400 flex-shrink-0" />
+                      <Check className="w-5 h-5 text-blue-400 flex-shrink-0" />
                       <span>{feature}</span>
                     </li>
                   ))}

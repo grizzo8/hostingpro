@@ -104,8 +104,8 @@ export default function AffiliateSignup() {
   return (
     <div className="min-h-screen bg-slate-950 relative overflow-hidden">
       {/* Background Effects */}
-      <div className="absolute top-0 left-1/3 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-1/3 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl" />
+      <div className="absolute top-0 left-1/3 w-96 h-96 bg-red-600/20 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-1/3 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl" />
       
       <div className="relative z-10 min-h-screen flex items-center justify-center px-6 py-24">
         <div className="w-full max-w-6xl grid lg:grid-cols-2 gap-12 items-center">
@@ -116,7 +116,7 @@ export default function AffiliateSignup() {
             transition={{ duration: 0.6 }}
           >
             <Link to={createPageUrl('Home')} className="flex items-center gap-2 mb-8">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-xl flex items-center justify-center">
+              <div className="w-12 h-12 bg-gradient-to-br from-red-600 to-blue-600 rounded-xl flex items-center justify-center">
                 <Zap className="w-7 h-7 text-white" />
               </div>
               <span className="text-2xl font-bold text-white">HostingPro</span>
@@ -124,7 +124,7 @@ export default function AffiliateSignup() {
 
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Join Our Affiliate<br />
-              <span className="text-emerald-400">Program</span>
+              <span className="text-red-500">Program</span>
             </h1>
 
             <p className="text-xl text-gray-400 mb-10">
@@ -140,8 +140,8 @@ export default function AffiliateSignup() {
                   transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
                   className="flex items-center gap-3 text-gray-300"
                 >
-                  <div className="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                    <Check className="w-4 h-4 text-emerald-400" />
+                  <div className="w-6 h-6 rounded-full bg-red-600/20 flex items-center justify-center">
+                    <Check className="w-4 h-4 text-red-500" />
                   </div>
                   {benefit}
                 </motion.li>
@@ -199,7 +199,7 @@ export default function AffiliateSignup() {
                         onClick={() => toggleMethod(method)}
                         className={`p-3 rounded-lg border text-sm transition-all ${
                           formData.promotion_methods.includes(method)
-                            ? 'bg-blue-500/20 border-blue-500/50 text-blue-400'
+                            ? 'bg-red-600/20 border-red-600/50 text-red-500'
                             : 'bg-white/5 border-white/10 text-gray-400 hover:border-white/20'
                         }`}
                       >
@@ -214,7 +214,7 @@ export default function AffiliateSignup() {
                     id="terms"
                     checked={formData.agreed_terms}
                     onCheckedChange={(checked) => setFormData(prev => ({ ...prev, agreed_terms: checked }))}
-                    className="border-white/20 data-[state=checked]:bg-blue-500"
+                    className="border-white/20 data-[state=checked]:bg-red-600"
                   />
                   <label htmlFor="terms" className="text-sm text-gray-400 cursor-pointer">
                     I agree to the Terms of Service and Affiliate Program Agreement
@@ -224,7 +224,7 @@ export default function AffiliateSignup() {
                 <Button
                   onClick={() => signupMutation.mutate()}
                   disabled={!formData.agreed_terms || signupMutation.isPending}
-                  className="w-full bg-gradient-to-r from-blue-500 to-emerald-500 hover:from-blue-600 hover:to-emerald-600 text-white py-6 rounded-xl"
+                  className="w-full bg-gradient-to-r from-red-600 to-blue-600 hover:from-red-700 hover:to-blue-700 text-white py-6 rounded-xl"
                 >
                   {signupMutation.isPending ? (
                     <Loader2 className="w-5 h-5 animate-spin" />
@@ -243,7 +243,7 @@ export default function AffiliateSignup() {
 
                 <p className="text-center text-gray-500 text-sm">
                   Already an affiliate?{' '}
-                  <Link to={createPageUrl('AffiliateDashboard')} className="text-blue-400 hover:underline">
+                  <Link to={createPageUrl('AffiliateDashboard')} className="text-red-500 hover:underline">
                     Login here
                   </Link>
                 </p>
