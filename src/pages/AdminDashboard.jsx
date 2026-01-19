@@ -18,6 +18,7 @@ import AdminSidebar from '@/components/admin/AdminSidebar';
 import DashboardHeader from '@/components/dashboard/DashboardHeader';
 import StatCard from '@/components/ui/StatCard';
 import GlassCard from '@/components/ui/GlassCard';
+import ResellerManagement from '@/components/admin/ResellerManagement';
 import { Badge } from "@/components/ui/badge";
 import { format } from 'date-fns';
 
@@ -244,6 +245,15 @@ export default function AdminDashboard() {
                 </GlassCard>
               </motion.div>
             </div>
+
+            {/* Reseller Management */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.9 }}
+            >
+              <ResellerManagement affiliates={affiliates} />
+            </motion.div>
 
             {/* Bottom Row */}
             <div className="grid lg:grid-cols-2 gap-6">
