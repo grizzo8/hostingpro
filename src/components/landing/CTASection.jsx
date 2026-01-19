@@ -21,13 +21,13 @@ export default function CTASection() {
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Ready to Start Earning?
           </h2>
-          <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-white mb-8 max-w-2xl mx-auto">
             Join thousands of successful affiliates and start earning passive income today.
           </p>
 
           <div className="flex flex-wrap justify-center gap-4 mb-10">
             {['Free to Join', 'No Minimum Payout', 'Instant Approval'].map((item) => (
-              <div key={item} className="flex items-center gap-2 text-white/90">
+              <div key={item} className="flex items-center gap-2 text-white">
                 <CheckCircle className="w-5 h-5" />
                 <span>{item}</span>
               </div>
