@@ -13,8 +13,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 export default function DashboardHeader({ user, affiliate, onMenuToggle }) {
-  const handleLogout = () => {
-    base44.auth.logout(createPageUrl('Home'));
+  // TODO: Ensure logout properly clears all sessions so users can test multiple accounts
+  const handleLogout = async () => {
+    await base44.auth.logout();
+    window.location.href = createPageUrl('Home');
   };
   return (
     <header className="h-20 bg-white border-b border-red-600/30 px-6 flex items-center justify-between">
