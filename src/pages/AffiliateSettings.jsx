@@ -302,7 +302,7 @@ export default function AffiliateSettings() {
                 <TabsContent value="notifications">
                   <GlassCard className="p-6">
                     <h3 className="text-lg font-semibold text-white mb-6">Notification Preferences</h3>
-                    
+
                     <div className="space-y-6">
                       {[
                         { id: 'referral', label: 'New Referral', desc: 'Get notified when someone signs up using your link' },
@@ -322,7 +322,11 @@ export default function AffiliateSettings() {
                     </div>
                   </GlassCard>
                 </TabsContent>
-              </Tabs>
+
+                <TabsContent value="domains">
+                  <DomainRegistrationSection affiliate={affiliate} user={user} />
+                </TabsContent>
+                </Tabs>
             </motion.div>
           </div>
         </main>
