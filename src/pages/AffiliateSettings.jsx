@@ -3,7 +3,7 @@ import { base44 } from '@/api/base44Client';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
 import { createPageUrl } from '@/utils';
-import { User, CreditCard, Bell, Shield, Save, Loader2 } from 'lucide-react';
+import { User, CreditCard, Bell, Shield, Save, Loader2, Globe } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
