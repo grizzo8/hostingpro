@@ -35,6 +35,26 @@ export default function Packages() {
     return Icon;
   };
 
+  const handleCheckout = async (pkg, billingType) => {
+    setLoadingPayPal({ ...loadingPayPal, [`${pkg.id}-${billingType}`]: true });
+    try {
+      const response = await base44.functions.invoke('generatePayPalLink', {
+        packageId: pkg.id,
+        billingType: billingType
+      });
+      
+      if (response.data?.paypalUrl) {
+        window.location.href = response.data.paypalUrl;
+      } else {
+        alert('Error generating payment link');
+      }
+    } catch (error) {
+      alert('Payment error: ' + error.message);
+    } finally {
+      setLoadingPayPal({ ...loadingPayPal, [`${pkg.id}-${billingType}`]: false });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar user={user} />
