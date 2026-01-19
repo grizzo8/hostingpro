@@ -11,7 +11,6 @@ import GlassCard from '@/components/ui/GlassCard';
 
 export default function Packages() {
   const [user, setUser] = useState(null);
-  const [billing, setBilling] = useState('monthly');
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -36,7 +35,7 @@ export default function Packages() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950">
+    <div className="min-h-screen bg-white">
       <Navbar user={user} />
       
       <div className="pt-32 pb-24 px-6">
@@ -46,42 +45,24 @@ export default function Packages() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-16"
           >
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
-              Hosting <span className="text-emerald-400">Packages</span>
+            <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-4">
+              Hosting <span className="text-red-600">Packages</span>
             </h1>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-8">
-              Premium hosting solutions with industry-leading affiliate commissions
+            <p className="text-xl text-gray-700 max-w-2xl mx-auto">
+              Choose your package. After 3 referrals, earn daily passive income!
             </p>
-
-            <Tabs value={billing} onValueChange={setBilling} className="inline-flex">
-              <TabsList className="bg-white/5 border border-white/10 p-1">
-                <TabsTrigger 
-                  value="monthly"
-                  className="data-[state=active]:bg-white/10 data-[state=active]:text-white text-gray-400 px-6"
-                >
-                  Monthly
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="yearly"
-                  className="data-[state=active]:bg-white/10 data-[state=active]:text-white text-gray-400 px-6"
-                >
-                  Yearly <span className="ml-2 text-xs text-emerald-400">Save 20%</span>
-                </TabsTrigger>
-              </TabsList>
-            </Tabs>
           </motion.div>
 
           {isLoading ? (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[1,2,3].map((i) => (
-                <div key={i} className="h-[500px] bg-white/5 rounded-2xl animate-pulse" />
-              ))}
-            </div>
+           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+             {[1,2,3,4].map((i) => (
+               <div key={i} className="h-[500px] bg-gray-200 rounded-2xl animate-pulse" />
+             ))}
+           </div>
           ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {packages.map((pkg, i) => {
-                const Icon = getIcon(i);
-                const price = billing === 'yearly' ? pkg.yearly_price || pkg.monthly_price * 10 : pkg.monthly_price;
+           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+             {packages.map((pkg, i) => {
+               const Icon = getIcon(i);
                 
                 return (
                   <motion.div
@@ -90,56 +71,45 @@ export default function Packages() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: i * 0.1 }}
                   >
-                    <GlassCard className={`p-8 relative h-full flex flex-col ${pkg.is_popular ? 'border-blue-500/50 bg-blue-500/5 scale-105' : ''}`}>
+                    <GlassCard className={`p-8 relative h-full flex flex-col ${pkg.is_popular ? 'border-red-400 ring-2 ring-red-400/20 scale-105' : 'border-red-600/30'}`}>
                       {pkg.is_popular && (
                         <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                          <span className="bg-gradient-to-r from-blue-500 to-emerald-500 text-white text-xs font-semibold px-4 py-1.5 rounded-full flex items-center gap-1">
+                          <span className="bg-gradient-to-r from-red-600 to-blue-600 text-white text-xs font-semibold px-4 py-1.5 rounded-full flex items-center gap-1">
                             <Star className="w-3 h-3" /> Most Popular
                           </span>
                         </div>
                       )}
                       
-                      <div className="flex items-center gap-4 mb-6">
-                        <div className="w-14 h-14 bg-gradient-to-br from-blue-500/20 to-emerald-500/20 rounded-xl flex items-center justify-center">
-                          <Icon className="w-7 h-7 text-blue-400" />
-                        </div>
-                        <div>
-                          <h3 className="text-2xl font-bold text-white">{pkg.name}</h3>
-                          <p className="text-gray-400 text-sm">{pkg.description}</p>
-                        </div>
-                      </div>
+                      <h3 className="text-2xl font-bold text-slate-900 mb-2">{pkg.name}</h3>
+                      <p className="text-gray-600 text-sm mb-6">{pkg.description}</p>
                       
                       <div className="mb-6">
-                        <span className="text-5xl font-bold text-white">${price}</span>
-                        <span className="text-gray-400">/{billing === 'yearly' ? 'yr' : 'mo'}</span>
+                        <div className="text-4xl font-bold text-red-600">${pkg.daily_payout}</div>
+                        <div className="text-sm text-gray-600">daily after 3 referrals</div>
                       </div>
 
-                      <div className="bg-gradient-to-r from-emerald-500/10 to-blue-500/10 border border-emerald-500/20 rounded-xl p-4 mb-6">
-                        <div className="flex justify-between items-center">
-                          <span className="text-gray-300">Your Commission:</span>
-                          <span className="text-2xl font-bold text-emerald-400">{pkg.commission_rate}%</span>
+                      <div className="bg-red-50 border border-red-200 rounded-xl p-4 mb-6">
+                        <div className="text-center">
+                          <span className="text-sm text-gray-600">100% Commission</span>
+                          <p className="text-lg font-bold text-red-600">Your 1st & 3rd+ Sales</p>
                         </div>
-                        <p className="text-emerald-400/70 text-sm mt-1">
-                          ${(price * pkg.commission_rate / 100).toFixed(2)} per sale
-                          {pkg.recurring_commission && ' + recurring'}
-                        </p>
                       </div>
 
                       <ul className="space-y-3 mb-8 flex-grow">
                         {pkg.features?.map((feature, j) => (
-                          <li key={j} className="flex items-start gap-3 text-gray-300">
-                            <Check className="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5" />
-                            <span>{feature}</span>
+                          <li key={j} className="flex items-start gap-3 text-gray-700">
+                            <Check className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+                            <span className="text-sm">{feature}</span>
                           </li>
                         ))}
                       </ul>
 
                       <Button 
                         className={`w-full py-6 rounded-xl ${pkg.is_popular 
-                          ? 'bg-gradient-to-r from-blue-500 to-emerald-500 hover:from-blue-600 hover:to-emerald-600' 
-                          : 'bg-white/10 hover:bg-white/20'} text-white`}
+                          ? 'bg-gradient-to-r from-red-600 to-blue-600 hover:from-red-700 hover:to-blue-700' 
+                          : 'border-2 border-red-600 text-red-600 hover:bg-red-50'} text-white font-semibold`}
                       >
-                        Get Affiliate Link
+                        Get Started
                       </Button>
                     </GlassCard>
                   </motion.div>
