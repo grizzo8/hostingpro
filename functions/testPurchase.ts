@@ -12,8 +12,7 @@ Deno.serve(async (req) => {
     const { packageId, referralCode } = await req.json();
 
     // Get package
-    const packages = await base44.entities.HostingPackage.filter({ id: packageId });
-    const pkg = packages[0];
+    const pkg = await base44.entities.HostingPackage.get(packageId);
     if (!pkg) {
       return Response.json({ error: 'Package not found' }, { status: 404 });
     }
