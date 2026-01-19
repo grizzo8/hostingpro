@@ -188,7 +188,7 @@ export default function AffiliateSettings() {
                           placeholder="https://yoursite.com"
                           value={formData.website_url}
                           onChange={(e) => setFormData(prev => ({ ...prev, website_url: e.target.value }))}
-                          className="mt-2 bg-white/5 border-white/10 text-white placeholder:text-gray-500"
+                          className="mt-2 bg-slate-900 border-white/10 text-white placeholder:text-gray-500"
                         />
                       </div>
 
@@ -217,7 +217,7 @@ export default function AffiliateSettings() {
                           placeholder="Tell us about yourself and how you plan to promote..."
                           value={formData.notes}
                           onChange={(e) => setFormData(prev => ({ ...prev, notes: e.target.value }))}
-                          className="mt-2 bg-white/5 border-white/10 text-white placeholder:text-gray-500 min-h-[100px]"
+                          className="mt-2 bg-slate-900 border-white/10 text-white placeholder:text-gray-500 min-h-[100px]"
                         />
                       </div>
 
@@ -256,7 +256,7 @@ export default function AffiliateSettings() {
                           placeholder="paypal@email.com"
                           value={formData.paypal_email}
                           onChange={(e) => setFormData(prev => ({ ...prev, paypal_email: e.target.value }))}
-                          className="mt-2 bg-white/5 border-white/10 text-white placeholder:text-gray-500"
+                          className="mt-2 bg-slate-900 border-white/10 text-white placeholder:text-gray-500"
                         />
                         <p className="text-gray-500 text-sm mt-2">
                           Make sure this email matches your PayPal account exactly.
