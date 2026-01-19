@@ -35,23 +35,23 @@ export default function About() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-950">
+    <div className="min-h-screen bg-white">
       <Navbar user={user} />
       
       {/* Hero */}
       <section className="pt-32 pb-20 px-6 relative overflow-hidden">
-        <div className="absolute top-1/4 -left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 -right-1/4 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 -left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 -right-1/4 w-96 h-96 bg-red-500/10 rounded-full blur-3xl" />
         
         <div className="relative max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
-              About <span className="text-emerald-400">HostingPro</span>
+            <h1 className="text-5xl md:text-6xl font-bold text-slate-900 mb-6">
+              About <span className="text-red-600">HostingPro</span>
             </h1>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               We're on a mission to create the most rewarding affiliate program in the hosting industry, 
               empowering entrepreneurs worldwide to build sustainable income.
             </p>
@@ -70,10 +70,10 @@ export default function About() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
               >
-                <GlassCard className="p-6 text-center">
-                  <stat.icon className="w-10 h-10 text-blue-400 mx-auto mb-4" />
-                  <p className="text-3xl font-bold text-white">{stat.value}</p>
-                  <p className="text-gray-400">{stat.label}</p>
+                <GlassCard className="p-6 text-center bg-gradient-to-br from-blue-50 to-white">
+                  <stat.icon className="w-10 h-10 text-blue-600 mx-auto mb-4" />
+                  <p className="text-3xl font-bold text-slate-900">{stat.value}</p>
+                  <p className="text-gray-600">{stat.label}</p>
                 </GlassCard>
               </motion.div>
             ))}
@@ -89,9 +89,9 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <GlassCard className="p-8 md:p-12">
-              <h2 className="text-3xl font-bold text-white mb-6">Our Story</h2>
-              <div className="space-y-4 text-gray-300 leading-relaxed">
+            <GlassCard className="p-8 md:p-12 bg-gradient-to-br from-red-50 to-white">
+              <h2 className="text-3xl font-bold text-red-600 mb-6">Our Story</h2>
+              <div className="space-y-4 text-gray-700 leading-relaxed">
                 <p>
                   HostingPro was founded with a simple belief: affiliates deserve better. 
                   After years of working with hosting companies that offered low commissions, 
@@ -115,7 +115,7 @@ export default function About() {
       </section>
 
       {/* Values */}
-      <section className="py-20 px-6 bg-gradient-to-b from-slate-950 to-slate-900">
+      <section className="py-20 px-6 bg-gradient-to-b from-white via-blue-50 to-white">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -123,8 +123,8 @@ export default function About() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl font-bold text-white mb-4">Our Values</h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
+            <h2 className="text-4xl font-bold text-slate-900 mb-4">Our Values</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
               The principles that guide everything we do
             </p>
           </motion.div>
@@ -138,14 +138,14 @@ export default function About() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
               >
-                <GlassCard className="p-8 h-full">
+                <GlassCard className="p-8 h-full bg-gradient-to-br from-blue-50 to-white">
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <CheckCircle className="w-5 h-5 text-emerald-400" />
+                    <div className="w-10 h-10 bg-red-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <CheckCircle className="w-5 h-5 text-red-600" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold text-white mb-2">{value.title}</h3>
-                      <p className="text-gray-400">{value.desc}</p>
+                      <h3 className="text-xl font-semibold text-slate-900 mb-2">{value.title}</h3>
+                      <p className="text-gray-700">{value.desc}</p>
                     </div>
                   </div>
                 </GlassCard>
