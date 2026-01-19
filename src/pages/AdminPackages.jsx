@@ -26,6 +26,8 @@ export default function AdminPackages() {
     description: '',
     features: [],
     price: 0,
+    daily_price: 0,
+    monthly_price: 0,
     daily_payout: 0,
     commission_rate: 30,
     recurring_commission: true,
@@ -94,6 +96,8 @@ export default function AdminPackages() {
       description: '',
       features: [],
       price: 0,
+      daily_price: 0,
+      monthly_price: 0,
       daily_payout: 0,
       commission_rate: 30,
       recurring_commission: true,
@@ -112,6 +116,8 @@ export default function AdminPackages() {
       description: pkg.description || '',
       features: pkg.features || [],
       price: pkg.price || 0,
+      daily_price: pkg.daily_price || 0,
+      monthly_price: pkg.monthly_price || 0,
       daily_payout: pkg.daily_payout || 0,
       commission_rate: pkg.commission_rate || 30,
       recurring_commission: pkg.recurring_commission ?? true,
@@ -220,7 +226,7 @@ export default function AdminPackages() {
                        />
                      </div>
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-3 gap-4">
                        <div>
                          <Label className="text-slate-900">Upfront Price ($)</Label>
                          <Input
@@ -231,14 +237,36 @@ export default function AdminPackages() {
                          />
                        </div>
                        <div>
-                         <Label className="text-slate-900">Daily Payout ($)</Label>
+                         <Label className="text-slate-900">Daily Price ($)</Label>
                          <Input
                            type="number"
-                           value={formData.daily_payout}
-                           onChange={(e) => setFormData(prev => ({ ...prev, daily_payout: parseFloat(e.target.value) || 0 }))}
+                           step="0.01"
+                           value={formData.daily_price}
+                           onChange={(e) => setFormData(prev => ({ ...prev, daily_price: parseFloat(e.target.value) || 0 }))}
                            className="mt-1 bg-white border-2 border-red-200 text-slate-900"
+                           placeholder="e.g. 1.00"
                          />
                        </div>
+                       <div>
+                         <Label className="text-slate-900">Monthly Price ($)</Label>
+                         <Input
+                           type="number"
+                           value={formData.monthly_price}
+                           onChange={(e) => setFormData(prev => ({ ...prev, monthly_price: parseFloat(e.target.value) || 0 }))}
+                           className="mt-1 bg-white border-2 border-red-200 text-slate-900"
+                           placeholder="e.g. 29"
+                         />
+                       </div>
+                     </div>
+                     
+                     <div>
+                       <Label className="text-slate-900">Daily Payout ($)</Label>
+                       <Input
+                         type="number"
+                         value={formData.daily_payout}
+                         onChange={(e) => setFormData(prev => ({ ...prev, daily_payout: parseFloat(e.target.value) || 0 }))}
+                         className="mt-1 bg-white border-2 border-red-200 text-slate-900"
+                       />
                      </div>
 
                     <div className="grid grid-cols-2 gap-4">
@@ -372,8 +400,12 @@ export default function AdminPackages() {
 
                        <div className="space-y-3">
                          <div className="flex justify-between">
-                           <span className="text-gray-600">Upfront:</span>
-                           <span className="text-slate-900 font-bold">${pkg.price}</span>
+                           <span className="text-gray-600">Daily:</span>
+                           <span className="text-slate-900 font-bold">${pkg.daily_price}/day</span>
+                         </div>
+                         <div className="flex justify-between">
+                           <span className="text-gray-600">Monthly (28 days):</span>
+                           <span className="text-slate-900 font-bold">${pkg.monthly_price}</span>
                          </div>
                          <div className="flex justify-between">
                            <span className="text-gray-600">Daily Payout:</span>
