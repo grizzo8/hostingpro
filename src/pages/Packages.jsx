@@ -84,16 +84,24 @@ export default function Packages() {
                       <p className="text-gray-600 text-sm mb-6">{pkg.description}</p>
                       
                       <div className="mb-6">
-                        <div className="text-4xl font-bold text-red-600">${pkg.price}</div>
-                        <div className="text-sm text-gray-600">one-time payment</div>
-                        <div className="text-2xl font-bold text-slate-900 mt-2">${pkg.daily_payout}</div>
-                        <div className="text-sm text-gray-600">daily after 3 referrals</div>
+                        <div className="text-3xl font-bold text-red-600">${pkg.price}</div>
+                        <div className="text-xs text-gray-600">Upfront payment to start</div>
+                      </div>
+
+                      <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6">
+                        <div className="text-center">
+                          <p className="text-xs text-gray-600 mb-2">After 3 referrals:</p>
+                          <div className="text-2xl font-bold text-blue-600">${pkg.daily_payout}/day</div>
+                          <p className="text-xs text-gray-600 mt-1">Automatic PayPal payouts</p>
+                        </div>
                       </div>
 
                       <div className="bg-red-50 border border-red-200 rounded-xl p-4 mb-6">
                         <div className="text-center">
-                          <span className="text-sm text-gray-600">100% Commission</span>
-                          <p className="text-lg font-bold text-red-600">Your 1st & 3rd+ Sales</p>
+                          <p className="text-xs font-semibold text-gray-700 mb-2">Commission Structure</p>
+                          <p className="text-xs text-red-600">1st Sale: 100% Yours</p>
+                          <p className="text-xs text-gray-600">2nd Sale: Admin Fee</p>
+                          <p className="text-xs text-red-600 font-semibold">3rd+ Sales: 100% Yours</p>
                         </div>
                       </div>
 
