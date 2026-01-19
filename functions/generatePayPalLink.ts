@@ -76,7 +76,12 @@ Deno.serve(async (req) => {
     }
 
     // Find the approval link
-    const approvalLink = orderData.links.find(link => link.rel === 'approve')?.href;
+    const approvalLink = orderData.links?.find(link => link.rel === 'approve')?.href;
+
+    if (!approvalLink) {
+      console.error('No approval link found:', orderData);
+      return Response.json({ error: 'No payment link available' }, { status: 500 });
+    }
 
     return Response.json({ 
       paypalUrl: approvalLink,
