@@ -13,6 +13,10 @@ import AffiliateSettings from './pages/AffiliateSettings';
 import AdminDashboard from './pages/AdminDashboard';
 import AdminAffiliates from './pages/AdminAffiliates';
 import AdminPackages from './pages/AdminPackages';
+import AdminPayouts from './pages/AdminPayouts';
+import AdminBlog from './pages/AdminBlog';
+import AdminLeads from './pages/AdminLeads';
+import AdminMessages from './pages/AdminMessages';
 
 
 export const PAGES = {
@@ -31,6 +35,10 @@ export const PAGES = {
     "AdminDashboard": AdminDashboard,
     "AdminAffiliates": AdminAffiliates,
     "AdminPackages": AdminPackages,
+    "AdminPayouts": AdminPayouts,
+    "AdminBlog": AdminBlog,
+    "AdminLeads": AdminLeads,
+    "AdminMessages": AdminMessages,
 }
 
 export const pagesConfig = {
