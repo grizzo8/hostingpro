@@ -17,12 +17,12 @@ Deno.serve(async (req) => {
     }
 
     // Get package details using service role
-    const pkg = await base44.asServiceRole.entities.HostingPackage.filter({ id: packageId });
-    if (!pkg || pkg.length === 0) {
+    const pkg = await base44.asServiceRole.entities.HostingPackage.get(packageId);
+    if (!pkg) {
       return Response.json({ error: 'Package not found' }, { status: 404 });
     }
 
-    const amount = billingType === 'daily' ? pkg[0].daily_price : pkg[0].monthly_price;
+    const amount = billingType === 'daily' ? pkg.daily_price : pkg.monthly_price;
     const clientId = Deno.env.get('PAYPAL_CLIENT_ID');
     const clientSecret = Deno.env.get('PAYPAL_API_SECRET');
 
