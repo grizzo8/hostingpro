@@ -197,7 +197,7 @@ export default function AdminPackages() {
                         <Input
                           value={formData.name}
                           onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                          className="mt-1 border-red-200 text-slate-900"
+                          className="mt-1 bg-white border-2 border-red-200 text-slate-900"
                         />
                       </div>
                       <div>
@@ -205,7 +205,7 @@ export default function AdminPackages() {
                         <Input
                           value={formData.slug}
                           onChange={(e) => setFormData(prev => ({ ...prev, slug: e.target.value }))}
-                          className="mt-1 border-red-200 text-slate-900"
+                          className="mt-1 bg-white border-2 border-red-200 text-slate-900"
                           placeholder="e.g. starter, business"
                         />
                       </div>
@@ -216,30 +216,30 @@ export default function AdminPackages() {
                        <Textarea
                          value={formData.description}
                          onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
-                         className="mt-1 border-red-200 text-slate-900"
+                         className="mt-1 bg-white border-2 border-red-200 text-slate-900"
                        />
                      </div>
 
                     <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <Label className="text-gray-300">Upfront Price ($)</Label>
-                        <Input
-                          type="number"
-                          value={formData.price}
-                          onChange={(e) => setFormData(prev => ({ ...prev, price: parseFloat(e.target.value) || 0 }))}
-                          className="mt-1 bg-white/5 border-white/10 text-white"
-                        />
-                      </div>
-                      <div>
-                        <Label className="text-gray-300">Daily Payout ($)</Label>
-                        <Input
-                          type="number"
-                          value={formData.daily_payout}
-                          onChange={(e) => setFormData(prev => ({ ...prev, daily_payout: parseFloat(e.target.value) || 0 }))}
-                          className="mt-1 bg-white/5 border-white/10 text-white"
-                        />
-                      </div>
-                    </div>
+                       <div>
+                         <Label className="text-slate-900">Upfront Price ($)</Label>
+                         <Input
+                           type="number"
+                           value={formData.price}
+                           onChange={(e) => setFormData(prev => ({ ...prev, price: parseFloat(e.target.value) || 0 }))}
+                           className="mt-1 bg-white border-2 border-red-200 text-slate-900"
+                         />
+                       </div>
+                       <div>
+                         <Label className="text-slate-900">Daily Payout ($)</Label>
+                         <Input
+                           type="number"
+                           value={formData.daily_payout}
+                           onChange={(e) => setFormData(prev => ({ ...prev, daily_payout: parseFloat(e.target.value) || 0 }))}
+                           className="mt-1 bg-white border-2 border-red-200 text-slate-900"
+                         />
+                       </div>
+                     </div>
 
                     <div className="grid grid-cols-2 gap-4">
                        <div>
@@ -248,7 +248,7 @@ export default function AdminPackages() {
                            type="number"
                            value={formData.commission_rate}
                            onChange={(e) => setFormData(prev => ({ ...prev, commission_rate: parseFloat(e.target.value) || 0 }))}
-                           className="mt-1 border-red-200 text-slate-900"
+                           className="mt-1 bg-white border-2 border-red-200 text-slate-900"
                          />
                        </div>
                        <div>
@@ -257,7 +257,7 @@ export default function AdminPackages() {
                            type="number"
                            value={formData.sort_order}
                            onChange={(e) => setFormData(prev => ({ ...prev, sort_order: parseInt(e.target.value) || 0 }))}
-                           className="mt-1 border-red-200 text-slate-900"
+                           className="mt-1 bg-white border-2 border-red-200 text-slate-900"
                          />
                        </div>
                      </div>
@@ -269,7 +269,7 @@ export default function AdminPackages() {
                            value={newFeature}
                            onChange={(e) => setNewFeature(e.target.value)}
                            placeholder="Add a feature..."
-                           className="border-red-200 text-slate-900"
+                           className="bg-white border-2 border-red-200 text-slate-900"
                            onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addFeature())}
                          />
                          <Button onClick={addFeature} variant="outline" className="border-red-200 text-red-600 hover:bg-red-50">
