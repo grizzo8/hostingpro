@@ -27,8 +27,8 @@ Deno.serve(async (req) => {
     }
 
     const useSandbox = Deno.env.get('PAYPAL_SANDBOX') === 'true';
-    const clientId = Deno.env.get('PAYPAL_CLIENT_ID');
-    const clientSecret = Deno.env.get('PAYPAL_API_SECRET');
+    const clientId = Deno.env.get('PAYPAL_SANDBOX_CLIENT_ID');
+    const clientSecret = Deno.env.get('PAYPAL_SANDBOX_API_KEY');
     const baseUrl = useSandbox ? 'https://api.sandbox.paypal.com' : 'https://api.paypal.com';
     const authString = btoa(`${clientId}:${clientSecret}`);
 
