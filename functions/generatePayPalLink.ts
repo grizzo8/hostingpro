@@ -45,7 +45,7 @@ Deno.serve(async (req) => {
 
     // Get the app URL from environment or use the referer header
     const appUrl = Deno.env.get('APP_URL') || req.headers.get('referer')?.split('/#/')[0] || 'https://sales1.rentapog.com';
-    const returnUrl = `${appUrl}/#/AffiliateDashboard?payment=success` + (referralCode ? `&ref=${referralCode}` : '');
+    const returnUrl = `${appUrl}/#/AffiliateDashboard?payment=success&packageId=${packageId}` + (referralCode ? `&referralCode=${referralCode}` : '');
     const cancelUrl = `${appUrl}/#/Packages`;
 
     const orderRes = await fetch(`${baseUrl}/v2/checkout/orders`, {
