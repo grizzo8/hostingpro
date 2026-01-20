@@ -28,6 +28,20 @@ export default function AffiliateDashboard() {
       }
       const userData = await base44.auth.me();
       setUser(userData);
+
+      // Handle PayPal return
+      const urlParams = new URLSearchParams(window.location.search);
+      const paymentSuccess = urlParams.get('payment');
+      const token = urlParams.get('token');
+      
+      if (paymentSuccess === 'success' && token) {
+        // PayPal redirects with a 'token' parameter which is the order ID
+        // We'll handle the capture here
+        console.log('Payment successful, order ID:', token);
+        // You can add logic here to capture the payment or show a success message
+        // For now, just clean up the URL
+        window.history.replaceState({}, '', createPageUrl('AffiliateDashboard'));
+      }
     };
     checkAuth();
   }, []);
