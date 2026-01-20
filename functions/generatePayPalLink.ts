@@ -43,8 +43,8 @@ Deno.serve(async (req) => {
       return Response.json({ error: 'Failed to get PayPal token', details: tokenData }, { status: 500 });
     }
 
-    // Get the app URL from environment or use the referer header
-    const appUrl = Deno.env.get('APP_URL') || req.headers.get('referer')?.split('/#/')[0] || 'https://sales1.rentapog.com';
+    // Get just the origin (base URL) from the request
+    const appUrl = new URL(req.url).origin;
     const returnUrl = `${appUrl}/#/AffiliateDashboard?payment=success&packageId=${packageId}` + (referralCode ? `&referralCode=${referralCode}` : '');
     const cancelUrl = `${appUrl}/#/Packages`;
 
