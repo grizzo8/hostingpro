@@ -22,6 +22,7 @@ import Packages from './pages/Packages';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Referral from './pages/Referral';
 import TermsOfService from './pages/TermsOfService';
+import AuthCallback from './pages/AuthCallback';
 
 
 export const PAGES = {
@@ -49,6 +50,7 @@ export const PAGES = {
     "PrivacyPolicy": PrivacyPolicy,
     "Referral": Referral,
     "TermsOfService": TermsOfService,
+    "AuthCallback": AuthCallback,
 }
 
 export const pagesConfig = {
