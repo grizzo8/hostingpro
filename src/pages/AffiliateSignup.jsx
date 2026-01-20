@@ -79,6 +79,15 @@ export default function AffiliateSignup() {
         throw new Error('This email is already registered as an affiliate');
       }
 
+      // Create Cloudflare DNS record
+      const dnsResult = await base44.functions.invoke('createCloudflareSubdomain', {
+        subdomain: formData.subdomain
+      });
+
+      if (!dnsResult.data.success) {
+        throw new Error('Failed to create subdomain. Please try a different name.');
+      }
+
       // Generate password and create affiliate record
       const password = Math.random().toString(36).slice(2, 10) + Math.random().toString(36).slice(2, 5).toUpperCase();
       
@@ -217,7 +226,7 @@ export default function AffiliateSignup() {
 
                  <div>
                    <Label className="text-gray-700">Your Subdomain</Label>
-                   <p className="text-sm text-gray-600 mb-2">⚠️ This is IMPORTANT! Pick something short and easy to remember. This will be your unique site URL (e.g., <span className="font-mono text-red-600">yourname.hostingpro.com</span>). You can buy a custom domain later in your dashboard.</p>
+                   <p className="text-sm text-gray-600 mb-2">⚠️ This is IMPORTANT! Pick something short and easy to remember. This will be your unique site URL (e.g., <span className="font-mono text-red-600">yourname.rentapog.com</span>). You can buy a custom domain later in your dashboard.</p>
                    <Input
                      type="text"
                      placeholder="e.g. yourname"
@@ -226,7 +235,7 @@ export default function AffiliateSignup() {
                      className="bg-white border-gray-300 text-slate-900 placeholder:text-gray-400 mt-2"
                    />
                    {formData.subdomain && (
-                     <p className="text-sm text-gray-600 mt-1">Your URL will be: <span className="font-mono font-bold text-slate-900">{formData.subdomain}.hostingpro.com</span></p>
+                     <p className="text-sm text-gray-600 mt-1">Your URL will be: <span className="font-mono font-bold text-slate-900">{formData.subdomain}.rentapog.com</span></p>
                    )}
                  </div>
 
