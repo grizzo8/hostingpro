@@ -46,7 +46,7 @@ Deno.serve(async (req) => {
       return Response.json({ error: 'Failed to get PayPal token' }, { status: 500 });
     }
 
-    const captureRes = await fetch(`https://api.paypal.com/v2/checkout/orders/${orderId}/capture`, {
+    const captureRes = await fetch(`${baseUrl}/v2/checkout/orders/${orderId}/capture`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${tokenData.access_token}`,
