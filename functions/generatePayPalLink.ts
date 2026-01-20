@@ -65,7 +65,7 @@ Deno.serve(async (req) => {
           paypal: {
             experience_context: {
               return_url: returnUrl,
-              cancel_url: new URL(req.url).origin + '/packages'
+              cancel_url: new URL(req.url).origin + '/#/Packages'
             }
           }
         }
