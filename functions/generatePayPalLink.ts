@@ -70,13 +70,23 @@ Deno.serve(async (req) => {
     });
 
     const orderData = await orderRes.json();
+    
+    // Log the full response for debugging
+    console.log('PayPal order response:', JSON.stringify(orderData, null, 2));
+    
     if (!orderData.id) {
-      return Response.json({ error: 'Failed to create PayPal order' }, { status: 500 });
+      return Response.json({ 
+        error: 'Failed to create PayPal order', 
+        details: orderData 
+      }, { status: 500 });
     }
 
     const approvalLink = orderData.links?.find(link => link.rel === 'approve')?.href;
     if (!approvalLink) {
-      return Response.json({ error: 'No payment link available' }, { status: 500 });
+      return Response.json({ 
+        error: 'No payment link available',
+        details: orderData 
+      }, { status: 500 });
     }
 
     return Response.json({ 
