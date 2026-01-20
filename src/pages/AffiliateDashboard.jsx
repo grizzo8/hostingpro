@@ -46,10 +46,10 @@ export default function AffiliateDashboard() {
           });
 
           console.log('Payment captured successfully:', captureResult.data);
-          alert('Payment successful! Welcome to HostingPro.');
 
-          // Clean up URL
+          // Clean up URL and show success
           window.history.replaceState({}, '', createPageUrl('AffiliateDashboard'));
+          alert('Payment successful! Welcome to HostingPro. Check your email for login details.');
         } catch (error) {
           console.error('Payment capture failed:', error);
           alert('Payment processing failed. Please contact support.');

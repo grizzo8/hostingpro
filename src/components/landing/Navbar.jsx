@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
+import { base44 } from '@/api/base44Client';
 import { Button } from "@/components/ui/button";
 import { Menu, X, Zap } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -65,11 +66,17 @@ export default function Navbar({ user }) {
                     Sign Up
                   </Button>
                 </Link>
-                <Link to={createPageUrl('AffiliateDashboard')}>
-                  <Button className="bg-gradient-to-r from-red-600 to-blue-600 hover:from-red-700 hover:to-blue-700 text-white rounded-xl">
-                    Login
-                  </Button>
-                </Link>
+                <button
+                  onClick={() => {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const ref = urlParams.get('ref');
+                    if (ref) sessionStorage.setItem('referralCode', ref);
+                    base44.auth.redirectToLogin(createPageUrl('AuthCallback'));
+                  }}
+                  className="bg-gradient-to-r from-red-600 to-blue-600 hover:from-red-700 hover:to-blue-700 text-white rounded-xl px-4 py-2 text-sm font-medium"
+                >
+                  Login
+                </button>
               </>
             )}
           </div>
@@ -110,11 +117,17 @@ export default function Navbar({ user }) {
                     Sign Up
                   </Button>
                 </Link>
-                <Link to={createPageUrl('AffiliateDashboard')} onClick={() => setIsOpen(false)}>
-                  <Button className="w-full bg-gradient-to-r from-red-600 to-blue-600">
-                    Login
-                  </Button>
-                </Link>
+                <Button
+                  onClick={() => {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const ref = urlParams.get('ref');
+                    if (ref) sessionStorage.setItem('referralCode', ref);
+                    base44.auth.redirectToLogin(createPageUrl('AuthCallback'));
+                  }}
+                  className="w-full bg-gradient-to-r from-red-600 to-blue-600"
+                >
+                  Login
+                </Button>
               </div>
             </div>
           </motion.div>
