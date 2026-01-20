@@ -33,14 +33,28 @@ export default function AffiliateDashboard() {
       const urlParams = new URLSearchParams(window.location.search);
       const paymentSuccess = urlParams.get('payment');
       const token = urlParams.get('token');
-      
-      if (paymentSuccess === 'success' && token) {
-        // PayPal redirects with a 'token' parameter which is the order ID
-        // We'll handle the capture here
-        console.log('Payment successful, order ID:', token);
-        // You can add logic here to capture the payment or show a success message
-        // For now, just clean up the URL
-        window.history.replaceState({}, '', createPageUrl('AffiliateDashboard'));
+      const packageId = urlParams.get('packageId');
+      const referralCode = urlParams.get('referralCode');
+
+      if (paymentSuccess === 'success' && token && packageId) {
+        try {
+          // Capture the PayPal payment
+          const captureResult = await base44.functions.invoke('handlePayPalCapture', {
+            orderId: token,
+            packageId: packageId,
+            referralCode: referralCode || null
+          });
+
+          console.log('Payment captured successfully:', captureResult.data);
+          alert('Payment successful! Welcome to HostingPro.');
+
+          // Clean up URL
+          window.history.replaceState({}, '', createPageUrl('AffiliateDashboard'));
+        } catch (error) {
+          console.error('Payment capture failed:', error);
+          alert('Payment processing failed. Please contact support.');
+          window.history.replaceState({}, '', createPageUrl('AffiliateDashboard'));
+        }
       }
     };
     checkAuth();
