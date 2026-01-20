@@ -81,7 +81,11 @@ Deno.serve(async (req) => {
       }, { status: 500 });
     }
 
-    const approvalLink = orderData.links?.find(link => link.rel === 'approve')?.href;
+    // PayPal may return different link rel types
+    const approvalLink = orderData.links?.find(link => 
+      link.rel === 'approve' || link.rel === 'payer-action'
+    )?.href;
+    
     if (!approvalLink) {
       return Response.json({ 
         error: 'No payment link available',
