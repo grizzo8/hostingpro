@@ -22,11 +22,6 @@ Deno.serve(async (req) => {
       return Response.json({ error: 'Package not found' }, { status: 404 });
     }
 
-    const user = await base44.auth.me();
-    if (!user) {
-      return Response.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-
     let affiliate = null;
     if (referralCode) {
       const affiliates = await base44.asServiceRole.entities.Affiliate.filter({ referral_code: referralCode });
