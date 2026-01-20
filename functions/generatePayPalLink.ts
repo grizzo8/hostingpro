@@ -43,7 +43,7 @@ Deno.serve(async (req) => {
       return Response.json({ error: 'Failed to get PayPal token', details: tokenData }, { status: 500 });
     }
 
-    const returnUrl = new URL(req.url).origin + '/packages?success=true' + (referralCode ? `&ref=${referralCode}` : '');
+    const returnUrl = new URL(req.url).origin + '/AffiliateDashboard?payment=success' + (referralCode ? `&ref=${referralCode}` : '');
 
     const orderRes = await fetch(`${baseUrl}/v2/checkout/orders`, {
       method: 'POST',
