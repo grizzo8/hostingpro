@@ -43,8 +43,8 @@ Deno.serve(async (req) => {
     }
 
     const returnUrl = new URL(req.url).origin + '/packages?success=true' + (referralCode ? `&ref=${referralCode}` : '');
-    
-    const orderRes = await fetch('https://api.paypal.com/v2/checkout/orders', {
+
+    const orderRes = await fetch(`${baseUrl}/v2/checkout/orders`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${tokenData.access_token}`,
