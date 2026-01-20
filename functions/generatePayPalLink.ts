@@ -43,7 +43,10 @@ Deno.serve(async (req) => {
       return Response.json({ error: 'Failed to get PayPal token', details: tokenData }, { status: 500 });
     }
 
-    const returnUrl = new URL(req.url).origin + '/#/AffiliateDashboard?payment=success' + (referralCode ? `&ref=${referralCode}` : '');
+    // Get the app URL from environment or use the referer header
+    const appUrl = Deno.env.get('APP_URL') || req.headers.get('referer')?.split('/#/')[0] || 'https://sales1.rentapog.com';
+    const returnUrl = `${appUrl}/#/AffiliateDashboard?payment=success` + (referralCode ? `&ref=${referralCode}` : '');
+    const cancelUrl = `${appUrl}/#/Packages`;
 
     const orderRes = await fetch(`${baseUrl}/v2/checkout/orders`, {
       method: 'POST',
@@ -65,7 +68,7 @@ Deno.serve(async (req) => {
           paypal: {
             experience_context: {
               return_url: returnUrl,
-              cancel_url: new URL(req.url).origin + '/#/Packages'
+              cancel_url: cancelUrl
             }
           }
         }
