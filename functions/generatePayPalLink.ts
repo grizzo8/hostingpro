@@ -38,8 +38,9 @@ Deno.serve(async (req) => {
     });
 
     const tokenData = await tokenRes.json();
+    console.log('PayPal token response:', JSON.stringify(tokenData, null, 2));
     if (!tokenData.access_token) {
-      return Response.json({ error: 'Failed to get PayPal token' }, { status: 500 });
+      return Response.json({ error: 'Failed to get PayPal token', details: tokenData }, { status: 500 });
     }
 
     const returnUrl = new URL(req.url).origin + '/packages?success=true' + (referralCode ? `&ref=${referralCode}` : '');
