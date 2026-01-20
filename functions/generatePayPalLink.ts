@@ -22,11 +22,13 @@ Deno.serve(async (req) => {
     }
 
     const amount = billingType === 'daily' ? pkg.daily_price : pkg.monthly_price;
+    const useSandbox = Deno.env.get('PAYPAL_SANDBOX') === 'true';
     const clientId = Deno.env.get('PAYPAL_CLIENT_ID');
     const clientSecret = Deno.env.get('PAYPAL_API_SECRET');
+    const baseUrl = useSandbox ? 'https://api.sandbox.paypal.com' : 'https://api.paypal.com';
 
     const authString = btoa(`${clientId}:${clientSecret}`);
-    const tokenRes = await fetch('https://api.paypal.com/v1/oauth2/token', {
+    const tokenRes = await fetch(`${baseUrl}/v1/oauth2/token`, {
       method: 'POST',
       headers: {
         'Authorization': `Basic ${authString}`,
