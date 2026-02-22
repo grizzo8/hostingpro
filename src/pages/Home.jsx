@@ -123,14 +123,14 @@ export default function Home() {
               {
                 num: 2,
                 title: 'Get Just 2 Referrals',
-                desc: 'Share your unique referral link. You earn 70% of every sale from your very first referral — no admin fees, no splits. With just 2 referrals you\'re already in profit!',
+                desc: 'Share your unique referral link. You earn 70% of every sale from your very first referral — no admin fees, no splits. With just 2 referrals you\'re already in profit! And this isn\'t a once-off payment — every time your referrals renew daily or monthly, you keep earning.',
                 badge: '💰 In profit after just 2 referrals'
               },
               {
                 num: 3,
-                title: 'Earn Daily Passive Income',
-                desc: 'Keep referring and earn 70% on every sale, every day. Hit 10 referrals and automatically unlock Elite status with 75% commission forever!',
-                badge: '📈 Automatic daily PayPal payouts'
+                title: 'Earn Daily Passive Income — Every Day',
+                desc: 'This is NOT a one-time commission. Every single day your referred customers are billed, you get paid 70% straight to your PayPal. Keep referring and hit 10 to unlock 75% Elite commission — forever!',
+                badge: '📈 Daily PayPal payments — not once-off!'
               }
             ].map((step) => (
               <motion.div key={step.num} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}>
@@ -164,11 +164,12 @@ export default function Home() {
               <GlassCard className="p-8 bg-green-50 border-green-200 h-full">
                 <div className="text-5xl font-black text-green-600 mb-2">70%</div>
                 <h3 className="text-xl font-bold text-slate-900 mb-3">Standard Commission</h3>
-                <p className="text-gray-700 text-sm mb-4">Every sale you refer earns you <strong>70% of the sale price</strong>—paid directly to your PayPal. No complicated tiers, no waiting. Just a massive commission on every referral from day one.</p>
+                <p className="text-gray-700 text-sm mb-4">Every sale you refer earns you <strong>70% of the sale price</strong>—paid directly to your PayPal. And this is <strong>not a once-off payment</strong>. Every day your referrals renew their billing, you get paid again automatically. No complicated tiers, no waiting.</p>
                 <ul className="space-y-2 text-sm text-gray-700">
-                  <li>✓ 70% of every sale</li>
-                  <li>✓ Paid daily via PayPal</li>
+                  <li>✓ 70% of every sale — recurring daily</li>
+                  <li>✓ Paid to PayPal every single day</li>
                   <li>✓ Starts from your very first referral</li>
+                  <li>✓ Not a once-off — it keeps coming!</li>
                 </ul>
               </GlassCard>
             </motion.div>
