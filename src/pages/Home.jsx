@@ -106,7 +106,7 @@ export default function Home() {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
             <div className="inline-block text-sm font-semibold text-blue-600 mb-3">
-              Pay Once → Get 3 Referrals → Earn Daily Forever
+              Pay Once → Get 2 Referrals → Earn Daily Forever
             </div>
             <h2 className="text-4xl font-bold text-slate-900 mb-4">How HostingPro Works</h2>
             <p className="text-xl text-gray-600">A simple 3-step system to build daily passive income. The higher you invest, the more you earn!</p>
@@ -117,19 +117,19 @@ export default function Home() {
               {
                 num: 1,
                 title: 'Choose Your Hosting Package',
-                desc: 'Select your hosting package ($20-$999). Make one payment to get started. Your payment goes to admin as the platform fee, and you receive your affiliate link via email.',
+                desc: 'Select your hosting package and make one payment to get started. You\'ll receive your unique affiliate link instantly and can start earning 70% commission on every referral right away.',
                 badge: '⏱️ One-time payment only'
               },
               {
                 num: 2,
-                title: 'Get 3 Referrals',
-                desc: 'Share your unique referral link with 3 people. When they sign up and pay, you\'ve doubled your money! Your 1st sale = 100% yours, 2nd sale = admin, 3rd+ sales = 100% yours.',
-                badge: '💰 Double your money at 3 referrals'
+                title: 'Get Just 2 Referrals',
+                desc: 'Share your unique referral link. You earn 70% of every sale from your very first referral — no admin fees, no splits. With just 2 referrals you\'re already in profit!',
+                badge: '💰 In profit after just 2 referrals'
               },
               {
                 num: 3,
                 title: 'Earn Daily Passive Income',
-                desc: 'Once you hit 3 referrals, daily billing activates. Every single day, you receive automatic PayPal payments from new sales. The higher your package, the more you earn daily!',
+                desc: 'Keep referring and earn 70% on every sale, every day. Hit 10 referrals and automatically unlock Elite status with 75% commission forever!',
                 badge: '📈 Automatic daily PayPal payouts'
               }
             ].map((step) => (
@@ -311,7 +311,7 @@ export default function Home() {
           <GlassCard className="p-8 bg-slate-900 text-white mb-8">
             <h3 className="text-2xl font-bold mb-4">Commission Structure</h3>
             <p className="mb-4">70% commission from your very first referral. Hit 10 referrals and earn 75% forever.</p>
-            <p className="text-gray-300">No complicated splits. No admin fees taken from your sales. Just a straight 70% (or 75% for top performers) paid directly to your PayPal every single day.</p>
+            <p className="text-gray-300">No admin fees. No splits. Just a straight 70% (or 75% for elite performers) paid directly to your PayPal every single day. In profit after just 2 referrals!</p>
           </GlassCard>
 
           <div className="grid md:grid-cols-2 gap-6 mb-8">

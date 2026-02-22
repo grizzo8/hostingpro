@@ -121,7 +121,7 @@ export default function Packages() {
               Hosting <span className="text-red-600">Packages</span>
             </h1>
             <p className="text-xl text-gray-700 max-w-2xl mx-auto">
-              Choose your package. After 3 referrals, earn daily passive income!
+              Earn 70% commission from your very first referral. In profit after just 2 referrals!
             </p>
           </motion.div>
 
@@ -185,21 +185,21 @@ export default function Packages() {
 
                        <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6">
                          <div className="text-center">
-                           <p className="text-xs text-gray-600 mb-2">After 3 referrals:</p>
+                           <p className="text-xs text-gray-600 mb-2">Daily passive income:</p>
                            <div className="text-2xl font-bold text-blue-600">${pkg.daily_payout}/day</div>
                            <p className="text-xs text-gray-600 mt-1">Automatic PayPal payouts</p>
                            <p className="text-xs text-gray-500 mt-2">*minus PayPal fees</p>
                          </div>
                        </div>
 
-                      <div className="bg-red-50 border border-red-200 rounded-xl p-4 mb-6">
-                        <div className="text-center">
-                          <p className="text-xs font-semibold text-gray-700 mb-2">Commission Structure</p>
-                          <p className="text-xs text-red-600">1st Sale: 100% Yours</p>
-                          <p className="text-xs text-gray-600">2nd Sale: Admin Fee</p>
-                          <p className="text-xs text-red-600 font-semibold">3rd+ Sales: 100% Yours</p>
-                        </div>
-                      </div>
+                       <div className="bg-green-50 border border-green-200 rounded-xl p-4 mb-6">
+                         <div className="text-center">
+                           <p className="text-xs font-semibold text-gray-700 mb-2">Commission Structure</p>
+                           <p className="text-xs text-green-700 font-bold">70% on every sale</p>
+                           <p className="text-xs text-orange-600 font-semibold">75% after 10 referrals</p>
+                           <p className="text-xs text-gray-500 mt-1">In profit after just 2 referrals!</p>
+                         </div>
+                       </div>
 
                       <ul className="space-y-3 mb-8 flex-grow">
                         {pkg.features?.map((feature, j) => (
