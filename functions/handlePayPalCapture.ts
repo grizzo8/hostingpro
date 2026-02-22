@@ -64,7 +64,14 @@ Deno.serve(async (req) => {
     const amount = pkg.monthly_price;
     const affiliateId = affiliate?.id;
 
-    // Create referral record directly to the affiliate
+    // Determine commission rate: 75% if 10+ referrals, otherwise 70%
+    const existingReferrals = affiliateId
+      ? await base44.asServiceRole.entities.Referral.filter({ affiliate_id: affiliateId })
+      : [];
+    const commissionRate = existingReferrals.length >= 10 ? 0.75 : 0.70;
+    const commissionAmount = affiliateId ? (amount * commissionRate) : 0;
+
+    // Create referral record
     const referral = await base44.asServiceRole.entities.Referral.create({
       affiliate_id: affiliateId || 'admin',
       customer_email: user.email,
@@ -72,7 +79,7 @@ Deno.serve(async (req) => {
       package_id: pkg.id,
       package_name: pkg.name,
       sale_amount: amount,
-      commission_amount: affiliateId ? (amount * 0.3) : 0,
+      commission_amount: commissionAmount,
       status: 'approved',
       billing_cycle: 'monthly',
       is_recurring: true,
@@ -82,10 +89,9 @@ Deno.serve(async (req) => {
 
     // Update affiliate stats
     if (affiliate) {
-      const allReferrals = await base44.asServiceRole.entities.Referral.filter({ affiliate_id: affiliateId });
       await base44.asServiceRole.entities.Affiliate.update(affiliateId, {
-        total_referrals: allReferrals.length,
-        pending_balance: (affiliate.pending_balance || 0) + (amount * 0.3)
+        total_referrals: existingReferrals.length + 1,
+        pending_balance: (affiliate.pending_balance || 0) + commissionAmount
       });
     }
 

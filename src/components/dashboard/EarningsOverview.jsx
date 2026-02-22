@@ -8,6 +8,7 @@ export default function EarningsOverview({ affiliate }) {
   const totalEarnings = affiliate?.total_earnings || 0;
   const pendingBalance = affiliate?.pending_balance || 0;
   const referralsCount = affiliate?.total_referrals || 0;
+  const commissionRate = referralsCount >= 10 ? 75 : 70;
 
   return (
     <motion.div
@@ -77,24 +78,32 @@ export default function EarningsOverview({ affiliate }) {
 
       {/* Commission Breakdown */}
       <GlassCard className="p-8">
-        <h3 className="text-lg font-semibold text-slate-900 mb-6">Commission Breakdown</h3>
-        <div className="grid md:grid-cols-3 gap-6">
-          <div className="p-4 bg-red-50 rounded-lg border border-red-200">
-            <p className="text-gray-600 text-sm mb-2">1st Sale</p>
-            <p className="text-3xl font-bold text-red-600">100%</p>
-            <p className="text-xs text-gray-500 mt-1">All yours</p>
-          </div>
-          <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
-            <p className="text-gray-600 text-sm mb-2">2nd Sale</p>
-            <p className="text-3xl font-bold text-gray-600">0%</p>
-            <p className="text-xs text-gray-500 mt-1">Goes to admin</p>
-          </div>
+        <h3 className="text-lg font-semibold text-slate-900 mb-6">Your Commission Rate</h3>
+        <div className="grid md:grid-cols-2 gap-6">
           <div className="p-4 bg-green-50 rounded-lg border border-green-200">
-            <p className="text-gray-600 text-sm mb-2">3rd+ Sales</p>
-            <p className="text-3xl font-bold text-green-600">100%</p>
-            <p className="text-xs text-gray-500 mt-1">Daily payouts</p>
+            <p className="text-gray-600 text-sm mb-2">Referrals 1–9</p>
+            <p className="text-3xl font-bold text-green-600">70%</p>
+            <p className="text-xs text-gray-500 mt-1">Of every sale, paid daily</p>
+          </div>
+          <div className="p-4 bg-yellow-50 rounded-lg border border-yellow-300">
+            <div className="flex items-center gap-2 mb-2">
+              <p className="text-gray-600 text-sm">10+ Referrals</p>
+              <span className="bg-orange-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">ELITE</span>
+            </div>
+            <p className="text-3xl font-bold text-orange-500">75%</p>
+            <p className="text-xs text-gray-500 mt-1">Auto-upgraded, forever</p>
           </div>
         </div>
+        {referralsCount >= 10 && (
+          <div className="mt-4 p-3 bg-orange-50 border border-orange-200 rounded-lg text-center">
+            <p className="text-orange-700 font-semibold text-sm">🏆 Elite Status Unlocked! You're earning 75% commission.</p>
+          </div>
+        )}
+        {referralsCount < 10 && (
+          <div className="mt-4 p-3 bg-gray-50 border border-gray-200 rounded-lg text-center">
+            <p className="text-gray-600 text-sm">{10 - referralsCount} more referral{10 - referralsCount !== 1 ? 's' : ''} to unlock Elite 75% commission</p>
+          </div>
+        )}
       </GlassCard>
     </motion.div>
   );

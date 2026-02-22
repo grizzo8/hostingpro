@@ -155,59 +155,60 @@ export default function Home() {
             <div className="inline-block text-sm font-semibold text-green-600 mb-3">
               Commission Structure
             </div>
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">Fair & Transparent Payment System</h2>
-            <p className="text-xl text-gray-600">Here's exactly how commissions are split. Simple, clear, and designed for your success.</p>
+            <h2 className="text-4xl font-bold text-slate-900 mb-4">Industry-Leading 70% Commissions</h2>
+            <p className="text-xl text-gray-600">One of the highest commission rates in the industry—and it gets even better as you grow.</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            {[
-              { num: 1, title: '1st Sale - You Get 100%', desc: 'Your first referral sale goes directly to you. This helps you recoup your initial investment faster.', label: '100% to you' },
-              { num: 2, title: '2nd Sale - Admin Fee', desc: 'Your second sale always goes to admin to cover platform costs and support.', label: 'Goes to admin' },
-              { num: 3, title: '3rd+ Sales - You Get 100%', desc: 'All sales after the 2nd go to YOU! This is where you start making serious passive income daily.', label: '100% to you forever' }
-            ].map((item) => (
-              <motion.div key={item.num} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}>
-                <GlassCard className="p-6">
-                  <div className="w-10 h-10 bg-slate-900 text-white rounded-full flex items-center justify-center font-bold mb-4">
-                    {item.num}
-                  </div>
-                  <h3 className="text-lg font-bold text-slate-900 mb-3">{item.title}</h3>
-                  <p className="text-gray-600 mb-4 text-sm">{item.desc}</p>
-                  <p className="text-green-600 font-semibold text-sm">{item.label}</p>
-                </GlassCard>
-              </motion.div>
-            ))}
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}>
+              <GlassCard className="p-8 bg-green-50 border-green-200 h-full">
+                <div className="text-5xl font-black text-green-600 mb-2">70%</div>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">Standard Commission</h3>
+                <p className="text-gray-700 text-sm mb-4">Every sale you refer earns you <strong>70% of the sale price</strong>—paid directly to your PayPal. No complicated tiers, no waiting. Just a massive commission on every referral from day one.</p>
+                <ul className="space-y-2 text-sm text-gray-700">
+                  <li>✓ 70% of every sale</li>
+                  <li>✓ Paid daily via PayPal</li>
+                  <li>✓ Starts from your very first referral</li>
+                </ul>
+              </GlassCard>
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}>
+              <GlassCard className="p-8 bg-gradient-to-br from-yellow-50 to-orange-50 border-yellow-300 h-full">
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="text-5xl font-black text-orange-500">75%</div>
+                  <span className="bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded-full">LEVEL UP</span>
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">Elite Commission – 10+ Referrals</h3>
+                <p className="text-gray-700 text-sm mb-4">Once you hit <strong>10 referrals</strong>, you automatically unlock <strong>75% commission</strong> on every sale going forward. This reward is our way of saying thank you to our top performers.</p>
+                <ul className="space-y-2 text-sm text-gray-700">
+                  <li>⭐ Reach 10 referrals to unlock</li>
+                  <li>⭐ 75% of every sale</li>
+                  <li>⭐ Applies automatically, forever</li>
+                </ul>
+              </GlassCard>
+            </motion.div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            <GlassCard className="p-8 bg-green-50 border-green-200">
-              <h3 className="text-lg font-bold text-slate-900 mb-3">💰 Double Your Money System</h3>
-              <p className="text-gray-700 text-sm mb-4">With just 3 referrals, you've already doubled your initial investment! Once you hit 3 referrals, daily billing activates and you start earning passive income every single day via PayPal.</p>
-              <ul className="space-y-2 text-sm text-gray-700">
-                <li>✓ Pay once upfront</li>
-                <li>✓ Get 3 referrals = 2x ROI</li>
-                <li>✓ Daily passive income</li>
-              </ul>
-            </GlassCard>
-
-            <GlassCard className="p-8 bg-blue-50 border-blue-200">
-              <h3 className="text-lg font-bold text-slate-900 mb-3">📈 Higher Package = More Daily Income</h3>
-              <p className="text-gray-700 text-sm">The beauty of this system: the higher package you choose, the more passive income you earn daily once you hit 3 referrals. It's all automated through PayPal!</p>
-              <div className="mt-4 space-y-2">
-                <div className="flex justify-between text-sm">
-                  <span>Bronze</span>
-                  <span className="font-bold text-slate-900">$49/day</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span>Gold</span>
-                  <span className="font-bold text-slate-900">$299/day</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span>Diamond</span>
-                  <span className="font-bold text-slate-900">$999/day</span>
-                </div>
+          <GlassCard className="p-8 bg-slate-900 text-white">
+            <div className="grid md:grid-cols-3 gap-8 text-center">
+              <div>
+                <div className="text-4xl font-black text-green-400 mb-2">70%</div>
+                <p className="font-semibold">Referrals 1–9</p>
+                <p className="text-gray-400 text-sm">Paid daily to PayPal</p>
               </div>
-            </GlassCard>
-          </div>
+              <div className="border-l border-r border-slate-700">
+                <div className="text-4xl font-black text-yellow-400 mb-2">75%</div>
+                <p className="font-semibold">10+ Referrals</p>
+                <p className="text-gray-400 text-sm">Elite tier, automatic upgrade</p>
+              </div>
+              <div>
+                <div className="text-4xl font-black text-blue-400 mb-2">Daily</div>
+                <p className="font-semibold">Payout Schedule</p>
+                <p className="text-gray-400 text-sm">Straight to your PayPal</p>
+              </div>
+            </div>
+          </GlassCard>
         </div>
       </section>
 
@@ -308,9 +309,9 @@ export default function Home() {
           </div>
 
           <GlassCard className="p-8 bg-slate-900 text-white mb-8">
-            <h3 className="text-2xl font-bold mb-4">Payment Structure</h3>
-            <p className="mb-4">Your 1st and 3rd+ Referrals = 100% Yours</p>
-            <p className="text-gray-300">Your payment covers the admin fee. 1st referral sale = 100% yours. 2nd sale = admin. All others = 100% yours forever!</p>
+            <h3 className="text-2xl font-bold mb-4">Commission Structure</h3>
+            <p className="mb-4">70% commission from your very first referral. Hit 10 referrals and earn 75% forever.</p>
+            <p className="text-gray-300">No complicated splits. No admin fees taken from your sales. Just a straight 70% (or 75% for top performers) paid directly to your PayPal every single day.</p>
           </GlassCard>
 
           <div className="grid md:grid-cols-2 gap-6 mb-8">
@@ -346,7 +347,7 @@ export default function Home() {
           <p className="text-lg mb-6 text-gray-300">If you're not getting traffic, you're either promoting it wrong or in the wrong places. There's not one person in this world who doesn't like money.</p>
           <p className="text-lg mb-8 text-gray-300">If you don't like money, you're in the wrong place. But if you do—and we know you do—then you have everything you need to succeed:</p>
           <ul className="space-y-3 text-gray-300 mb-8">
-            <li>✓ 100% commission paid daily</li>
+            <li>✓ 70% commission paid daily (75% at 10+ referrals)</li>
             <li>✓ Automated email campaigns doing the work for you</li>
             <li>✓ Full tracking transparency</li>
             <li>✓ Complete guides in your back office</li>
