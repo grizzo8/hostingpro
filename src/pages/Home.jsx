@@ -264,7 +264,7 @@ export default function Home() {
               </p>
 
               <p className="text-lg">
-                That's why we created the daily hosting rental model. Rather than waiting for annual commissions, you get paid every single day. The moment you hit 3 referrals, the income starts flowing automatically to your PayPal account. It's transparent, it's immediate, and it's designed to reward your efforts fairly.
+                That's why we created the daily hosting rental model. Rather than waiting for annual commissions, you get paid every single day. With 70% commission from your very first referral, you're in profit after just 2 sales — and it only gets better from there. It's transparent, it's immediate, and it's designed to reward your efforts fairly.
               </p>
 
               <div className="border-l-4 border-blue-600 pl-6 py-4 bg-blue-50 rounded-r-lg">
@@ -294,7 +294,7 @@ export default function Home() {
           <div className="grid md:grid-cols-4 gap-6 mb-12">
             {[
               { icon: '📨', title: 'Daily Payouts', desc: 'No monthly waiting periods. Get paid instantly to PayPal every single day.' },
-              { icon: '🔍', title: 'Transparent Pricing', desc: 'Only your 2nd sale goes to admin. You keep 100% of the rest. Period.' },
+              { icon: '🔍', title: 'Transparent Pricing', desc: '70% of every sale goes directly to you. No hidden fees, no admin cuts. Simple and honest.' },
               { icon: '⚡', title: 'Quick Setup', desc: 'Get started in minutes. No complicated forms, no long waits for approval.' },
               { icon: '📈', title: 'Unlimited Earnings', desc: 'The more referrals you get, the more you earn. There\'s no cap on your income.' }
             ].map((feature) => (
@@ -329,7 +329,7 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-6">
             {[
               { title: 'Link Tracking Built-In', desc: 'Add tracking parameters to your affiliate links to see exactly where your traffic comes from. Know every sale source and never get ripped off.' },
-              { title: 'Maximum Earning Potential', desc: '100% of subscription fees paid daily to you. If you\'re not getting traffic, you\'re marketing wrong or in the wrong places. But here\'s the truth: everyone likes money.' }
+              { title: 'Maximum Earning Potential', desc: '70% of every sale paid daily to you — 75% once you hit 10 referrals. In profit after just 2 referrals. Everyone likes money, and this system delivers it.' }
             ].map((item) => (
               <GlassCard key={item.title} className="p-6">
                 <h3 className="font-bold text-slate-900 mb-2">{item.title}</h3>
@@ -410,12 +410,12 @@ export default function Home() {
           <div className="space-y-6">
             <GlassCard className="p-6 border-red-200 bg-red-50">
               <h3 className="font-bold text-slate-900 mb-3">STRICTLY NO REFUNDS</h3>
-              <p className="text-gray-700 text-sm">Once you have obtained 3 referrals and have received at least one payout, your initial package purchase is considered final and non-refundable under any circumstances. This policy ensures the integrity of the affiliate program and prevents abuse of the commission structure.</p>
+              <p className="text-gray-700 text-sm">Once you have obtained 2 referrals and have received at least one payout, your initial package purchase is considered final and non-refundable under any circumstances. This policy ensures the integrity of the affiliate program and prevents abuse of the commission structure.</p>
             </GlassCard>
 
             <GlassCard className="p-6 border-green-200 bg-green-50">
               <h3 className="font-bold text-slate-900 mb-3">Pre-Referral Refund Option</h3>
-              <p className="text-gray-700 text-sm mb-3">If you have not yet received your 3 referrals within the timeframe you expected, you may request a full refund of your package purchase—no hard feelings, we tried! If you have followed all program rules and guidelines, we will process your refund request.</p>
+              <p className="text-gray-700 text-sm mb-3">If you have not yet received your 2 referrals within the timeframe you expected, you may request a full refund of your package purchase—no hard feelings, we tried! If you have followed all program rules and guidelines, we will process your refund request.</p>
               <p className="text-gray-700 text-sm">For refund requests or any questions, please email our support team at <a href="mailto:support@rentapog.com" className="text-green-600 font-semibold">support@rentapog.com</a></p>
             </GlassCard>
 
