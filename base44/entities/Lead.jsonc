@@ -1,0 +1,57 @@
+{
+  "name": "Lead",
+  "type": "object",
+  "properties": {
+    "email": {
+      "type": "string"
+    },
+    "full_name": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "company": {
+      "type": "string"
+    },
+    "affiliate_id": {
+      "type": "string",
+      "description": "Referring affiliate ID"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "referral_link",
+        "website",
+        "email",
+        "other"
+      ],
+      "default": "referral_link"
+    },
+    "interested_package": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "new",
+        "contacted",
+        "qualified",
+        "converted",
+        "lost"
+      ],
+      "default": "new"
+    },
+    "conversion_referral_id": {
+      "type": "string",
+      "description": "Referral ID when lead converts to sale"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "email",
+    "affiliate_id"
+  ]
+}

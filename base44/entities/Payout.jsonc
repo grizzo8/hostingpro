@@ -1,0 +1,43 @@
+{
+  "name": "Payout",
+  "type": "object",
+  "properties": {
+    "affiliate_id": {
+      "type": "string"
+    },
+    "affiliate_email": {
+      "type": "string"
+    },
+    "paypal_email": {
+      "type": "string"
+    },
+    "amount": {
+      "type": "number"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "processing",
+        "completed",
+        "failed"
+      ],
+      "default": "pending"
+    },
+    "transaction_id": {
+      "type": "string",
+      "description": "PayPal transaction ID"
+    },
+    "processed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "affiliate_id",
+    "amount"
+  ]
+}

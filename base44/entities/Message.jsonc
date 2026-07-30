@@ -1,0 +1,37 @@
+{
+  "name": "Message",
+  "type": "object",
+  "properties": {
+    "affiliate_id": {
+      "type": "string"
+    },
+    "affiliate_email": {
+      "type": "string"
+    },
+    "subject": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    },
+    "sender_type": {
+      "type": "string",
+      "enum": [
+        "admin",
+        "affiliate"
+      ]
+    },
+    "is_read": {
+      "type": "boolean",
+      "default": false
+    },
+    "parent_id": {
+      "type": "string",
+      "description": "Parent message ID for threads"
+    }
+  },
+  "required": [
+    "content",
+    "sender_type"
+  ]
+}

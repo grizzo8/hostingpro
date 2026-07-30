@@ -1,0 +1,63 @@
+{
+  "name": "BlogPost",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "excerpt": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    },
+    "cover_image": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "tutorials",
+        "tips",
+        "news",
+        "case-studies",
+        "resources"
+      ]
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "author_name": {
+      "type": "string"
+    },
+    "author_avatar": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "published"
+      ],
+      "default": "draft"
+    },
+    "published_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "views": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "title",
+    "content"
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "name": "Affiliate",
+  "type": "object",
+  "properties": {
+    "user_email": {
+      "type": "string",
+      "description": "Linked user email"
+    },
+    "full_name": {
+      "type": "string"
+    },
+    "referral_code": {
+      "type": "string",
+      "description": "Unique referral code"
+    },
+    "parent_affiliate_id": {
+      "type": "string",
+      "description": "Parent affiliate ID if this is a sub-affiliate (reseller)"
+    },
+    "max_package_id": {
+      "type": "string",
+      "description": "Highest tier package they purchased"
+    },
+    "paypal_email": {
+      "type": "string",
+      "description": "PayPal email for payouts"
+    },
+    "tier": {
+      "type": "string",
+      "enum": [
+        "bronze",
+        "silver",
+        "gold",
+        "platinum"
+      ],
+      "default": "bronze"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "approved",
+        "active",
+        "suspended"
+      ],
+      "default": "pending"
+    },
+    "total_earnings": {
+      "type": "number",
+      "default": 0
+    },
+    "pending_balance": {
+      "type": "number",
+      "default": 0
+    },
+    "total_referrals": {
+      "type": "number",
+      "default": 0
+    },
+    "approved_referrals": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of approved referrals (triggers daily payouts at 3)"
+    },
+    "daily_payout_active": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether daily payouts are active"
+    },
+    "conversion_rate": {
+      "type": "number",
+      "default": 0
+    },
+    "website_url": {
+      "type": "string"
+    },
+    "promotion_methods": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "user_email",
+    "referral_code"
+  ]
+}

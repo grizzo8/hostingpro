@@ -1,0 +1,61 @@
+{
+  "name": "Referral",
+  "type": "object",
+  "properties": {
+    "affiliate_id": {
+      "type": "string",
+      "description": "Referring affiliate ID"
+    },
+    "customer_email": {
+      "type": "string"
+    },
+    "customer_name": {
+      "type": "string"
+    },
+    "package_id": {
+      "type": "string"
+    },
+    "package_name": {
+      "type": "string"
+    },
+    "sale_amount": {
+      "type": "number"
+    },
+    "commission_amount": {
+      "type": "number"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "approved",
+        "paid",
+        "refunded"
+      ],
+      "default": "pending"
+    },
+    "billing_cycle": {
+      "type": "string",
+      "enum": [
+        "monthly",
+        "yearly"
+      ]
+    },
+    "is_recurring": {
+      "type": "boolean",
+      "default": false
+    },
+    "ip_address": {
+      "type": "string"
+    },
+    "referral_source": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "affiliate_id",
+    "customer_email",
+    "sale_amount",
+    "commission_amount"
+  ]
+}

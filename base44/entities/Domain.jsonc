@@ -1,0 +1,47 @@
+{
+  "name": "Domain",
+  "type": "object",
+  "properties": {
+    "affiliate_id": {
+      "type": "string",
+      "description": "Affiliate ID who registered the domain"
+    },
+    "affiliate_email": {
+      "type": "string",
+      "description": "Affiliate email"
+    },
+    "domain_name": {
+      "type": "string",
+      "description": "Full domain name"
+    },
+    "registration_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the domain was registered"
+    },
+    "years": {
+      "type": "number",
+      "default": 1,
+      "description": "Years registered for"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "expired",
+        "pending",
+        "cancelled"
+      ],
+      "default": "active",
+      "description": "Domain status"
+    },
+    "opensrs_order_id": {
+      "type": "string",
+      "description": "OpenSRS order ID for tracking"
+    }
+  },
+  "required": [
+    "affiliate_id",
+    "domain_name"
+  ]
+}
